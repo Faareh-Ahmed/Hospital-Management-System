@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import Nav from './components/Nav'
+import Hero from './components/Hero'
+import Description from './components/Description'
+import Contributors from './components/Contributors'
+import Footer from './components/Footer'
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
-export default App;
+    <main className="relative">
+       <Nav/>
+       <section className="x1:padding-1 wide:padding-r padding-b">
+          <Hero/>
+       </section>
+       <section className="padding">
+          <Description/>
+       </section>
+       <section className="padding-x sm:py-32 py-16 w-full">
+          <Contributors/>
+       </section>
+       <section className="bg-black padding-r padding-t pb-08">
+        <Footer/>
+       </section>
+    </main>
+  )
+} 

@@ -21,14 +21,14 @@ db.connect((err) => {
 });
 
 app.get('/api/actors', (req, res) => {
-    const sql = 'SELECT * FROM actor limit 10'; // Replace with your table name
+    const sql = 'SELECT * FROM actor limit 10';
     db.query(sql, (err, results) => {
       if (err) {
         console.error('Error querying MySQL:', err);
         res.status(500).json({ error: 'Internal Server Error' });
         return;
       }
-      res.json({ actors: results }); // Send the data as JSON
+      res.json({ actors: results }); 
     });
   });
 try {

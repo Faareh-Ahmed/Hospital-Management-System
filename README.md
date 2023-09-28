@@ -34,7 +34,7 @@ This will launch the React.js app. You can access it in your web browser at [htt
 2. Install the required dependencies
    ```bash
    npm install
-3. Start the frontend development server
+3. Start the backend development server
    ```bash
    npm start
 The Express.js server will be running on [http://localhost:5000](http://localhost:5000).

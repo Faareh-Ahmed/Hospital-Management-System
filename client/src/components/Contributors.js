@@ -1,7 +1,41 @@
 import React from 'react'
 
 export default function Contributors() {
+
+  const contributors = [
+    {
+      username: 'Awais Nazir',
+      avatarUrl: 'https://github.com/contributor1.png',
+    },
+    {
+      username: 'Faareh Ahmed',
+      avatarUrl: 'https://github.com/contributor2.png',
+    },
+    {
+      username: 'Malik Shahzaib',
+      avatarUrl: 'https://github.com/contributor3.png',
+    },
+  ];
+
   return (
-    <div>Contributors</div>
+    <>
+      <h1 className="text-2xl font-bold mb-4">CONTRIBUTORS</h1>
+
+      <div className="h-screen flex flex-col justify-center bg-red-400">
+        {/* <h1 className="text-2xl font-bold mb-4">CONTRIBUTORS</h1> */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 h-1/2">
+          {contributors.map((contributor) => (
+            <div key={contributor.username} className="bg-black rounded-lg p-4 shadow-md">
+              <img
+                src={contributor.avatarUrl}
+                alt={`${contributor.username}'s avatar`}
+                className="w-1/4 h-2/6 rounded-full mx-auto mb-2"
+              />
+              <p className="text-center">{contributor.username}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
   )
 }

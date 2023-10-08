@@ -5,15 +5,15 @@ export default function Contributors() {
   const contributors = [
     {
       username: 'Awais Nazir',
-      avatarUrl: 'https://github.com/contributor1.png',
+      avatarUrl: 'https://avatars.githubusercontent.com/u/113518103?v=4',
     },
     {
       username: 'Faareh Ahmed',
-      avatarUrl: 'https://github.com/contributor2.png',
+      avatarUrl: 'https://avatars.githubusercontent.com/u/122796902?v=4',
     },
     {
       username: 'Malik Shahzaib',
-      avatarUrl: 'https://github.com/contributor3.png',
+      avatarUrl: 'https://avatars.githubusercontent.com/u/123496357?v=4',
     },
   ];
 

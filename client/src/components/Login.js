@@ -1,11 +1,22 @@
 import React from 'react'
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import Hero2 from '../images/hero2.jpg'
+import Lottie1 from '../lotties/lottie1.json'
+import Lottie from 'lottie-react';
 export default function Login() {
+
+    const navigate = useNavigate(); // Initialize the navigate function
+
     return (
         <>
             <div className='relative w-full h-screen bg-zinc-900/90'>
                 <img className='absolute w-full h-full object-cover  mix-blend-overlay' src={Hero2} alt='Background Image of Login Page'></img>
-
+                <div className='absolute w-1/12 h-1/12 '>
+                <Lottie 
+                onClick={() => navigate('/')} // Navigate to the Login page
+                className='hover:cursor-pointer'
+                animationData={Lottie1} />
+            </div>
                 <div className='flex justify-center items-center  h-full'>
                     <form className='max-w-[400px] w-full mx-auto bg-white p-8'>
                         <h1 className='relative text-4xl font-bold text-center py-4 bg-white'>MediCare</h1>

@@ -26,8 +26,8 @@ export default function SideNavbar() {
             <section className='flex gap-6'>
                 <div className={`min-h-screen ${open ? "w-72" : "w-16"} text-white bg-black px-4 duration-700`}>
 
-                    <div className='py-3 flex justify-end'>
-                        <HiMenu size={26} className='cursor-pointer' onClick={() => setOpen(!open)} />
+                    <div className='py-3 flex justify-start'>
+                        <HiMenu size={26} className='cursor-pointer'  onClick={() => setOpen(!open)} />
                     </div>
 
                     <div className='mt-4 flex flex-col gap-4 relative'>

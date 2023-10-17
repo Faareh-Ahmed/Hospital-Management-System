@@ -39,7 +39,7 @@ export default function Nav() {
             </li>
             <li>
               <button
-                onClick={() => navigate('/login')} // Navigate to the Login page
+                // onClick={() => navigate('/login')} // Navigate to the Login page
                 className="bg-blue-600 text-white hover:bg-blue-300 hover:text-blue-600 py-2 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105 ">
                 Login
               </button>

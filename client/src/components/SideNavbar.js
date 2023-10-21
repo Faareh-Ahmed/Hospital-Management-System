@@ -6,7 +6,7 @@ import { IoMdSchool } from 'react-icons/io';
 import { IoMdShirt } from 'react-icons/io';
 import { IoMdStar } from 'react-icons/io';
 import { IoMdSubway } from 'react-icons/io';
-
+import Form from '../components/Form'
 import { Link } from 'react-router-dom';
 
 export default function SideNavbar() {
@@ -78,7 +78,7 @@ export default function SideNavbar() {
 
                 {/* Content */}
                 <div className=' text-xl text-gray-900 font-semibold  w-full h-full '>
-                    Content
+                    <Form/>
                 </div>
 
 

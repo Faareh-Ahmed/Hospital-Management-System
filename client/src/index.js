@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import LandingPage from '../src/pages/LandingPage';
 import LoginPage from '../src/pages/LoginPage'; // Import the Login component
 import DomainPage from '../src/pages/DomainPage';
+import DoctorPage from './pages/DoctorPage';
 
 import {
   createBrowserRouter,
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: '/domain', // Define a new route for the Login page
     element: <DomainPage/>,
+  },
+  {
+    path: '/doctor', // Define a new route for the Login page
+    element: <DoctorPage/>,
   },
 ]);
 

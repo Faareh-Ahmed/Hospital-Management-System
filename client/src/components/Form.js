@@ -6,6 +6,7 @@ export default function Form() {
             Content started
 
             <div className="flex flex-wrap -mx-4 bg-slate-600">
+
                 <div className="w-full md:w-1/2 lg:w-1/3 px-4 mb-4 bg-blue-300">
                     <form className="bg-white p-8 rounded-lg shadow-md">
                         <div className="mb-4">

@@ -9,15 +9,8 @@ import { IoMdSubway } from 'react-icons/io';
 import Form from '../components/Form'
 import { Link } from 'react-router-dom';
 
-export default function SideNavbar() {
-    const menus = [
-        { name: "dashboard", link: '/', icon: IoIosBed },
-        { name: "Patient", link: '/', icon: IoMdSchool },
-        { name: "Rooms", link: '/', icon: IoMdShirt },
-        { name: "Doctors", link: '/', icon: IoMdStopwatch },
-        { name: "Payment", link: '/', icon: IoMdSubway },
-        { name: "Delivery", link: '/', icon: IoMdStar },
-    ];
+export default function SideNavbar({ menus }) {
+    
 
     const [open, setOpen] = useState(true);
 

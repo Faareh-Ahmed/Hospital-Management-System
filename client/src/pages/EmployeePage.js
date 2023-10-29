@@ -12,6 +12,14 @@ export default function EmployeePage() {
     { name: "Schedules", link: '/', icon: IoMdSchool },
   ];
 
+  const EmployeeFields = [
+    { name: "name", label: "Name", type: "text", required: true },
+    { name: "contactNumber", label: "Contact Number", type: "tel", required: true, pattern: "[0-9]*" },
+    { name: "email", label: "Email", type: "email", required: true },
+    { name: "cnic", label: "CNIC", type: "text", required: true },
+  ];
+
+
   return (
     <>
       <div className='flex gap-4'>
@@ -21,7 +29,7 @@ export default function EmployeePage() {
           <NavbarDomain />
 
           <div className=' text-xl text-gray-900 font-semibold  w-full h-full '>
-            <Form />
+            <Form fields={EmployeeFields}/>
           </div>
 
         </div>

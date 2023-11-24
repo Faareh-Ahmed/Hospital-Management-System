@@ -1,6 +1,5 @@
 import React from 'react'
 import Login from '../components/Login'
-// import Login from '../components/Login'
 import SideNavbar from '../components/SideNavbar'
 // import SelectDomain from './DomainPage'
 export default function LoginPage() {
@@ -9,6 +8,8 @@ export default function LoginPage() {
             
              <Login />
 <SideNavbar/>
+            <Login />
+{/* <SideNavbar/> */}
 {/* <SelectDomain/> */}
         </>)
 }

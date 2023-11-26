@@ -11,6 +11,9 @@ import DoctorPage from './pages/DoctorPage';
 import AdminPage from './pages/AdminPage';
 import EmployeePage from './pages/EmployeePage';
 import PateintPage from './pages/PateintPage';
+import Add_Appointment from './pages/Add_Appointment';
+import Show_Appointment from './pages/Show_Appointment';
+import Show_Room from './pages/Show_Room';
 
 import {
   createBrowserRouter,
@@ -46,6 +49,18 @@ const router = createBrowserRouter([
   {
     path: '/patient', // Define a new route for the Login page
     element: <PateintPage/>,
+  },
+  {
+    path: '/add-appointment', // Define a new route for the Login page
+    element: <Add_Appointment/>,
+  },
+  {
+    path: '/show-appointment', // Define a new route for the Login page
+    element: <Show_Appointment/>,
+  },
+  {
+    path: '/show-room', // Define a new route for the Login page
+    element: <Show_Room/>,
   },
 ]);
 

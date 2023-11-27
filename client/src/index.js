@@ -20,6 +20,11 @@ import {
   RouterProvider,
   Route,
 } from 'react-router-dom';
+import Add_Doctor from './pages/Add_Doctor';
+import Show_Staff from './pages/Show_Staff';
+import Show_AppointmentDoctor from './pages/Show_AppointmentDoctor';
+import Show_HistoryPatient from './pages/Show_HistoryPatient';
+import Show_BillingPatient from './pages/Show_BillingPatient';
 
 const router = createBrowserRouter([
   {
@@ -51,16 +56,36 @@ const router = createBrowserRouter([
     element: <PateintPage/>,
   },
   {
-    path: '/add-appointment', // Define a new route for the Login page
+    path: '/employee/add-appointment', // Define a new route for the Login page
     element: <Add_Appointment/>,
   },
   {
-    path: '/show-appointment', // Define a new route for the Login page
+    path: '/employee/show-appointment', // Define a new route for the Login page
     element: <Show_Appointment/>,
   },
   {
-    path: '/show-room', // Define a new route for the Login page
+    path: '/employee/show-room', // Define a new route for the Login page
     element: <Show_Room/>,
+  },
+  {
+    path: '/admin/add-doctor', // Define a new route for the Login page
+    element: <Add_Doctor/>,
+  },
+  {
+    path: '/admin/show-staff', // Define a new route for the Login page
+    element: <Show_Staff/>,
+  },
+  {
+    path: '/doctor/show-appointment', // Define a new route for the Login page
+    element: <Show_AppointmentDoctor/>,
+  },
+  {
+    path: '/patient/show-history', // Define a new route for the Login page
+    element: <Show_HistoryPatient/>,
+  },
+  {
+    path: '/patient/show-billing', // Define a new route for the Login page
+    element: <Show_BillingPatient/>,
   },
 ]);
 

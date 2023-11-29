@@ -1,10 +1,15 @@
+
+
+
+
+
 import React from 'react'
 import { IoMdShirt } from 'react-icons/io';
 import { IoMdSchool } from 'react-icons/io';
 import SideNavbar from '../components/SideNavbar'
 import NavbarDomain from '../components/NavbarDomain';
 
-export default function Show_HistoryPatient() {
+export default function UpcomingAppointmentPatient()  {
 
     const patientMenus = [
         { name: "History", link: '/patient/show-history', icon: IoMdShirt },
@@ -24,7 +29,7 @@ export default function Show_HistoryPatient() {
 
           <div className=' text-xl text-gray-900 font-semibold  w-full h-full '>
             {/* <Form fields={PatientFields}/> */}
-            SHow History 
+            upcoming Appointment Patient
           </div>
 
         </div>

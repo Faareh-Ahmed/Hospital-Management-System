@@ -10,6 +10,12 @@ export default function Show_Staff() {
     const AdminMenus = [
         { name: "Add Doctor", link: '/admin/add-doctor', icon: IoMdStar },
         { name: "Show Staff", link: '/admin/show-staff', icon: IoMdSubway },
+        { name: "Add Nurses", link: '/admin/add-nurse', icon: IoMdSubway },
+        { name: "Add Employees", link: '/admin/add-employee', icon: IoMdSubway },
+        { name: "Show Rooms", link: '/admin/show-room', icon: IoMdSubway },
+        { name: "Add Rooms", link: '/admin/add-room', icon: IoMdSubway },
+        { name: "Info", link: '/admin/info', icon: IoMdSubway },
+        { name: "History", link: '/admin/history', icon: IoMdSubway },
     ];
 
     const [activeButton, setActiveButton] = useState(null);
@@ -43,6 +49,11 @@ export default function Show_Staff() {
                                 className={`${activeButton === 'Employees' ? 'bg-green-500 text-black' : 'bg-black text-green-500'}
                                  w-[150px] rounded font-medium my-6 mx-auto md:m-0 py-3 `}
                                 onClick={() => handleButtonClick('Employees')}>Employees</button>
+
+                            <button
+                                className={`${activeButton === 'Employees' ? 'bg-green-500 text-black' : 'bg-black text-green-500'}
+                                 w-[150px] rounded font-medium my-6 mx-auto md:m-0 py-3 `}
+                                onClick={() => handleButtonClick('Employees')}>Rooms</button>
                         </div>
                     </div>
 

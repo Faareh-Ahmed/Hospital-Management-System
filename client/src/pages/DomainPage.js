@@ -22,7 +22,7 @@ export default function DomainPage() {
 
 
                     <button className="relative inline-block px-4 py-2 font-medium group w-1/3 mt-8"
-                        onClick={() => navigate('/doctor/show-appointment')} // Navigate to the Login page
+                        onClick={() => navigate('/doctor/info')} // Navigate to the Login page
                     >
                         <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
                         <span className="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>

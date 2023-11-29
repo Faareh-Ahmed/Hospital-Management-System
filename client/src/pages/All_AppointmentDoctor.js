@@ -3,11 +3,13 @@ import SideNavbar from '../components/SideNavbar'
 import { IoMdStopwatch } from 'react-icons/io';
 import { IoMdSchool } from 'react-icons/io';
 import NavbarDomain from '../components/NavbarDomain';
-export default function Show_AppointmentDoctor() {
+export default function All_AppointmentDoctor() {
 
     const doctorMenus = [
-        { name: "Show Appointments", link: '/doctor/show-appointment', icon: IoMdStopwatch },
-        { name: "Patients", link: '/', icon: IoMdSchool },
+        { name: "History", link: '/doctor/history', icon: IoMdStopwatch },
+        { name: "Upcoming Appointments", link: '/doctor/upcoming-appointment', icon: IoMdSchool },
+        { name: "All Appointments", link: '/doctor/all-appointment', icon: IoMdSchool },
+        { name: "Info", link: '/doctor/info', icon: IoMdSchool },
     ];
 
 

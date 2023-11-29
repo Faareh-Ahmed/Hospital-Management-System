@@ -8,8 +8,9 @@ import Form from '../components/Form'
 export default function EmployeePage() {
 
   const employeeMenus = [
-    { name: "Shifts", link: '/', icon: IoMdStopwatch },
-    { name: "Schedules", link: '/', icon: IoMdSchool },
+    { name: "Add Appointment", link: '/employee/add-appointment', icon: IoMdStopwatch },
+    { name: "Show Appointments", link: '/employee/show-appointment', icon: IoMdSchool },
+    { name: "Show Rooms", link: '/employee/show-room', icon: IoMdSchool },
   ];
 
   const EmployeeFields = [

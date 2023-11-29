@@ -8,8 +8,8 @@ import Form from '../components/Form'
 export default function PateintPage() {
 
   const patientMenus = [
-    { name: "Fee", link: '/', icon: IoMdShirt },
-    { name: "Prescriptions", link: '/', icon: IoMdSchool },
+    { name: "History", link: '/patient/show-history', icon: IoMdShirt },
+    { name: "Billing History", link: '/patient/show-billing', icon: IoMdSchool },
   ];
 
   const PatientFields = [
@@ -28,7 +28,7 @@ export default function PateintPage() {
           <NavbarDomain />
 
           <div className=' text-xl text-gray-900 font-semibold  w-full h-full '>
-            <Form fields={PatientFields}/>
+            {/* <Form fields={PatientFields}/> */}
           </div>
 
         </div>

@@ -1,8 +1,8 @@
 import React from 'react'
-import SideNavbar from '../components/SideNavbar'
+import SideNavbar from '../../components/SideNavbar'
 import { IoMdStopwatch } from 'react-icons/io';
 import { IoMdSchool } from 'react-icons/io';
-import NavbarDomain from '../components/NavbarDomain';
+import NavbarDomain from '../../components/NavbarDomain';
 
 export default function Add_Appointment() {
 

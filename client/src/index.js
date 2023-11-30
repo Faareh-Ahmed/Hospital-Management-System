@@ -11,34 +11,34 @@ import DoctorPage from './pages/DoctorPage';
 import AdminPage from './pages/AdminPage';
 import EmployeePage from './pages/EmployeePage';
 import PateintPage from './pages/PateintPage';
-import Add_Appointment from './pages/Add_Appointment';
-import Show_Appointment from './pages/Show_Appointment';
-import Show_Room from './pages/Show_Room';
+import Add_Appointment from './pages/employee/Add_Appointment';
+import Show_Appointment from './pages/employee/Show_Appointment';
+import Show_Room from './pages/employee/Show_Room';
 
 import {
   createBrowserRouter,
   RouterProvider,
   Route,
 } from 'react-router-dom';
-import Add_Doctor from './pages/Add_Doctor';
-import Show_Staff from './pages/Show_Staff';
-import Show_HistoryPatient from './pages/Show_HistoryPatient';
-import Show_BillingPatient from './pages/Show_BillingPatient';
-import Add_NurseAdmin from './pages/Add_NurseAdmin';
-import Add_EmployeeAdmin from './pages/Add_EmployeeAdmin';
-import All_AppointmentDoctor from './pages/All_AppointmentDoctor';
-import InfoDoctor from './pages/InfoDoctor';
-import UpcomingAppointment from './pages/UpcomingAppointmentDoctor';
-import UpcomingAppointmentDoctor from './pages/UpcomingAppointmentDoctor';
-import HistoryDoctor from './pages/HistoryDoctor';
-import UpcomingAppointmentPatient from './pages/UpcomingAppointmentPatient';
-import DoctorAssignedPatient from './pages/DoctorAssignedPatient';
-import InfoPatient from './pages/InfoPatient';
-import InfoEmployee from './pages/InfoEmployee';
-import ShowDoctorsEmployee from './pages/ShowDoctorsEmployee';
-import InfoAdmin from './pages/InfoAdmin';
-import AddRoomAdmin from './pages/AddRoomAdmin';
-import HistoryAdmin from './pages/HistoryAdmin';
+import Add_Doctor from './pages/admin/Add_Doctor';
+import Show_Staff from './pages/admin/Show_Staff';
+import Show_HistoryPatient from './pages/patient/Show_HistoryPatient';
+import Show_BillingPatient from './pages/patient/Show_BillingPatient';
+import Add_NurseAdmin from './pages/admin/Add_NurseAdmin';
+import Add_EmployeeAdmin from './pages/admin/Add_EmployeeAdmin';
+import All_AppointmentDoctor from './pages/doctor/All_AppointmentDoctor';
+import InfoDoctor from './pages/doctor/InfoDoctor';
+import UpcomingAppointment from './pages/doctor/UpcomingAppointmentDoctor';
+import UpcomingAppointmentDoctor from './pages/doctor/UpcomingAppointmentDoctor';
+import HistoryDoctor from './pages/doctor/HistoryDoctor';
+import UpcomingAppointmentPatient from './pages/patient/UpcomingAppointmentPatient';
+import DoctorAssignedPatient from './pages/patient/DoctorAssignedPatient';
+import InfoPatient from './pages/patient/InfoPatient';
+import InfoEmployee from './pages/employee/InfoEmployee';
+import ShowDoctorsEmployee from './pages/employee/ShowDoctorsEmployee';
+import InfoAdmin from './pages/admin/InfoAdmin';
+import AddRoomAdmin from './pages/admin/AddRoomAdmin';
+import HistoryAdmin from './pages/admin/HistoryAdmin';
 
 const router = createBrowserRouter([
   {

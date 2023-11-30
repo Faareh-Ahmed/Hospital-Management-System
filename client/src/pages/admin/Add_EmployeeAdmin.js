@@ -1,11 +1,11 @@
 
 import React from 'react'
-import SideNavbar from '../components/SideNavbar'
+import SideNavbar from '../../components/SideNavbar'
 import { IoMdStar } from 'react-icons/io';
 import { IoMdSubway } from 'react-icons/io';
-import NavbarDomain from '../components/NavbarDomain';
+import NavbarDomain from '../../components/NavbarDomain';
 
-export default function Add_NurseAdmin() {
+export default function Add_EmployeeAdmin() {
 
     const AdminMenus = [
         { name: "Add Doctor", link: '/admin/add-doctor', icon: IoMdStar },
@@ -28,7 +28,7 @@ export default function Add_NurseAdmin() {
 
                     <div className=' text-xl text-gray-900 font-semibold  w-full h-full '>
                         {/* <Form fields={EmployeeFields} /> */}
-                        Add Nurse
+                        Add Employee
                         <form>
                             <div className="space-y-12">
 

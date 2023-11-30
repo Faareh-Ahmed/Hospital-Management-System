@@ -1,8 +1,8 @@
 import React from 'react'
 import { IoMdShirt } from 'react-icons/io';
 import { IoMdSchool } from 'react-icons/io';
-import SideNavbar from '../components/SideNavbar'
-import NavbarDomain from '../components/NavbarDomain';
+import SideNavbar from '../../components/SideNavbar'
+import NavbarDomain from '../../components/NavbarDomain';
 export default function Show_BillingPatient() {
 
     const patientMenus = [

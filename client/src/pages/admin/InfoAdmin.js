@@ -2,10 +2,10 @@
 
 
 import React from 'react'
-import SideNavbar from '../components/SideNavbar'
+import SideNavbar from '../../components/SideNavbar'
 import { IoMdStar } from 'react-icons/io';
 import { IoMdSubway } from 'react-icons/io';
-import NavbarDomain from '../components/NavbarDomain';
+import NavbarDomain from '../../components/NavbarDomain';
 
 export default function InfoAdmin() {
 

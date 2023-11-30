@@ -1,9 +1,11 @@
+
+
 import React from 'react'
-import SideNavbar from '../components/SideNavbar'
+import SideNavbar from '../../components/SideNavbar'
 import { IoMdStopwatch } from 'react-icons/io';
 import { IoMdSchool } from 'react-icons/io';
-import NavbarDomain from '../components/NavbarDomain';
-export default function All_AppointmentDoctor() {
+import NavbarDomain from '../../components/NavbarDomain';
+export default function UpcomingAppointmentDoctor() {
 
     const doctorMenus = [
         { name: "History", link: '/doctor/history', icon: IoMdStopwatch },
@@ -22,7 +24,7 @@ export default function All_AppointmentDoctor() {
 
                     <div className=' text-xl text-gray-900 font-semibold  w-full h-full '>
                         {/* <Form fields={EmployeeFields} /> */}
-                        Show Appointment for doctor
+                        Upcoming Appointment
                     </div>
 
                 </div>

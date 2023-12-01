@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
+import {  useNavigate } from 'react-router-dom'; // Import useNavigate
 import Hero2 from '../images/hero2.jpg'
 import Lottie1 from '../lotties/lottie1.json'
 import Lottie from 'lottie-react';
@@ -11,7 +11,7 @@ export default function DomainPage() {
     return (
         <>
             <div className='relative w-full h-screen bg-zinc-900/90'>
-                <img className='absolute w-full h-full object-cover  mix-blend-overlay' src={Hero2} alt='Background Image of Login Page'></img>
+                <img className='absolute w-full h-full object-cover  mix-blend-overlay' src={Hero2} alt='Background  of Login Page'></img>
                 <div className='absolute w-1/12 h-1/12 '>
                     <Lottie
                         onClick={() => navigate('/')} // Navigate to the Login page
@@ -22,7 +22,7 @@ export default function DomainPage() {
 
 
                     <button className="relative inline-block px-4 py-2 font-medium group w-1/3 mt-8"
-                        onClick={() => navigate('/doctor/info')} // Navigate to the Login page
+                        onClick={() => navigate('/doctor')} // Navigate to the Login page
                     >
                         <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
                         <span className="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
@@ -30,7 +30,7 @@ export default function DomainPage() {
                     </button>
 
                     <button className="relative inline-block px-4 py-2 font-medium group w-1/3 mt-8"
-                        onClick={() => navigate('/patient/show-history')} // Navigate to the Login page
+                        onClick={() => navigate('/patient')} // Navigate to the Login page
                     >
                         <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
                         <span className="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
@@ -38,7 +38,7 @@ export default function DomainPage() {
                     </button>
 
                     <button className="relative inline-block px-4 py-2 font-medium group w-1/3 mt-8"
-                        onClick={() => navigate('/admin/add-doctor')} // Navigate to the Login page
+                        onClick={() => navigate('/admin')} // Navigate to the Login page
                     >
                         <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
                         <span className="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
@@ -46,7 +46,7 @@ export default function DomainPage() {
                     </button>
 
                     <button className="relative inline-block px-4 py-2 font-medium group w-1/3 mt-8"
-                        onClick={() => navigate('/employee/show-appointment')} // Navigate to the Login page
+                        onClick={() => navigate('/employee')} // Navigate to the Login page
                     >
                         <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
                         <span className="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>

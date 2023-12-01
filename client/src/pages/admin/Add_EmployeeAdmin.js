@@ -8,12 +8,12 @@ import NavbarDomain from '../../components/NavbarDomain';
 export default function Add_EmployeeAdmin() {
 
     const AdminMenus = [
+        { name: "Info", link: '/admin/info', icon: IoMdSubway },
         { name: "Add Doctor", link: '/admin/add-doctor', icon: IoMdStar },
         { name: "Show Staff", link: '/admin/show-staff', icon: IoMdSubway },
         { name: "Add Nurses", link: '/admin/add-nurse', icon: IoMdSubway },
         { name: "Add Employees", link: '/admin/add-employee', icon: IoMdSubway },
         { name: "Add Rooms", link: '/admin/add-room', icon: IoMdSubway },
-        { name: "Info", link: '/admin/info', icon: IoMdSubway },
         { name: "History", link: '/admin/history', icon: IoMdSubway },
     ];
 

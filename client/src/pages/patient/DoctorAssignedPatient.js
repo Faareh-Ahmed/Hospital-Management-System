@@ -9,10 +9,10 @@ import NavbarDomain from '../../components/NavbarDomain';
 export default function DoctorAssignedPatient()  {
 
     const patientMenus = [
+      { name: "Info", link: '/patient/info', icon: IoMdSchool },
         { name: "History", link: '/patient/show-history', icon: IoMdShirt },
         { name: "Upcoming Appointments", link: '/patient/upcoming-appointment', icon: IoMdSchool },
         { name: "Doctor Assigned", link: '/patient/doctor-assigned', icon: IoMdSchool },
-        { name: "Info", link: '/patient/info', icon: IoMdSchool },
       ];
 
 

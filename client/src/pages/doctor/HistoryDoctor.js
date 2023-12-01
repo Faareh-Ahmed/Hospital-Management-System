@@ -11,10 +11,10 @@ import NavbarDomain from '../../components/NavbarDomain';
 export default function IHistoryDoctor(){
 
     const doctorMenus = [
+        { name: "Info", link: '/doctor/info', icon: IoMdSchool },
         { name: "History", link: '/doctor/history', icon: IoMdStopwatch },
         { name: "Upcoming Appointments", link: '/doctor/upcoming-appointment', icon: IoMdSchool },
         { name: "All Appointments", link: '/doctor/all-appointment', icon: IoMdSchool },
-        { name: "Info", link: '/doctor/info', icon: IoMdSchool },
     ];
 
 

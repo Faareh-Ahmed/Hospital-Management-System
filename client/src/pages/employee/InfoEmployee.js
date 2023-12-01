@@ -14,11 +14,11 @@ import NavbarDomain from '../../components/NavbarDomain';
 export default function InfoEmployee() {
 
     const employeeMenus = [
+        { name: "Info", link: '/employee/info', icon: IoMdSchool },
         { name: "Add Appointment", link: '/employee/add-appointment', icon: IoMdStopwatch },
         { name: "Show Appointments", link: '/employee/show-appointment', icon: IoMdSchool },
         { name: "Show Rooms", link: '/employee/show-room', icon: IoMdSchool },
         { name: "Available Doctors", link: '/employee/available-doctor', icon: IoMdSchool },
-        { name: "Info", link: '/employee/info', icon: IoMdSchool },
       ];
 
       

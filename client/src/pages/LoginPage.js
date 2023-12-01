@@ -1,15 +1,21 @@
-import React from 'react'
-import Login from '../components/Login'
-import SideNavbar from '../components/SideNavbar'
-// import SelectDomain from './DomainPage'
+import React from 'react';
+import Login from '../components/Login';
+
+// Original LoginPage component
 export default function LoginPage() {
     return (
         <>
-            
-             <Login />
-<SideNavbar/>
             <Login />
-{/* <SideNavbar/> */}
-{/* <SelectDomain/> */}
-        </>)
+
+        </>
+    );
+}
+
+// Updated LoginPage component with role prop
+export function LoginPageWithRole({ role }) {
+    return (
+        <>
+            <Login role={role} />
+        </>
+    );
 }

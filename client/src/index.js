@@ -11,20 +11,37 @@ import DoctorPage from './pages/DoctorPage';
 import AdminPage from './pages/AdminPage';
 import EmployeePage from './pages/EmployeePage';
 import PateintPage from './pages/PateintPage';
-import Add_Appointment from './pages/Add_Appointment';
-import Show_Appointment from './pages/Show_Appointment';
-import Show_Room from './pages/Show_Room';
+import Add_Appointment from './pages/employee/Add_Appointment';
+import Show_Appointment from './pages/employee/Show_Appointment';
+import Show_Room from './pages/employee/Show_Room';
 
 import {
   createBrowserRouter,
   RouterProvider,
   Route,
 } from 'react-router-dom';
-import Add_Doctor from './pages/Add_Doctor';
-import Show_Staff from './pages/Show_Staff';
-import Show_AppointmentDoctor from './pages/Show_AppointmentDoctor';
-import Show_HistoryPatient from './pages/Show_HistoryPatient';
-import Show_BillingPatient from './pages/Show_BillingPatient';
+import Add_Doctor from './pages/admin/Add_Doctor';
+import Show_Staff from './pages/admin/Show_Staff';
+import Show_HistoryPatient from './pages/patient/Show_HistoryPatient';
+import Add_NurseAdmin from './pages/admin/Add_NurseAdmin';
+import Add_EmployeeAdmin from './pages/admin/Add_EmployeeAdmin';
+import All_AppointmentDoctor from './pages/doctor/All_AppointmentDoctor';
+import InfoDoctor from './pages/doctor/InfoDoctor';
+import UpcomingAppointment from './pages/doctor/UpcomingAppointmentDoctor';
+import UpcomingAppointmentDoctor from './pages/doctor/UpcomingAppointmentDoctor';
+import HistoryDoctor from './pages/doctor/HistoryDoctor';
+import UpcomingAppointmentPatient from './pages/patient/UpcomingAppointmentPatient';
+import DoctorAssignedPatient from './pages/patient/DoctorAssignedPatient';
+import InfoPatient from './pages/patient/InfoPatient';
+import InfoEmployee from './pages/employee/InfoEmployee';
+import ShowDoctorsEmployee from './pages/employee/ShowDoctorsEmployee';
+import InfoAdmin from './pages/admin/InfoAdmin';
+import AddRoomAdmin from './pages/admin/AddRoomAdmin';
+import HistoryAdmin from './pages/admin/HistoryAdmin';
+import LoginAdmin from './components/LoginAdmin';
+import LoginPatient from './components/LoginPatient';
+import LoginDoctor from './components/LoginDoctor';
+import LoginReceptionist from './components/LoginStaff';
 
 const router = createBrowserRouter([
   {
@@ -41,19 +58,19 @@ const router = createBrowserRouter([
   },
   {
     path: '/doctor', // Define a new route for the Login page
-    element: <DoctorPage/>,
+    element: <LoginDoctor/>,
   },
   {
     path: '/admin', // Define a new route for the Login page
-    element: <AdminPage/>,
+    element: <LoginAdmin/>,
   },
   {
     path: '/employee', // Define a new route for the Login page
-    element: <EmployeePage/>,
+    element: <LoginReceptionist/>,
   },
   {
     path: '/patient', // Define a new route for the Login page
-    element: <PateintPage/>,
+    element: <LoginPatient/>,
   },
   {
     path: '/employee/add-appointment', // Define a new route for the Login page
@@ -68,6 +85,14 @@ const router = createBrowserRouter([
     element: <Show_Room/>,
   },
   {
+    path: '/employee/info', // Define a new route for the Login page
+    element: <InfoEmployee/>,
+  },
+  {
+    path: '/employee/available-doctor', // Define a new route for the Login page
+    element: <ShowDoctorsEmployee/>,
+  },
+  {
     path: '/admin/add-doctor', // Define a new route for the Login page
     element: <Add_Doctor/>,
   },
@@ -76,16 +101,60 @@ const router = createBrowserRouter([
     element: <Show_Staff/>,
   },
   {
-    path: '/doctor/show-appointment', // Define a new route for the Login page
-    element: <Show_AppointmentDoctor/>,
+    path: '/admin/info', // Define a new route for the Login page
+    element: <InfoAdmin/>,
+  },
+  {
+    path: '/admin/add-room', // Define a new route for the Login page
+    element: <AddRoomAdmin/>,
+  },
+  {
+    path: '/admin/history', // Define a new route for the Login page
+    element: <HistoryAdmin/>,
+  },
+  {
+    path: '/doctor/all-appointment', // Define a new route for the Login page
+    element: <All_AppointmentDoctor/>,
   },
   {
     path: '/patient/show-history', // Define a new route for the Login page
     element: <Show_HistoryPatient/>,
   },
   {
-    path: '/patient/show-billing', // Define a new route for the Login page
-    element: <Show_BillingPatient/>,
+    path: '/patient/upcoming-appointment', // Define a new route for the Login page
+    element: <UpcomingAppointmentPatient/>,
+  },
+  {
+    path: '/patient/doctor-assigned', // Define a new route for the Login page
+    element: <DoctorAssignedPatient/>,
+  },
+  {
+    path: '/patient/info', // Define a new route for the Login page
+    element: <InfoPatient/>,
+  },
+  {
+    path: '/admin/add-nurse', // Define a new route for the Login page
+    element: <Add_NurseAdmin/>,
+  },
+  {
+    path: '/admin/add-employee', // Define a new route for the Login page
+    element: <Add_EmployeeAdmin/>,
+  },
+  {
+    path: '/doctor/info', // Define a new route for the Login page
+    element: <InfoDoctor/>,
+  },
+  {
+    path: '/doctor/upcoming-appointment', // Define a new route for the Login page
+    element: <UpcomingAppointmentDoctor/>,
+  },
+  {
+    path: '/doctor/all-appointment', // Define a new route for the Login page
+    element: <UpcomingAppointment/>,
+  },
+  {
+    path: '/doctor/history', // Define a new route for the Login page
+    element: <HistoryDoctor/>,
   },
 ]);
 

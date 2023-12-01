@@ -1,14 +1,21 @@
+
+
+
+
+
 import React from 'react'
 import { IoMdShirt } from 'react-icons/io';
 import { IoMdSchool } from 'react-icons/io';
-import SideNavbar from '../components/SideNavbar'
-import NavbarDomain from '../components/NavbarDomain';
+import SideNavbar from '../../components/SideNavbar'
+import NavbarDomain from '../../components/NavbarDomain';
 
-export default function Show_HistoryPatient() {
+export default function UpcomingAppointmentPatient()  {
 
     const patientMenus = [
+      { name: "Info", link: '/patient/info', icon: IoMdSchool },
         { name: "History", link: '/patient/show-history', icon: IoMdShirt },
-        { name: "Billing History", link: '/patient/show-billing', icon: IoMdSchool },
+        { name: "Upcoming Appointments", link: '/patient/upcoming-appointment', icon: IoMdSchool },
+        { name: "Doctor Assigned", link: '/patient/doctor-assigned', icon: IoMdSchool },
       ];
 
 
@@ -22,7 +29,7 @@ export default function Show_HistoryPatient() {
 
           <div className=' text-xl text-gray-900 font-semibold  w-full h-full '>
             {/* <Form fields={PatientFields}/> */}
-            SHow History 
+            upcoming Appointment Patient
           </div>
 
         </div>

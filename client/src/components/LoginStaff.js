@@ -21,7 +21,8 @@ export default function LoginReceptionist() {
 
       // Check the response data for successful authentication
       if (response.data.message === "Authentication Successful") {
-        navigate("/employee/info");
+        const userInfo = response.data.userInfo;
+        navigate("/employee/info", {state :{userInfo} });
       } else {
         console.error("Login failed");
       }

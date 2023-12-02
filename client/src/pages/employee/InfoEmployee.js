@@ -1,18 +1,14 @@
-
-
-
-
-
 import { useState,useEffect } from 'react';
-
-
+import { useLocation } from 'react-router-dom';
 import React from 'react'
 import SideNavbar from '../../components/SideNavbar'
 import { IoMdStopwatch } from 'react-icons/io';
 import { IoMdSchool } from 'react-icons/io';
 import NavbarDomain from '../../components/NavbarDomain';
 export default function InfoEmployee() {
-
+    const location = useLocation();
+    const { userInfo } = location.state;
+    console.log(userInfo);
     const employeeMenus = [
         { name: "Info", link: '/employee/info', icon: IoMdSchool },
         { name: "Add Appointment", link: '/employee/add-appointment', icon: IoMdStopwatch },
@@ -22,27 +18,9 @@ export default function InfoEmployee() {
       ];
 
       
-    const [employeeInfo, setEmployeeInfo] = useState(null);
 
-    useEffect(() => {
-        // Fetch doctor info from the database
-        const fetchEmployeeInfo = async () => {
-            try {
-                const response = await fetch('YOUR_API_ENDPOINT'); // Replace with your actual API endpoint
-                const data = await response.json();
-
-                // Assuming the response structure is an object with doctor information
-                setEmployeeInfo(data);
-            } catch (error) {
-                console.error('Error fetching Admin info:', error);
-            }
-        };
-
-        fetchEmployeeInfo();
-    }, []); // The empty dependency array ensures this effect runs once when the component mounts
-
-    const renderEmployeeInfo = () => {
-        if (!employeeInfo) {
+    const renderuserInfo = () => {
+        if (!userInfo) {
             return <p>Loading...</p>;
         }
 
@@ -53,26 +31,29 @@ export default function InfoEmployee() {
                 <div className='grid text-xl font-semibold mb-4 justify-items-center'>Patient Information</div>
                 <div className='flex-col p-8 bg-slate-500'>
                     <div className='p-4 bg-orange-400'>
-                        <span className='font-semibold pt-4 pb-4'>FirstName:</span> {employeeInfo.firstname}
+                        <span className='font-semibold pt-4 pb-4'>FirstName:</span> {userInfo.FirstName}
                     </div>
 
                     <div className='p-4 bg-orange-400'>
-                        <span className='font-semibold'>LastName:</span> {employeeInfo.lastname}
+                        <span className='font-semibold'>LastName:</span> {userInfo.LastName}
                     </div>
                     <div className='p-4 bg-orange-400'>
-                        <span className='font-semibold'>Email:</span> {employeeInfo.email}
+                        <span className='font-semibold'>Email:</span> {userInfo.Email}
                     </div>
                     <div className='p-4 bg-orange-400'>
-                        <span className='font-semibold'>CNIC:</span> {employeeInfo.cnic}
+                        <span className='font-semibold'>CNIC:</span> {userInfo.CNIC}
                     </div>
                     <div className='p-4 bg-orange-400'>
-                        <span className='font-semibold'>Salary:</span> {employeeInfo.salary}
+                        <span className='font-semibold'>Salary:</span> {userInfo.Salary}
                     </div>
                     <div className='p-4 bg-orange-400'>
-                        <span className='font-semibold'>Shift:</span> {employeeInfo.shift}
+                        <span className='font-semibold'>Shift:</span> {userInfo.Shift}
                     </div>
                     <div className='p-4 bg-orange-400'>
-                        <span className='font-semibold'>Contact:</span> {employeeInfo.contact}
+                        <span className='font-semibold'>Contact:</span> {userInfo.ContactNumber}
+                    </div>
+                    <div className='p-4 bg-orange-400'>
+                        <span className='font-semibold'>Certificate Number:</span> {userInfo.CertificateNumber}
                     </div>
                 </div>
 
@@ -95,7 +76,7 @@ export default function InfoEmployee() {
                     <div className=' text-xl text-gray-900 font-semibold  w-full h-full '>
                         {/* <Form fields={EmployeeFields} /> */}
                        Employee Info
-                       {renderEmployeeInfo()}
+                       {renderuserInfo()}
                     </div>
 
                 </div>

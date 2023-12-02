@@ -21,7 +21,8 @@ export default function LoginDoctor() {
 
       // Check the response data for successful authentication
       if (response.data.message === "Authentication Successful") {
-        navigate("/doctor/info");
+        const userInfo = response.data.userInfo;
+        navigate("/doctor/info", { state: { userInfo } });
       } else {
         console.error("Login failed");
       }

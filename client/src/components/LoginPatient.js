@@ -4,6 +4,7 @@ import Hero2 from "../images/hero2.jpg";
 import Lottie1 from "../lotties/lottie1.json";
 import Lottie from "lottie-react";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 export default function LoginPatient() {
   const navigate = useNavigate();
@@ -21,7 +22,8 @@ export default function LoginPatient() {
 
       // Check the response data for successful authentication
       if (response.data.message === "Authentication Successful") {
-        navigate("/patient/info");
+        const userInfo = response.data.userInfo;
+        navigate("/patient/info", { state: { userInfo } });
       } else {
         console.error("Login failed");
       }

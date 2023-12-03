@@ -43,7 +43,9 @@ app.post("/patient/login", (req, res) => {
         return res.status(401).json({ message: "Invalid Credentials" });
       }
       const userInfo = results[0];
-      return res.status(200).json({ message: "Authentication Successful",userInfo });
+      return res
+        .status(200)
+        .json({ message: "Authentication Successful", userInfo });
     }
   );
 });
@@ -67,7 +69,9 @@ app.post("/receptionist/login", (req, res) => {
         return res.status(401).json({ message: "Invalid Credentials" });
       }
       const userInfo = results[0];
-      return res.status(200).json({ message: "Authentication Successful", userInfo });
+      return res
+        .status(200)
+        .json({ message: "Authentication Successful", userInfo });
     }
   );
 });
@@ -131,6 +135,371 @@ app.post("/admin/login", (req, res) => {
     }
   );
 });
+
+app.post("/admin/add-doctor", (req, res) => {
+  console.log("Data has arrived at the backend");
+  console.log(req.body);
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const email = req.body.email;
+  const contactNumber = req.body.contactNumber;
+  const licenseNumber = req.body.licenseNumber;
+  const specialization = req.body.specialization;
+  const shift = req.body.shift;
+  const experience = req.body.experience;
+  const annualSalary = req.body.annualSalary;
+  const gender = req.body.gender;
+
+  const username = generateRandomUsername();
+  const password = generateRandomPassword();
+
+  db.query(
+    "INSERT INTO CREDENTIALS (UserName, Password) VALUES (?, ?)",
+    [username, password],
+    (err, credentialResult) => {
+      if (err) {
+        console.log("Error inserting credentials:", err);
+        return res.status(500).json({ error: "Error inserting credentials" });
+      }
+
+      const credentialId = credentialResult.insertId;
+
+      db.query(
+        "INSERT INTO USER (FirstName, LastName, Email, ContactNumber, Role, idCredentials) VALUES (?, ?, ?, ?, ?, ?,?)",
+        [
+          firstName,
+          lastName,
+          email,
+          contactNumber,
+          "Staff",
+          credentialId,
+          gender,
+        ],
+        (err, userResult) => {
+          if (err) {
+            console.log("Error inserting user data:", err);
+            return res.status(500).json({ error: "Error inserting user data" });
+          }
+
+          const userId = userResult.insertId;
+
+          db.query(
+            "INSERT INTO staff (idUser, Salary, StaffType, Shift) VALUES (?, ?, ?, ?)",
+            [userId, annualSalary, "Doctor", shift],
+            (err, staffResult) => {
+              if (err) {
+                console.log("Error inserting staff data:", err);
+                return res
+                  .status(500)
+                  .json({ error: "Error inserting staff data" });
+              }
+
+              const staffId = staffResult.insertId;
+
+              db.query(
+                "INSERT INTO doctor (idStaff, idDepartment, idClinicalRoom, LicenseNumber, Specialization, Experience, ConsultationFee) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                [
+                  staffId,
+                  1,
+                  1,
+                  licenseNumber,
+                  specialization,
+                  experience,
+                  2500,
+                ],
+                (err, doctorResult) => {
+                  if (err) {
+                    console.log("Error inserting doctor data:", err);
+                    return res
+                      .status(500)
+                      .json({ error: "Error inserting doctor data" });
+                  }
+
+                  console.log("Data inserted successfully into the database");
+                  res
+                    .status(200)
+                    .json({ message: "Data inserted successfully" });
+                }
+              );
+            }
+          );
+        }
+      );
+    }
+  );
+});
+
+app.post("/admin/add-receptionist", (req, res) => {
+  console.log("Data has arrived at the backend");
+  console.log(req.body);
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const email = req.body.email;
+  const contactNumber = req.body.contactNumber;
+  const certificateNumber = req.body.certificateNumber;
+  const cnic = req.body.cnic;
+  const shift = req.body.shift;
+  const annualSalary = req.body.annualSalary;
+  const gender = req.body.gender;
+
+  const username = generateRandomUsername();
+  const password = generateRandomPassword();
+
+  db.query(
+    "INSERT INTO CREDENTIALS (UserName, Password) VALUES (?, ?)",
+    [username, password],
+    (err, credentialResult) => {
+      if (err) {
+        console.log("Error inserting credentials:", err);
+        return res.status(500).json({ error: "Error inserting credentials" });
+      }
+
+      const credentialId = credentialResult.insertId;
+
+      db.query(
+        "INSERT INTO USER (FirstName, LastName, Email, ContactNumber, Role, idCredentials) VALUES (?, ?, ?, ?, ?, ?,?)",
+        [
+          firstName,
+          lastName,
+          email,
+          contactNumber,
+          "Staff",
+          credentialId,
+          gender,
+        ],
+        (err, userResult) => {
+          if (err) {
+            console.log("Error inserting user data:", err);
+            return res.status(500).json({ error: "Error inserting user data" });
+          }
+
+          const userId = userResult.insertId;
+
+          db.query(
+            "INSERT INTO staff (idUser, Salary, StaffType, Shift) VALUES (?, ?, ?, ?)",
+            [userId, annualSalary, "Receptionist", shift],
+            (err, staffResult) => {
+              if (err) {
+                console.log("Error inserting staff data:", err);
+                return res
+                  .status(500)
+                  .json({ error: "Error inserting staff data" });
+              }
+
+              const staffId = staffResult.insertId;
+
+              db.query(
+                "INSERT INTO receptionist (idStaff,CNIC,CertificateNumber) VALUES (?, ?, ?)",
+                [staffId, cnic, certificateNumber],
+                (err, receptionistresult) => {
+                  if (err) {
+                    console.log("Error inserting receptionist data:", err);
+                    return res
+                      .status(500)
+                      .json({ error: "Error inserting receptionist data" });
+                  }
+
+                  console.log("Data inserted successfully into the database");
+                  res
+                    .status(200)
+                    .json({ message: "Data inserted successfully" });
+                }
+              );
+            }
+          );
+        }
+      );
+    }
+  );
+});
+
+app.post("/admin/add-nurse", (req, res) => {
+  console.log("Data has arrived at the backend");
+  console.log(req.body);
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const email = req.body.email;
+  const contactNumber = req.body.contactNumber;
+  const shift = req.body.shift;
+  const annualSalary = req.body.annualSalary;
+  const gender = req.body.gender;
+  const responsibilities = req.body.responsibilities;
+  const specialization = req.body.specialization;
+  const experience = req.body.experience;
+
+  const username = generateRandomUsername();
+  const password = generateRandomPassword();
+
+  db.query(
+    "INSERT INTO CREDENTIALS (UserName, Password) VALUES (?, ?)",
+    [username, password],
+    (err, credentialResult) => {
+      if (err) {
+        console.log("Error inserting credentials:", err);
+        return res.status(500).json({ error: "Error inserting credentials" });
+      }
+
+      const credentialId = credentialResult.insertId;
+
+      db.query(
+        "INSERT INTO USER (FirstName, LastName, Email, ContactNumber, Role, idCredentials,  gender) VALUES (?, ?, ?, ?, ?, ?,?)",
+        [
+          firstName,
+          lastName,
+          email,
+          contactNumber,
+          "Staff",
+          credentialId,
+          gender,
+        ],
+        (err, userResult) => {
+          if (err) {
+            console.log("Error inserting user data:", err);
+            return res.status(500).json({ error: "Error inserting user data" });
+          }
+
+          const userId = userResult.insertId;
+
+          db.query(
+            "INSERT INTO staff (idUser, Salary, StaffType, Shift) VALUES (?, ?, ?, ?)",
+            [userId, annualSalary, "Nurse", shift],
+            (err, staffResult) => {
+              if (err) {
+                console.log("Error inserting staff data:", err);
+                return res
+                  .status(500)
+                  .json({ error: "Error inserting staff data" });
+              }
+
+              const staffId = staffResult.insertId;
+
+              db.query(
+                "INSERT INTO nurse (idStaff,Responsibilities, Specialization,Experience) VALUES (?, ?, ?,?)",
+                [staffId, responsibilities, specialization, experience],
+                (err, nurseResult) => {
+                  if (err) {
+                    console.log("Error inserting nurse data:", err);
+                    return res
+                      .status(500)
+                      .json({ error: "Error inserting nurse data" });
+                  }
+
+                  console.log("Data inserted successfully into the database");
+                  res
+                    .status(200)
+                    .json({ message: "Data inserted successfully" });
+                }
+              );
+            }
+          );
+        }
+      );
+    }
+  );
+});
+
+app.post("/admin/add-clinicalroom", (req, res) => {
+  console.log("Data has arrived at the backend");
+  console.log(req.body);
+
+  const roomtype = req.body.roomtype;
+  const floor = req.body.floor;
+  const availability = req.body.availability;
+  const capacity = req.body.capacity;
+
+  //for clinical
+  const speciality = req.body.speciality;
+  const equipment = req.body.equipment;
+
+  db.query(
+    "INSERT INTO room (RoomType, Floor, Availability, Capacity) VALUES (?, ?,?,?)",
+    [roomtype, floor, availability, capacity],
+    (err, roomResult) => {
+      if (err) {
+        console.log("Error inserting room:", err);
+        return res.status(500).json({ error: "Error inserting room" });
+      }
+
+      const roomId = roomResult.insertId;
+
+      db.query(
+        "INSERT INTO clinicalroom (idRoom, Speciality, Equipment) VALUES (?, ?, ?)",
+        [roomId, speciality, equipment],
+        (err, clinicalResult) => {
+          if (err) {
+            console.log("Error inserting clinicalroom data:", err);
+            return res
+              .status(500)
+              .json({ error: "Error inserting clinicalroom data" });
+          }
+          console.log("Data inserted successfully into the database");
+          res.status(200).json({ message: "Data inserted successfully" });
+        }
+      );
+    }
+  );
+});
+
+app.post("/admin/add-admitroom", (req, res) => {
+  console.log("Data has arrived at the backend");
+  console.log(req.body);
+
+  const roomtype = req.body.roomtype;
+  const floor = req.body.floor;
+  const availability = req.body.availability;
+  const capacity = req.body.capacity;
+
+  //for admit
+  const idNurse = req.body.idNurse;
+  const AdmitDate = req.body.admitdate;
+  const DischargeDate = req.body.dischargedate;
+  const price = req.body.price;
+
+  db.query(
+    "INSERT INTO room (RoomType, Floor, Availability, Capacity) VALUES (?, ?,?,?)",
+    [roomtype, floor, availability, capacity],
+    (err, roomResult) => {
+      if (err) {
+        console.log("Error inserting room:", err);
+        return res.status(500).json({ error: "Error inserting room" });
+      }
+
+      const roomId = roomResult.insertId;
+
+      db.query(
+        "INSERT INTO admitroom (idRoom, idNurse, AdmitDate, DischargeDate, PricePerDay) VALUES (?, ?, ?,?,?)",
+        [roomId, idNurse,admitdate,dischargedate,price],
+        (err, admitResult) => {
+          if (err) {
+            console.log("Error inserting admitroom data:", err);
+            return res
+              .status(500)
+              .json({ error: "Error inserting admitroom data" });
+          }
+          console.log("Data inserted successfully into the database");
+          res.status(200).json({ message: "Data inserted successfully" });
+        }
+      );
+    }
+  );
+});
+
+function generateRandomUsername() {
+  const characters = "abcdefghijklmnopqrstuvwxyz";
+  let randomUsername = "";
+
+  for (let i = 0; i < 5; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    randomUsername += characters.charAt(randomIndex);
+  }
+
+  return randomUsername;
+}
+
+function generateRandomPassword() {
+  const randomPassword = Math.floor(100000 + Math.random() * 900000);
+  return randomPassword.toString();
+}
 
 try {
   app.listen(5000, () => {

@@ -26,7 +26,7 @@ export default function AddRoomAdmin(){
 
 <SideNavbar menus={AdminMenus} />
 <div className='flex flex-col w-full'>
-    <NavbarDomain />
+    <NavbarDomain  role ='admin'/>
 
     <div className=' text-xl text-gray-900 font-semibold  w-full h-full '>
         {/* <Form fields={EmployeeFields} /> */}

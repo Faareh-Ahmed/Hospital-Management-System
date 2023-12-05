@@ -6,6 +6,7 @@ import NavbarDomain from "../../components/NavbarDomain";
 import axios from "axios";
 import { useState } from "react";
 export default function Add_Doctor() {
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -19,17 +20,27 @@ export default function Add_Doctor() {
     gender: "",
   });
 
+
+
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
       // Send the form data to your backend API endpoint
       const apiUrl = "http://localhost:5000/admin/add-doctor"; // Replace with your backend API URL
       const response = await axios.post(apiUrl, formData);
+
+
+
+
+
       console.log("data bhej diya");
       console.log(formData);
       // Handle response if needed
       console.log("Data sent successfully:", response.data);
     } catch (error) {
+      console.error("Error sending data:", error);
+
       console.log(formData);
       console.log("masla ban gaya");
       console.error("Error sending data:", error);
@@ -52,18 +63,19 @@ export default function Add_Doctor() {
     { name: "History", link: "/admin/history", icon: IoMdSubway },
   ];
 
+
   return (
     <>
       <div className="flex gap-4">
         <SideNavbar menus={AdminMenus} />
         <div className="flex flex-col w-full">
-          <NavbarDomain />
+          <NavbarDomain role ='admin'/>
 
           <div className=" text-xl text-gray-900 font-semibold  w-full h-full ">
             {/* <Form fields={EmployeeFields} /> */}
             Add New Doctor
             <form>
-              <div className="space-y-12">
+              <div className="space-y-12 px-8">
                 <div className="border-b border-gray-900/10 pb-12">
                   <h2 className="text-base font-semibold leading-7 text-gray-900">
                     Personal Information
@@ -87,7 +99,7 @@ export default function Add_Doctor() {
                           name="firstName"
                           value={formData.firstName}
                           autoComplete="given-name"
-                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
                         />
                       </div>
                     </div>
@@ -106,7 +118,7 @@ export default function Add_Doctor() {
                           type="text"
                           name="lastName"
                           autoComplete="family-name"
-                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
                         />
                       </div>
                     </div>
@@ -126,7 +138,7 @@ export default function Add_Doctor() {
                           name="email"
                           type="email"
                           autoComplete="email"
-                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
                         />
                       </div>
                     </div>
@@ -145,7 +157,7 @@ export default function Add_Doctor() {
                           id="contactNumber"
                           name="contactNumber"
                           type="tel"
-                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
                         />
                       </div>
                     </div>
@@ -163,12 +175,12 @@ export default function Add_Doctor() {
                           value={formData.licenseNumber}
                           type="text"
                           name="licenseNumber"
-                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
                         />
                       </div>
                     </div>
 
-                    <div className="col-span-full">
+                    <div className="sm:col-span-4">
                       <label
                         htmlFor="about"
                         className="block text-sm font-medium leading-6 text-gray-900"
@@ -183,13 +195,11 @@ export default function Add_Doctor() {
                           value={formData.specialization}
                           onChange={handleInputChange}
                           rows={3}
-                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
                           defaultValue={""}
                         />
                       </div>
-                      <p className="mt-3 text-sm leading-6 text-gray-600">
-                        Write a few sentences about the Symptoms and Disease.
-                      </p>
+                      
                     </div>
 
                     <div className="sm:col-span-3">
@@ -214,7 +224,7 @@ export default function Add_Doctor() {
                       </div>
                     </div>
 
-                    <div className="col-span-full">
+                    <div className="sm:col-span-2 sm:col-start-1">
                       <label
                         htmlFor="street-address"
                         className="block text-sm font-medium leading-6 text-gray-900"
@@ -232,7 +242,7 @@ export default function Add_Doctor() {
                           onChange={handleInputChange}
                           value={formData.experience}
 
-                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
                         />
                       </div>
                     </div>
@@ -252,7 +262,7 @@ export default function Add_Doctor() {
                           name="annualSalary"
                           onChange={handleInputChange}
                           value={formData.annualSalary}
-                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
                           placeholder="Enter salary"
                         />
                       </div>
@@ -268,55 +278,55 @@ export default function Add_Doctor() {
                       </legend>
                       <div className="mt-6 space-y-6">
                         <div className="flex items-center gap-x-3">
-                        <input
-                onChange={handleInputChange}
-                value="Male"
-                checked={formData.gender === "Male"}
-                id="gender-male"
-                name="gender"
-                type="radio"
-                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-            />
-            <label
-                htmlFor="gender-male"
-                className="block text-sm font-medium leading-6 text-gray-900"
-            >
-                Male
-            </label>
-        </div>
-        <div className="flex items-center gap-x-3">
-            <input
-                onChange={handleInputChange}
-                value="Female"
-                checked={formData.gender === 'Female'}
-                id="gender-female"
-                name="gender"
-                type="radio"
-                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-            />
-            <label
-                htmlFor="gender-female"
-                className="block text-sm font-medium leading-6 text-gray-900"
-            >
-                Female
-            </label>
-        </div>
-        <div className="flex items-center gap-x-3">
-            <input
-                onChange={handleInputChange}
-                value="Does not Prefer"
-                checked={formData.gender === 'Does not Prefer'}
-                id="gender-not-preferred"
-                name="gender"
-                type="radio"
-                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-            />
-            <label
-                htmlFor="gender-not-preferred"
-                className="block text-sm font-medium leading-6 text-gray-900"
-            >
-                Does Not Prefer
-            </label>
+                          <input
+                            onChange={handleInputChange}
+                            value="Male"
+                            checked={formData.gender === "Male"}
+                            id="gender-male"
+                            name="gender"
+                            type="radio"
+                            className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                          />
+                          <label
+                            htmlFor="gender-male"
+                            className="block text-sm font-medium leading-6 text-gray-900"
+                          >
+                            Male
+                          </label>
+                        </div>
+                        <div className="flex items-center gap-x-3">
+                          <input
+                            onChange={handleInputChange}
+                            value="Female"
+                            checked={formData.gender === 'Female'}
+                            id="gender-female"
+                            name="gender"
+                            type="radio"
+                            className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                          />
+                          <label
+                            htmlFor="gender-female"
+                            className="block text-sm font-medium leading-6 text-gray-900"
+                          >
+                            Female
+                          </label>
+                        </div>
+                        <div className="flex items-center gap-x-3">
+                          <input
+                            onChange={handleInputChange}
+                            value="Does not Prefer"
+                            checked={formData.gender === 'Does not Prefer'}
+                            id="gender-not-preferred"
+                            name="gender"
+                            type="radio"
+                            className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                          />
+                          <label
+                            htmlFor="gender-not-preferred"
+                            className="block text-sm font-medium leading-6 text-gray-900"
+                          >
+                            Does Not Prefer
+                          </label>
                         </div>
                       </div>
                     </fieldset>
@@ -324,7 +334,7 @@ export default function Add_Doctor() {
                 </div>
               </div>
 
-              <div className="mt-6 flex items-center justify-end gap-x-6">
+              <div className="mt-6 flex items-center justify-end gap-x-6 p-4">
                 <button
                   type="button"
                   className="text-sm font-semibold leading-6 text-gray-900"
@@ -339,6 +349,7 @@ export default function Add_Doctor() {
                   Save
                 </button>
               </div>
+
             </form>
           </div>
         </div>

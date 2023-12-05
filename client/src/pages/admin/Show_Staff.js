@@ -29,7 +29,7 @@ export default function Show_Staff() {
             <div className='flex gap-4'>
                 <SideNavbar menus={AdminMenus} />
                 <div className='flex flex-col w-full'>
-                    <NavbarDomain />
+                    <NavbarDomain  role ='admin'/>
 
                     <div className=' text-xl text-gray-900 font-semibold  w-full h-full '>
                         Show Staff

@@ -42,6 +42,9 @@ import LoginAdmin from './components/LoginAdmin';
 import LoginPatient from './components/LoginPatient';
 import LoginDoctor from './components/LoginDoctor';
 import LoginReceptionist from './components/LoginStaff';
+import LoginNurse from './components/LoginNurse';
+import InfoNurse from './pages/nurse/InfoNurse';
+import AssignedRoomNurse from './pages/nurse/AssignedRoomNurse';
 
 const router = createBrowserRouter([
   {
@@ -155,6 +158,18 @@ const router = createBrowserRouter([
   {
     path: '/doctor/history', // Define a new route for the Login page
     element: <HistoryDoctor/>,
+  },
+  {
+    path: '/nurse', // Define a new route for the Login page
+    element: <LoginNurse/>,
+  },
+  {
+    path: '/nurse/info', // Define a new route for the Login page
+    element: <InfoNurse/>,
+  },
+  {
+    path: '/nurse/assigned-room', // Define a new route for the Login page
+    element: <AssignedRoomNurse/>,
   },
 ]);
 

@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Hero2 from "../images/hero2.jpg";
@@ -5,7 +6,7 @@ import Lottie1 from "../lotties/lottie1.json";
 import Lottie from "lottie-react";
 import axios from "axios";
 
-export default function LoginReceptionist() {
+export default function LoginNurse() {
   const navigate = useNavigate();
 
   const handleLogIn = async (event) => {
@@ -16,13 +17,13 @@ export default function LoginReceptionist() {
       const username = document.getElementById("username").value;
       const password = document.getElementById("password").value;
 
-      const apiUrl = "http://localhost:5000/receptionist/login";
+      const apiUrl = "http://localhost:5000/nurse/login";
       const response = await axios.post(apiUrl, { username, password });
 
       // Check the response data for successful authentication
       if (response.data.message === "Authentication Successful") {
         const userInfo = response.data.userInfo;
-        navigate("/employee/info", {state :{userInfo} });
+        navigate("/nurse/info", { state: { userInfo } });
       } else {
         console.error("Login failed");
       }
@@ -86,7 +87,7 @@ export default function LoginReceptionist() {
               Sign In
             </button>
             
-            <p className="relative text-center mt-8">Receptionist Portal</p>
+            <p className="relative text-center mt-8">Nurse Portal</p>
           </form>
         </div>
       </div>

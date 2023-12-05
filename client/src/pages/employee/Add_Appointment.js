@@ -20,13 +20,13 @@ export default function Add_Appointment() {
 
         <SideNavbar menus={employeeMenus} />
         <div className='flex flex-col w-full'>
-          <NavbarDomain />
+          <NavbarDomain   role ='employee'/>
 
           <div className=' text-xl text-gray-900 font-semibold  w-full h-full '>
             {/* <Form fields={EmployeeFields} /> */}
             Add New Patient
             <form>
-              <div className="space-y-12">
+              <div className="space-y-12 px-8">
 
 
                 <div className="border-b border-gray-900/10 pb-12">
@@ -44,7 +44,7 @@ export default function Add_Appointment() {
                           name="first-name"
                           id="first-name"
                           autoComplete="given-name"
-                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
                         />
                       </div>
                     </div>
@@ -59,7 +59,7 @@ export default function Add_Appointment() {
                           name="last-name"
                           id="last-name"
                           autoComplete="family-name"
-                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
                         />
                       </div>
                     </div>
@@ -74,7 +74,7 @@ export default function Add_Appointment() {
                           name="email"
                           type="email"
                           autoComplete="email"
-                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
                         />
                       </div>
                     </div>
@@ -88,7 +88,7 @@ export default function Add_Appointment() {
                           id="contact-number"
                           name="contact-number"
                           type="tel"
-                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
                         />
                       </div>
                     </div>
@@ -102,7 +102,7 @@ export default function Add_Appointment() {
                           id="about"
                           name="about"
                           rows={3}
-                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
                           defaultValue={''}
                         />
                       </div>
@@ -119,7 +119,7 @@ export default function Add_Appointment() {
                           id="country"
                           name="country"
                           autoComplete="country-name"
-                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 p-2"
                         >
                           <option>O-</option>
                           <option>O+</option>
@@ -133,7 +133,7 @@ export default function Add_Appointment() {
                       </div>
                     </div>
 
-                    <div className="col-span-full">
+                    <div className="sm:col-span-4">
                       <label htmlFor="street-address" className="block text-sm font-medium leading-6 text-gray-900">
                         Street address
                       </label>
@@ -143,7 +143,7 @@ export default function Add_Appointment() {
                           name="street-address"
                           id="street-address"
                           autoComplete="street-address"
-                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
                         />
                       </div>
                     </div>
@@ -158,7 +158,7 @@ export default function Add_Appointment() {
                           name="height"
                           id="height"
                           autoComplete="off"
-                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
                           placeholder="Enter height"
                         />
                       </div>
@@ -174,31 +174,58 @@ export default function Add_Appointment() {
                           name="weight"
                           id="weight"
                           autoComplete="off"
-                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
                           placeholder="Enter Weight"
                         />
                       </div>
                     </div>
 
+                    <div className="sm:col-span-2 sm:col-start-1">
+                      <label htmlFor="country" className="block text-sm font-medium leading-6 text-gray-900">
+                        Avaialable Doctors
+                      </label>
+                      <div className="mt-2">
+                        <select
+                          id="appointmentdoctors"
+                          name="country"
+                          autoComplete="country-name"
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 p-2"
+                        >
+                          <option>Malik Saab</option>
+                          <option>Raja G</option>
+                          <option>Murshad</option>
+                          <option>Pinki</option>
+                          <option>Pinki</option>
+                          <option>Ponki</option>
+                          <option>Donkey</option>
+                          <option>Ponki</option>
+                        </select>
+                      </div>
+                    </div>
+
                     <div className="sm:col-span-2">
-                      <label htmlFor="postal-code" className="block text-sm font-medium leading-6 text-gray-900">
-                        ZIP / Postal code
+                      <label htmlFor="region" className="block text-sm font-medium leading-6 text-gray-900">
+                        Appointment Date
                       </label>
                       <div className="mt-2">
                         <input
-                          type="text"
-                          name="postal-code"
-                          id="postal-code"
-                          autoComplete="postal-code"
-                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          type="date"
+                          name="weight"
+                          id="appointmentdate"
+                          autoComplete="off"
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
+                          placeholder="Enter Weight"
                         />
                       </div>
                     </div>
+
+                    
                   </div>
                 </div>
 
                 <div className="border-b border-gray-900/10 pb-12">
                  
+                
 
                   <div className="mt-10 space-y-10">
                    

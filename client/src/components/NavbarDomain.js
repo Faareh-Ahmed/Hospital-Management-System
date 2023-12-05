@@ -1,34 +1,43 @@
-import React from 'react'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
+export default function NavbarDomain({ role }) {
+    const navigate = useNavigate();
 
-export default function NavbarDomain() {
+    const getDashboardText = (role) => {
+        switch (role) {
+          case 'doctor':
+            return 'Doctor Dashboard';
+          case 'nurse':
+            return 'Nurse Dashboard';
+          case 'employee':
+            return 'Employee Dashboard';
+          case 'patient':
+            return 'Patient Dashboard';
+          case 'admin':
+            return 'Admin Dashboard';
+          default:
+            return 'Dashboard';
+        }
+      };
+
     return (
         <>
-            <div className='w-full  bg-black text-white py-3 grid'>
-                <ul className='flex justify-center items-center gap-16 max-lg:hidden'>
-                    <li>
-                        <button className="bg-blue-600 text-white hover:bg-blue-300 hover:text-blue-600 py-2 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
-                            Home
-                        </button>
-                    </li>
-                    <li>
-                        <button className="bg-blue-600 text-white hover:bg-blue-300 hover:text-blue-600 py-2 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
-                            Description
-                        </button>
-                    </li>
-                    <li>
-                        <button className="bg-blue-600 text-white hover:bg-blue-300 hover:text-blue-600 py-2 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105">
-                            Contact Us
-                        </button>
-                    </li>
-                    <li>
-                        <button
-                            className="bg-blue-600 text-white hover:bg-blue-300 hover:text-blue-600 py-2 px-6 rounded-full transition duration-300 ease-in-out transform hover:scale-105 ">
-                            Login
-                        </button>
-                    </li>
-                </ul>
+            <div className='w-full bg-black text-white py-3 flex'>
+                <div className='flex items-center px-4 max-lg:hidden w-2/4 justify-end'>
+                    <div className='text-white font-semibold'>
+                        <h1>{getDashboardText(role)}</h1>
+                    </div>
+                </div>
+                <div className='flex items-center  w-1/2 justify-end'>
+                    <button
+                        className='bg-red-600 text-white px-4 py-2 rounded-md border border-cyan-500 hover:bg-red-700 focus:outline-none focus:border-red-700 mx-2'
+                        onClick={() => navigate(`/${role}`)}
+                    >
+                        LogOut
+                    </button>
+                </div>
             </div>
         </>
-    )
+    );
 }

@@ -19,7 +19,7 @@ export default function Show_Appointment() {
             <div className='flex gap-4'>
                 <SideNavbar menus={employeeMenus} />
                 <div className='flex flex-col w-full'>
-                    <NavbarDomain />
+                    <NavbarDomain  role ='employee'/>
 
                     <div className=' text-xl text-gray-900 font-semibold  w-full h-full '>
                         {/* <Form fields={EmployeeFields} /> */}

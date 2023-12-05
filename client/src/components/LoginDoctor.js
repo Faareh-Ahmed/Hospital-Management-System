@@ -85,10 +85,7 @@ export default function LoginDoctor() {
             >
               Sign In
             </button>
-            <p className="relative flex items-center">
-              <input className="mr-2 relative" type="checkbox" />
-              Remember Me
-            </p>
+            
             <p className="relative text-center mt-8">Doctor Portal</p>
           </form>
         </div>

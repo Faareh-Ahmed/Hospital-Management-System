@@ -24,13 +24,13 @@ export default function Add_EmployeeAdmin() {
 
                 <SideNavbar menus={AdminMenus} />
                 <div className='flex flex-col w-full'>
-                    <NavbarDomain />
+                    <NavbarDomain  role ='admin'/>
 
                     <div className=' text-xl text-gray-900 font-semibold  w-full h-full '>
                         {/* <Form fields={EmployeeFields} /> */}
                         Add Employee
                         <form>
-                            <div className="space-y-12">
+                            <div className="space-y-12 px-8">
 
 
                                 <div className="border-b border-gray-900/10 pb-12">
@@ -48,7 +48,7 @@ export default function Add_EmployeeAdmin() {
                                                     name="first-name"
                                                     id="first-name"
                                                     autoComplete="given-name"
-                                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
                                                 />
                                             </div>
                                         </div>
@@ -63,7 +63,7 @@ export default function Add_EmployeeAdmin() {
                                                     name="last-name"
                                                     id="last-name"
                                                     autoComplete="family-name"
-                                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
                                                 />
                                             </div>
                                         </div>
@@ -78,7 +78,7 @@ export default function Add_EmployeeAdmin() {
                                                     name="email"
                                                     type="email"
                                                     autoComplete="email"
-                                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
                                                 />
                                             </div>
                                         </div>
@@ -92,7 +92,7 @@ export default function Add_EmployeeAdmin() {
                                                     id="contact-number"
                                                     name="contact-number"
                                                     type="tel"
-                                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
                                                 />
                                             </div>
                                         </div>
@@ -131,7 +131,7 @@ export default function Add_EmployeeAdmin() {
                                                     name="height"
                                                     id="height"
                                                     autoComplete="off"
-                                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
                                                     placeholder="Enter height"
                                                 />
                                             </div>
@@ -188,7 +188,7 @@ export default function Add_EmployeeAdmin() {
                                 </div>
                             </div>
 
-                            <div className="mt-6 flex items-center justify-end gap-x-6">
+                            <div className="mt-6 flex items-center justify-end gap-x-6 p-4">
                                 <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
                                     Cancel
                                 </button>

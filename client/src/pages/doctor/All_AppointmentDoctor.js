@@ -18,7 +18,7 @@ export default function All_AppointmentDoctor() {
             <div className='flex gap-4'>
                 <SideNavbar menus={doctorMenus} />
                 <div className='flex flex-col w-full'>
-                    <NavbarDomain />
+                    <NavbarDomain  role ='doctor'/>
 
                     <div className=' text-xl text-gray-900 font-semibold  w-full h-full '>
                         {/* <Form fields={EmployeeFields} /> */}

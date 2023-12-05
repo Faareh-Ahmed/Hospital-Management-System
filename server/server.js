@@ -13,7 +13,7 @@ const db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "F.mysql786",
-  database: "mse",
+  database: "hospital",
 });
 
 db.connect((err) => {
@@ -86,6 +86,34 @@ app.post("/doctor/login", (req, res) => {
   }
   db.query(
     "select FirstName, LastName, Email, ContactNumber,LicenseNumber,Specialization, Experience, Salary, ConsultationFee  from user natural join credentials natural join staff natural join doctor where UserName = ? and Password = ?",
+    [username, password],
+    (err, results) => {
+      if (err) {
+        console.log("Query kharab");
+        return res.status(500).json({ message: "Internal server error" });
+      }
+      if (results.length === 0) {
+        console.log("password kharab");
+        return res.status(401).json({ message: "Invalid Credentials" });
+      }
+      const userInfo = results[0];
+      return res
+        .status(200)
+        .json({ message: "Authentication Successful", userInfo });
+    }
+  );
+});
+
+app.post("/nurse/login", (req, res) => {
+  const { username, password } = req.body;
+  console.log("data came");
+  if (!username || !password) {
+    return res
+      .status(400)
+      .json({ message: "Please provide both username and password" });
+  }
+  db.query(
+    "select FirstName, LastName, Email, ContactNumber,Responsibilities,Specialization, Experience, Salary  from user natural join credentials natural join staff natural join nurse where UserName = ? and Password = ?",
     [username, password],
     (err, results) => {
       if (err) {

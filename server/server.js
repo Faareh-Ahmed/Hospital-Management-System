@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "F.mysql786",
+  password: "zaq@12wsx",
   database: "hospital",
 });
 
@@ -193,7 +193,7 @@ app.post("/admin/add-doctor", (req, res) => {
       const credentialId = credentialResult.insertId;
 
       db.query(
-        "INSERT INTO USER (FirstName, LastName, Email, ContactNumber, Role, idCredentials) VALUES (?, ?, ?, ?, ?, ?,?)",
+        "INSERT INTO USER (FirstName, LastName, Email, ContactNumber, Role, idCredentials,gender) VALUES (?, ?, ?, ?, ?, ?,?)",
         [
           firstName,
           lastName,
@@ -351,7 +351,7 @@ app.post("/admin/add-nurse", (req, res) => {
   const shift = req.body.shift;
   const annualSalary = req.body.annualSalary;
   const gender = req.body.gender;
-  const responsibilities = req.body.responsibilities;
+  const responsibilities = req.body.responsibilites;
   const specialization = req.body.specialization;
   const experience = req.body.experience;
 
@@ -513,6 +513,7 @@ app.post("/admin/add-admitroom", (req, res) => {
 });
 
 app.get("/admin/show-doctors", (req, res) => {
+  console.log("show doctor wali api ko call aagayi")
   // Query to fetch appointment data from the appointment table
   const sql =
     "select iddoctor,concat(LastName,' ', FirstName) as Name, Email,Salary,Shift,LicenseNumber, Specialization,Experience,ConsultationFee from user natural join staff natural join doctor";

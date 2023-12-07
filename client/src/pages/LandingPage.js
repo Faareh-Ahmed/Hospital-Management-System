@@ -4,7 +4,6 @@ import Hero from '../components/Hero'
 import Description from '../components/Description'
 import Contributors from '../components/Contributors'
 import Footer from '../components/Footer'
-import Test from '../components/Test'
 
 export default function LandingPage() {
   return (
@@ -23,7 +22,6 @@ export default function LandingPage() {
        <section className="bg-black padding-r padding-t pb-08">
         <Footer/>
        </section>
-      <Test/>
     </main>
 </>
     )

@@ -11,8 +11,8 @@ import { useLocation } from "react-router-dom";
 export default function InfoNurse() {
 
     const location = useLocation();
-  const { userInfo } = location.state;
-  console.log(userInfo);
+    const { userInfo } = location.state || { userInfo: null };
+    console.log(userInfo);
   const nurseMenus = [
     { name: "Info", link: "/nurse/info", icon: IoMdSchool },
     { name: "Assigned Rooms", link: "/nurse/assigned-room", icon: IoMdStopwatch },

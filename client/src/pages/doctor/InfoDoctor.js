@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 export default function InfoDoctor() {
 
     const location = useLocation();
-  const { userInfo } = location.state;
+  const { userInfo } = location.state || { userInfo: null };
   console.log(userInfo);
   const doctorMenus = [
     { name: "Info", link: "/doctor/info", icon: IoMdSchool },

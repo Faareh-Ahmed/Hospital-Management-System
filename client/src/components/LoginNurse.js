@@ -54,7 +54,7 @@ export default function LoginNurse() {
         />
         <div className="absolute w-1/12 h-1/12">
           <Lottie
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/domain")}
             className="hover:cursor-pointer"
             animationData={Lottie1}
           />

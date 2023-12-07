@@ -7,7 +7,7 @@ import { IoMdSchool } from 'react-icons/io';
 import NavbarDomain from '../../components/NavbarDomain';
 export default function InfoEmployee() {
     const location = useLocation();
-    const { userInfo } = location.state;
+    const { userInfo } = location.state || { userInfo: null };
     console.log(userInfo);
     const employeeMenus = [
         { name: "Info", link: '/employee/info', icon: IoMdSchool },

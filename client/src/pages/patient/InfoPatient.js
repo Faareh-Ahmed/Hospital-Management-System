@@ -8,7 +8,7 @@ import NavbarDomain from "../../components/NavbarDomain";
 
 export default function InfoPatient() {
   const location = useLocation();
-  const { userInfo } = location.state;
+  const { userInfo } = location.state || { userInfo: null };
   console.log(userInfo);
   const patientMenus = [
     { name: "Info", link: "/patient/info", icon: IoMdSchool },

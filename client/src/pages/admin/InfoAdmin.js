@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 
 export default function InfoAdmin() {
   const location = useLocation();
-  const { userInfo } = location.state;
+  const { userInfo } = location.state || { userInfo: null };
   console.log(userInfo);
   const AdminMenus = [
     { name: "Info", link: "/admin/info", icon: IoMdSubway },

@@ -1,6 +1,3 @@
-
-
-
 import { useState, useEffect } from "react";
 import React from "react";
 import SideNavbar from "../../components/SideNavbar";
@@ -9,16 +6,17 @@ import { IoMdSchool } from "react-icons/io";
 import NavbarDomain from "../../components/NavbarDomain";
 import { useLocation } from "react-router-dom";
 export default function InfoNurse() {
-
-    const location = useLocation();
-    const { userInfo } = location.state || { userInfo: null };
-    console.log(userInfo);
+  const location = useLocation();
+  const { userInfo } = location.state || { userInfo: null };
+  console.log(userInfo);
   const nurseMenus = [
     { name: "Info", link: "/nurse/info", icon: IoMdSchool },
-    { name: "Assigned Rooms", link: "/nurse/assigned-room", icon: IoMdStopwatch },
-   
+    {
+      name: "Assigned Rooms",
+      link: "/nurse/assigned-room",
+      icon: IoMdStopwatch,
+    },
   ];
-
 
   const renderuserInfo = () => {
     if (!userInfo) {
@@ -37,8 +35,7 @@ export default function InfoNurse() {
           </div>
 
           <div className="p-4 bg-orange-400">
-            <span className="font-semibold">LastName:</span>{" "}
-            {userInfo.LastName}
+            <span className="font-semibold">LastName:</span> {userInfo.LastName}
           </div>
           <div className="p-4 bg-orange-400">
             <span className="font-semibold">Email:</span> {userInfo.Email}
@@ -55,9 +52,9 @@ export default function InfoNurse() {
             <span className="font-semibold">Salary:</span> {userInfo.Salary}
           </div>
           <div className="p-4 bg-orange-400">
-            <span className="font-semibold">Responsibilities:</span> {userInfo.ConsultationFee}
+            <span className="font-semibold">Responsibilities:</span>{" "}
+            {userInfo.Responsibilities}
           </div>
-
         </div>
       </div>
     );
@@ -68,7 +65,7 @@ export default function InfoNurse() {
       <div className="flex gap-4">
         <SideNavbar menus={nurseMenus} />
         <div className="flex flex-col w-full">
-          <NavbarDomain role='nurse' />
+          <NavbarDomain role="nurse" />
 
           <div className=" text-xl text-gray-900 font-semibold  w-full h-full ">
             {/* <Form fields={EmployeeFields} /> */}

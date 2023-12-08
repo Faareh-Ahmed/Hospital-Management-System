@@ -6,6 +6,47 @@ import NavbarDomain from '../../components/NavbarDomain';
 
 export default function Add_Appointment() {
 
+
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    contactNumber: "",
+    shift: "",
+    annualSalary: "",
+    gender: "",
+    responsibilites: "",
+    specialization: "",
+    experience: "",
+  });
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      // Send the form data to your backend API endpoint
+      const apiUrl = "http://localhost:5000/receptionist/add-appointment"; // Replace with your backend API URL
+      const response = await axios.post(apiUrl, formData);
+
+      console.log("data bhej diya");
+      console.log(formData);
+      // Handle response if needed
+      console.log("Data sent successfully:", response.data);
+    } catch (error) {
+      console.error("Error sending data:", error);
+
+      console.log(formData);
+      console.log("masla ban gaya");
+      console.error("Error sending data:", error);
+    }
+  };
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
   const employeeMenus = [
     { name: "Info", link: '/employee/info', icon: IoMdSchool },
     { name: "Add Appointment", link: '/employee/add-appointment', icon: IoMdStopwatch },
@@ -185,21 +226,21 @@ export default function Add_Appointment() {
                         Avaialable Doctors
                       </label>
                       <div className="mt-2">
-                        <select
-                          id="appointmentdoctors"
-                          name="country"
-                          autoComplete="country-name"
-                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 p-2"
-                        >
-                          <option>Malik Saab</option>
-                          <option>Raja G</option>
-                          <option>Murshad</option>
-                          <option>Pinki</option>
-                          <option>Pinki</option>
-                          <option>Ponki</option>
-                          <option>Donkey</option>
-                          <option>Ponki</option>
-                        </select>
+                      <select
+            id="appointmentdoctors"
+            name="selectedDoctor"
+            autoComplete="country-name"
+            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 p-2"
+            value={formData.selectedDoctor}
+            onChange={handleInputChange}
+          >
+            <option value="">Select Doctor</option>
+            {availableDoctors.map((doctor) => (
+              <option key={doctor.id} value={doctor.name}>
+                {doctor.name}
+              </option>
+            ))}
+          </select>
                       </div>
                     </div>
 

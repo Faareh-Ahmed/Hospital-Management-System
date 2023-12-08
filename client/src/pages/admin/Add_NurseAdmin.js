@@ -53,7 +53,6 @@ export default function Add_NurseAdmin() {
     { name: "Show Staff", link: "/admin/show-staff", icon: IoMdSubway },
     { name: "Add Nurses", link: "/admin/add-nurse", icon: IoMdSubway },
     { name: "Add Employees", link: "/admin/add-employee", icon: IoMdSubway },
-    { name: "Add Rooms", link: "/admin/add-room", icon: IoMdSubway },
     { name: "History", link: "/admin/history", icon: IoMdSubway },
   ];
 
@@ -194,7 +193,7 @@ export default function Add_NurseAdmin() {
     defaultValue={"Morning"}
     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 p-2"
 >
-<option  value="null">Select Shift</option>
+<option      value="null">Select Shift</option>
 
     <option value="Morning">Morning</option>
     <option value="Evening">Evening</option>

@@ -285,7 +285,7 @@ app.post("/admin/add-receptionist", (req, res) => {
       const credentialId = credentialResult.insertId;
 
       db.query(
-        "INSERT INTO USER (FirstName, LastName, Email, ContactNumber, Role, idCredentials) VALUES (?, ?, ?, ?, ?, ?,?)",
+        "INSERT INTO USER (FirstName, LastName, Email, ContactNumber, Role, idCredentials,gender) VALUES (?, ?, ?, ?, ?, ?,?)",
         [
           firstName,
           lastName,
@@ -513,7 +513,7 @@ app.post("/admin/add-admitroom", (req, res) => {
 });
 
 app.get("/admin/show-doctors", (req, res) => {
-  console.log("show doctor wali api ko call aagayi")
+  console.log("show doctor wali api ko call aagayi");
   // Query to fetch appointment data from the appointment table
   const sql =
     "select iddoctor,concat(LastName,' ', FirstName) as Name, Email,Salary,Shift,LicenseNumber, Specialization,Experience,ConsultationFee from user natural join staff natural join doctor";
@@ -583,18 +583,60 @@ app.get("/admin/show-admitroom", (req, res) => {
 });
 
 app.get("/admin/show-history", (req, res) => {
-  // Query to fetch appointment data from the appointment table
-  const sql =
-    "select * from doctor_has_patient";
+  console.log("history wali api ko call aagayi")
+  const sql = `
+  SELECT
+    v.idVisit,
+    v.idPatient,
+    CONCAT(up.LastName, ' ', up.FirstName) AS PatientName,
+    v.idDoctor,
+    CONCAT(ud.LastName, ' ', ud.FirstName) AS DoctorName,
+    d.LicenseNumber,
+    v.VisitType,
+    v.Symptoms,
+    v.Prescriptions,
+    v.VisitDate
+FROM
+    visits v
+JOIN
+    user up ON v.idPatient = up.idUser
+JOIN
+    user ud ON v.idDoctor = ud.idUser
+JOIN
+    doctor d ON v.idDoctor = d.idDoctor
+WHERE
+    up.Role = 'Patient'
+    AND ud.Role = 'Doctor';
+  `;
 
-  // Use the connection pool to execute the query
   db.query(sql, (err, results) => {
     if (err) {
       res.status(500).json({ error: err.message });
     } else {
-      res.json(results); // Send the appointment data as JSON to the frontend
+      res.json(results);
     }
   });
+});
+
+
+app.post("/nurse/show-room", (req, res) => {
+  // Query to fetch appointment data from the appointment table
+  console.log(req.body);
+  const nurseID = req.body.nurseID;
+
+  // Use the connection pool to execute the query
+  db.query(
+    "select * from room natural join admitroom where idNurse = ?",
+    [nurseID],
+    (err, result) => {
+      if (err) {
+        console.log("Error showing rooms data:", err);
+        return res.status(500).json({ error: "Error showing admitroom data" });
+      }
+      console.log("room data sent");
+      res.json(result);
+    }
+  );
 });
 
 function generateRandomUsername() {

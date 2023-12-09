@@ -90,6 +90,8 @@ export default function Add_Appointment() {
       link: "/employee/available-doctor",
       icon: IoMdSchool,
     },
+    { name: "Show Patients", link: "/employee/show-patients", icon: IoMdSchool },
+
   ];
 
   return (

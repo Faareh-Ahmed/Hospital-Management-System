@@ -7,9 +7,9 @@ import SideNavbar from "../../components/SideNavbar";
 import NavbarDomain from "../../components/NavbarDomain";
 
 export default function InfoPatient() {
-  const location = useLocation();
-  const { userInfo } = location.state || { userInfo: null };
-  console.log(userInfo);
+  const patientInfo = JSON.parse(localStorage.getItem('patientInfo'));
+
+  console.log(patientInfo);
   const patientMenus = [
     { name: "Info", link: "/patient/info", icon: IoMdSchool },
     { name: "History", link: "/patient/show-history", icon: IoMdShirt },
@@ -27,8 +27,8 @@ export default function InfoPatient() {
 
   // The empty dependency array ensures this effect runs once when the component mounts
 
-  const renderuserInfo = () => {
-    if (!userInfo) {
+  const renderpatientInfo = () => {
+    if (!patientInfo) {
       return <p>Loading...</p>;
     }
 
@@ -42,37 +42,37 @@ export default function InfoPatient() {
         <div className="flex-col p-8 bg-slate-500">
           <div className="p-4 bg-orange-400">
             <span className="font-semibold pt-4 pb-4">FirstName:</span>{" "}
-            {userInfo.FirstName}
+            {patientInfo.FirstName}
           </div>
 
           <div className="p-4 bg-orange-400">
-            <span className="font-semibold">LastName:</span> {userInfo.LastName}
+            <span className="font-semibold">LastName:</span> {patientInfo.LastName}
           </div>
           <div className="p-4 bg-orange-400">
-            <span className="font-semibold">Email:</span> {userInfo.Email}
+            <span className="font-semibold">Email:</span> {patientInfo.Email}
           </div>
           <div className="p-4 bg-orange-400">
             <span className="font-semibold">Contact Number:</span>{" "}
-            {userInfo.ContactNumber}
+            {patientInfo.ContactNumber}
           </div>
           <div className="p-4 bg-orange-400">
             <span className="font-semibold">Blood Group:</span>{" "}
-            {userInfo.BloodGroup}
+            {patientInfo.BloodGroup}
           </div>
           <div className="p-4 bg-orange-400">
-            <span className="font-semibold">Age:</span> {userInfo.Age}
+            <span className="font-semibold">Age:</span> {patientInfo.Age}
           </div>
           <div className="p-4 bg-orange-400">
-            <span className="font-semibold">Gender:</span> {userInfo.gender}
+            <span className="font-semibold">Gender:</span> {patientInfo.gender}
           </div>
           <div className="p-4 bg-orange-400">
-            <span className="font-semibold">Height:</span> {userInfo.Height}
+            <span className="font-semibold">Height:</span> {patientInfo.Height}
           </div>
           <div className="p-4 bg-orange-400">
-            <span className="font-semibold">Weight: </span> {userInfo.Weight}
+            <span className="font-semibold">Weight: </span> {patientInfo.Weight}
           </div>
           <div className="p-4 bg-orange-400">
-            <span className="font-semibold">BMI: </span> {userInfo.BMI}
+            <span className="font-semibold">BMI: </span> {patientInfo.BMI}
           </div>
         </div>
       </div>
@@ -89,7 +89,7 @@ export default function InfoPatient() {
           <div className=" text-xl text-gray-900 font-semibold  w-full h-full ">
             {/* <Form fields={PatientFields}/> */}
             Patient Info
-            {renderuserInfo()}
+            {renderpatientInfo()}
           </div>
         </div>
       </div>

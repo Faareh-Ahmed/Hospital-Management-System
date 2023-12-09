@@ -22,8 +22,9 @@ export default function LoginNurse() {
 
       // Check the response data for successful authentication
       if (response.data.message === "Authentication Successful") {
-        const userInfo = response.data.userInfo;
-        navigate("/nurse/info", { state: { userInfo } });
+        const nurseInfo = response.data.userInfo;
+        localStorage.setItem('patientInfo', JSON.stringify(nurseInfo));
+        navigate("/nurse/info");
       } else {
         console.error("Login failed");
       }

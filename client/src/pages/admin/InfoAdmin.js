@@ -7,9 +7,8 @@ import NavbarDomain from "../../components/NavbarDomain";
 import { useLocation } from "react-router-dom";
 
 export default function InfoAdmin() {
-  const location = useLocation();
-  const { userInfo } = location.state || { userInfo: null };
-  console.log(userInfo);
+  const adminInfo = JSON.parse(localStorage.getItem('adminInfo'));
+  console.log(adminInfo);
   const AdminMenus = [
     { name: "Info", link: "/admin/info", icon: IoMdSubway },
     { name: "Add Doctor", link: "/admin/add-doctor", icon: IoMdStar },
@@ -19,8 +18,8 @@ export default function InfoAdmin() {
     { name: "History", link: "/admin/history", icon: IoMdSubway },
   ];
 
-  const renderuserInfo = () => {
-    if (!userInfo) {
+  const renderadminInfo = () => {
+    if (!adminInfo) {
       return <p>Loading...</p>;
     }
 
@@ -34,26 +33,26 @@ export default function InfoAdmin() {
         <div className="flex-col p-8 bg-slate-500">
           <div className="p-4 bg-orange-400">
             <span className="font-semibold pt-4 pb-4">FirstName: </span>{" "}
-            {userInfo.FirstName}
+            {adminInfo.FirstName}
           </div>
 
           <div className="p-4 bg-orange-400">
             <span className="font-semibold">LastName: </span>{" "}
-            {userInfo.LastName}
+            {adminInfo.LastName}
           </div>
           <div className="p-4 bg-orange-400">
-            <span className="font-semibold">Email: </span> {userInfo.Email}
+            <span className="font-semibold">Email: </span> {adminInfo.Email}
           </div>
           <div className="p-4 bg-orange-400">
             <span className="font-semibold">Contact: </span>{" "}
-            {userInfo.ContactNumber}
+            {adminInfo.ContactNumber}
           </div>
           <div className="p-4 bg-orange-400">
-            <span className="font-semibold">CNIC: </span> {userInfo.CNIC}
+            <span className="font-semibold">CNIC: </span> {adminInfo.CNIC}
           </div>
             <div className="p-4 bg-orange-400">
               <span className="font-semibold">Certificate Number: </span>{" "}
-              {userInfo.CertificateNumber}
+              {adminInfo.CertificateNumber}
             </div>
         </div>
       </div>
@@ -69,7 +68,7 @@ export default function InfoAdmin() {
 
           <div className=" text-xl text-gray-900 font-semibold  w-full h-full ">
             Info Admin
-            {renderuserInfo()}
+            {renderadminInfo()}
           </div>
         </div>
       </div>

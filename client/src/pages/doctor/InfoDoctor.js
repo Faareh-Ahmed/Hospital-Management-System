@@ -7,9 +7,8 @@ import NavbarDomain from "../../components/NavbarDomain";
 import { useLocation } from "react-router-dom";
 export default function InfoDoctor() {
 
-    const location = useLocation();
-  const { userInfo } = location.state || { userInfo: null };
-  console.log(userInfo);
+  const doctorInfo = JSON.parse(localStorage.getItem('doctorInfo'));
+  console.log(doctorInfo);
   const doctorMenus = [
     { name: "Info", link: "/doctor/info", icon: IoMdSchool },
     { name: "History", link: "/doctor/history", icon: IoMdStopwatch },
@@ -26,8 +25,8 @@ export default function InfoDoctor() {
   ];
 
 
-  const renderuserInfo = () => {
-    if (!userInfo) {
+  const renderdoctorInfo = () => {
+    if (!doctorInfo) {
       return <p>Loading...</p>;
     }
 
@@ -39,37 +38,37 @@ export default function InfoDoctor() {
         <div className="flex-col p-8 bg-slate-500">
           <div className="p-4 bg-orange-400">
             <span className="font-semibold pt-4 pb-4">FirstName:</span>{" "}
-            {userInfo.FirstName}
+            {doctorInfo.FirstName}
           </div>
 
           <div className="p-4 bg-orange-400">
             <span className="font-semibold">LastName:</span>{" "}
-            {userInfo.LastName}
+            {doctorInfo.LastName}
           </div>
           <div className="p-4 bg-orange-400">
-            <span className="font-semibold">Email:</span> {userInfo.Email}
+            <span className="font-semibold">Email:</span> {doctorInfo.Email}
           </div>
           <div className="p-4 bg-orange-400">
             <span className="font-semibold">Contact:</span>{" "}
-            {userInfo.ContactNumber}
+            {doctorInfo.ContactNumber}
           </div>
           <div className="p-4 bg-orange-400">
             <span className="font-semibold">Lisence Number:</span>{" "}
-            {userInfo.LicenseNumber}
+            {doctorInfo.LicenseNumber}
           </div>
           <div className="p-4 bg-orange-400">
             <span className="font-semibold">Specialization:</span>{" "}
-            {userInfo.Specialization}
+            {doctorInfo.Specialization}
           </div>
           <div className="p-4 bg-orange-400">
             <span className="font-semibold">Experience:</span>{" "}
-            {userInfo.Experience}
+            {doctorInfo.Experience}
           </div>
           <div className="p-4 bg-orange-400">
-            <span className="font-semibold">Salary:</span> {userInfo.Salary}
+            <span className="font-semibold">Salary:</span> {doctorInfo.Salary}
           </div>
           <div className="p-4 bg-orange-400">
-            <span className="font-semibold">Consultation Fee:</span> {userInfo.ConsultationFee}
+            <span className="font-semibold">Consultation Fee:</span> {doctorInfo.ConsultationFee}
           </div>
 
         </div>
@@ -87,7 +86,7 @@ export default function InfoDoctor() {
           <div className=" text-xl text-gray-900 font-semibold  w-full h-full ">
             {/* <Form fields={EmployeeFields} /> */}
             Doctor Info
-            {renderuserInfo()}
+            {renderdoctorInfo()}
           </div>
         </div>
       </div>

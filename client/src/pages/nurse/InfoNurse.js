@@ -6,9 +6,8 @@ import { IoMdSchool } from "react-icons/io";
 import NavbarDomain from "../../components/NavbarDomain";
 import { useLocation } from "react-router-dom";
 export default function InfoNurse() {
-  const location = useLocation();
-  const { userInfo } = location.state || { userInfo: null };
-  console.log(userInfo);
+  const nurseInfo = JSON.parse(localStorage.getItem('nurseInfo'));
+  console.log(nurseInfo);
   const nurseMenus = [
     { name: "Info", link: "/nurse/info", icon: IoMdSchool },
     {
@@ -18,8 +17,8 @@ export default function InfoNurse() {
     },
   ];
 
-  const renderuserInfo = () => {
-    if (!userInfo) {
+  const rendernurseInfo = () => {
+    if (!nurseInfo) {
       return <p>Loading...</p>;
     }
 
@@ -31,29 +30,29 @@ export default function InfoNurse() {
         <div className="flex-col p-8 bg-slate-500">
           <div className="p-4 bg-orange-400">
             <span className="font-semibold pt-4 pb-4">FirstName:</span>{" "}
-            {userInfo.FirstName}
+            {nurseInfo.FirstName}
           </div>
 
           <div className="p-4 bg-orange-400">
-            <span className="font-semibold">LastName:</span> {userInfo.LastName}
+            <span className="font-semibold">LastName:</span> {nurseInfo.LastName}
           </div>
           <div className="p-4 bg-orange-400">
-            <span className="font-semibold">Email:</span> {userInfo.Email}
+            <span className="font-semibold">Email:</span> {nurseInfo.Email}
           </div>
           <div className="p-4 bg-orange-400">
             <span className="font-semibold">Contact:</span>{" "}
-            {userInfo.ContactNumber}
+            {nurseInfo.ContactNumber}
           </div>
           <div className="p-4 bg-orange-400">
             <span className="font-semibold">Experience:</span>{" "}
-            {userInfo.Experience}
+            {nurseInfo.Experience}
           </div>
           <div className="p-4 bg-orange-400">
-            <span className="font-semibold">Salary:</span> {userInfo.Salary}
+            <span className="font-semibold">Salary:</span> {nurseInfo.Salary}
           </div>
           <div className="p-4 bg-orange-400">
             <span className="font-semibold">Responsibilities:</span>{" "}
-            {userInfo.Responsibilities}
+            {nurseInfo.Responsibilities}
           </div>
         </div>
       </div>
@@ -70,7 +69,7 @@ export default function InfoNurse() {
           <div className=" text-xl text-gray-900 font-semibold  w-full h-full ">
             {/* <Form fields={EmployeeFields} /> */}
             Nurse Info
-            {renderuserInfo()}
+            {rendernurseInfo()}
           </div>
         </div>
       </div>

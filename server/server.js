@@ -637,8 +637,36 @@ app.get("/receptionist/show-doctors", (req, res) => {
 app.get("/receptionist/show-appointments", (req, res) => {
   // Query to fetch appointment data from the appointment table
   const sql =
-    "select idDoctor, concat(FirstName, ' ', LastName) as Name from user natural join staff natural join doctor;";
+    `SELECT
+    appointment.*,
+    DATE_FORMAT(AppointmentDate, '%d-%m-%Y') AS AppointmentDate1,
+    CONCAT(user.FirstName, ' ', user.LastName) AS PatientName
+FROM
+    appointment
+NATURAL JOIN
+    patient
+NATURAL JOIN
+    user;
+`;
 
+  // Use the connection pool to execute the query
+  db.query(sql, (err, results) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+    } else {
+      res.json(results); // Send the appointment data as JSON to the frontend
+    }
+  });
+});
+
+
+app.get("/receptionist/show-patients", (req, res) => {
+  console.log("Patient wali api ko call aagayi");
+  // Query to fetch appointment data from the appointment table
+  // Query to fetch appointment data from the appointment table
+  const sql =
+    `select idPatient, concat(FirstName, ' ', LastName) as Name, Age, BloodGroup, Disease, BMI, Address,Email,ContactNumber from patient natural join user
+`;
   // Use the connection pool to execute the query
   db.query(sql, (err, results) => {
     if (err) {
@@ -693,6 +721,22 @@ app.get("/admin/show-admitroom", (req, res) => {
   // Query to fetch appointment data from the appointment table
   const sql =
     "select idadmitroom,RoomType,Floor,AdmitDate,DischargeDate,Priceperday from room natural join admitroom";
+
+  // Use the connection pool to execute the query
+  db.query(sql, (err, results) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+    } else {
+      res.json(results); // Send the appointment data as JSON to the frontend
+    }
+  });
+});
+
+app.get("/receptionist/show-room", (req, res) => {
+  console.log("room wali api ko call aagayi")
+  // Query to fetch appointment data from the appointment table
+  const sql =
+    "select * from room;";
 
   // Use the connection pool to execute the query
   db.query(sql, (err, results) => {

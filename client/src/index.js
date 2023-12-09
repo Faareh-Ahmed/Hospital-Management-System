@@ -45,7 +45,7 @@ import LoginReceptionist from './components/LoginStaff';
 import LoginNurse from './components/LoginNurse';
 import InfoNurse from './pages/nurse/InfoNurse';
 import AssignedRoomNurse from './pages/nurse/AssignedRoomNurse';
-
+import Show_Patients from './pages/employee/Show_Patients';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -86,6 +86,10 @@ const router = createBrowserRouter([
   {
     path: '/employee/show-room', // Define a new route for the Login page
     element: <Show_Room/>,
+  },
+  {
+    path: '/employee/show-patients', // Define a new route for the Login page
+    element: <Show_Patients/>,
   },
   {
     path: '/employee/info', // Define a new route for the Login page

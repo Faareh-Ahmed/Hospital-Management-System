@@ -21,8 +21,9 @@ export default function LoginAdmin() {
 
       // Check the response data for successful authentication
       if (response.data.message === "Authentication successful") {
-        const userInfo = response.data.userInfo;
-        navigate("/admin/info" , { state: { userInfo } });
+        const adminInfo = response.data.userInfo;
+        localStorage.setItem('adminInfo', JSON.stringify(adminInfo));
+        navigate("/admin/info" );
       } else {
         console.error("Login failed");
       }

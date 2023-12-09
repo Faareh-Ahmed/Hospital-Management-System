@@ -6,21 +6,34 @@ import { IoMdStopwatch } from 'react-icons/io';
 import { IoMdSchool } from 'react-icons/io';
 import NavbarDomain from '../../components/NavbarDomain';
 export default function InfoEmployee() {
-    const location = useLocation();
-    const { userInfo } = location.state || { userInfo: null };
-    console.log(userInfo);
+    const staffInfo = JSON.parse(localStorage.getItem('staffInfo'));
+    console.log(staffInfo);
     const employeeMenus = [
-        { name: "Info", link: '/employee/info', icon: IoMdSchool },
-        { name: "Add Appointment", link: '/employee/add-appointment', icon: IoMdStopwatch },
-        { name: "Show Appointments", link: '/employee/show-appointment', icon: IoMdSchool },
-        { name: "Show Rooms", link: '/employee/show-room', icon: IoMdSchool },
-        { name: "Available Doctors", link: '/employee/available-doctor', icon: IoMdSchool },
+        { name: "Info", link: "/employee/info", icon: IoMdSchool },
+        {
+          name: "Add Appointment",
+          link: "/employee/add-appointment",
+          icon: IoMdStopwatch,
+        },
+        {
+          name: "Show Appointments",
+          link: "/employee/show-appointment",
+          icon: IoMdSchool,
+        },
+        { name: "Show Rooms", link: "/employee/show-room", icon: IoMdSchool },
+        {
+          name: "Available Doctors",
+          link: "/employee/available-doctor",
+          icon: IoMdSchool,
+        },
+        { name: "Show Patients", link: "/employee/show-patients", icon: IoMdSchool },
+
       ];
 
       
 
-    const renderuserInfo = () => {
-        if (!userInfo) {
+    const renderstaffInfo = () => {
+        if (!staffInfo) {
             return <p>Loading...</p>;
         }
 
@@ -31,29 +44,29 @@ export default function InfoEmployee() {
                 <div className='grid text-xl font-semibold mb-4 justify-items-center'>Patient Information</div>
                 <div className='flex-col p-8 bg-slate-500'>
                     <div className='p-4 bg-orange-400'>
-                        <span className='font-semibold pt-4 pb-4'>FirstName:</span> {userInfo.FirstName}
+                        <span className='font-semibold pt-4 pb-4'>FirstName:</span> {staffInfo.FirstName}
                     </div>
 
                     <div className='p-4 bg-orange-400'>
-                        <span className='font-semibold'>LastName:</span> {userInfo.LastName}
+                        <span className='font-semibold'>LastName:</span> {staffInfo.LastName}
                     </div>
                     <div className='p-4 bg-orange-400'>
-                        <span className='font-semibold'>Email:</span> {userInfo.Email}
+                        <span className='font-semibold'>Email:</span> {staffInfo.Email}
                     </div>
                     <div className='p-4 bg-orange-400'>
-                        <span className='font-semibold'>CNIC:</span> {userInfo.CNIC}
+                        <span className='font-semibold'>CNIC:</span> {staffInfo.CNIC}
                     </div>
                     <div className='p-4 bg-orange-400'>
-                        <span className='font-semibold'>Salary:</span> {userInfo.Salary}
+                        <span className='font-semibold'>Salary:</span> {staffInfo.Salary}
                     </div>
                     <div className='p-4 bg-orange-400'>
-                        <span className='font-semibold'>Shift:</span> {userInfo.Shift}
+                        <span className='font-semibold'>Shift:</span> {staffInfo.Shift}
                     </div>
                     <div className='p-4 bg-orange-400'>
-                        <span className='font-semibold'>Contact:</span> {userInfo.ContactNumber}
+                        <span className='font-semibold'>Contact:</span> {staffInfo.ContactNumber}
                     </div>
                     <div className='p-4 bg-orange-400'>
-                        <span className='font-semibold'>Certificate Number:</span> {userInfo.CertificateNumber}
+                        <span className='font-semibold'>Certificate Number:</span> {staffInfo.CertificateNumber}
                     </div>
                 </div>
 
@@ -76,7 +89,7 @@ export default function InfoEmployee() {
                     <div className=' text-xl text-gray-900 font-semibold  w-full h-full '>
                         {/* <Form fields={EmployeeFields} /> */}
                        Employee Info
-                       {renderuserInfo()}
+                       {renderstaffInfo()}
                     </div>
 
                 </div>

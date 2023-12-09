@@ -6,7 +6,9 @@ import NavbarDomain from "../../components/NavbarDomain";
 
 export default function AssignedRoomNurse() {
   const [roomData, setRoomData] = useState([]);
-  const nurseID = "2"; // Replace 'your_nurse_id' with the actual nurse ID
+  const ID = JSON.parse(localStorage.getItem('nurseInfo'));
+
+  const nurseID = ID.idNurse; // Replace 'your_nurse_id' with the actual nurse ID
 
   useEffect(() => {
     fetchRoomData();

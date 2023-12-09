@@ -85,7 +85,7 @@ app.post("/doctor/login", (req, res) => {
       .json({ message: "Please provide both username and password" });
   }
   db.query(
-    "select FirstName, LastName, Email, ContactNumber,LicenseNumber,Specialization, Experience, Salary, ConsultationFee  from user natural join credentials natural join staff natural join doctor where UserName = ? and Password = ?",
+    "select idDoctor, FirstName, LastName, Email, ContactNumber,LicenseNumber,Specialization, Experience, Salary, ConsultationFee  from user natural join credentials natural join staff natural join doctor where UserName = ? and Password = ?",
     [username, password],
     (err, results) => {
       if (err) {
@@ -113,7 +113,7 @@ app.post("/nurse/login", (req, res) => {
       .json({ message: "Please provide both username and password" });
   }
   db.query(
-    "select FirstName, LastName, Email, ContactNumber,Responsibilities,Specialization, Experience, Salary  from user natural join credentials natural join staff natural join nurse where UserName = ? and Password = ?",
+    "select idNurse,FirstName, LastName, Email, ContactNumber,Responsibilities,Specialization, Experience, Salary  from user natural join credentials natural join staff natural join nurse where UserName = ? and Password = ?",
     [username, password],
     (err, results) => {
       if (err) {
@@ -793,6 +793,26 @@ app.post("/nurse/show-room", (req, res) => {
   db.query(
     "select * from room natural join admitroom where idNurse = ?",
     [nurseID],
+    (err, result) => {
+      if (err) {
+        console.log("Error showing rooms data:", err);
+        return res.status(500).json({ error: "Error showing admitroom data" });
+      }
+      console.log("room data sent");
+      res.json(result);
+    }
+  );
+});
+
+app.post("/doctor/show-appointments", (req, res) => {
+  // Query to fetch appointment data from the appointment table
+  console.log(req.body);
+  const idDoctor = req.body.idDoctor;
+
+  // Use the connection pool to execute the query
+  db.query(
+    "select idAppointment, idPatient, concat(FirstName, ' ', LastName) as PatientName, gender, ContactNumber, Age, BMI, Address, date_format(AppointmentDate, '%d-%m-%Y') as AppointmentDate, Status  from appointment natural join patient natural join user where idDoctor = 3;",
+    [idDoctor],
     (err, result) => {
       if (err) {
         console.log("Error showing rooms data:", err);

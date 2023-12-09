@@ -22,7 +22,7 @@ export default function LoginReceptionist() {
       // Check the response data for successful authentication
       if (response.data.message === "Authentication Successful") {
         const staffInfo = response.data.userInfo;
-        localStorage.setItem('staffInfo', JSON.stringify(staffInfo));
+        localStorage.setItem("staffInfo", JSON.stringify(staffInfo));
         navigate("/employee/info");
       } else {
         console.error("Login failed");
@@ -86,7 +86,7 @@ export default function LoginReceptionist() {
             >
               Sign In
             </button>
-            
+
             <p className="relative text-center mt-8">Receptionist Portal</p>
           </form>
         </div>

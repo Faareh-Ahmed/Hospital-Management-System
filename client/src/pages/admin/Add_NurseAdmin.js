@@ -31,6 +31,26 @@ export default function Add_NurseAdmin() {
       console.log(formData);
       // Handle response if needed
       console.log("Data sent successfully:", response.data);
+
+      // Display a prompt on success
+      window.alert(`Person added successfully!\nUsername: ${response.data.username}\nPassword: ${response.data.password}`);
+
+
+      // Clear the form fields
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        contactNumber: "",
+        shift: "",
+        annualSalary: "",
+        gender: "",
+        responsibilites: "",
+        specialization: "",
+        experience: "",
+      });
+
+
     } catch (error) {
       console.error("Error sending data:", error);
 
@@ -185,19 +205,19 @@ export default function Add_NurseAdmin() {
                         Shift
                       </label>
                       <div className="mt-2">
-                      <select
-    id="shift"
-    name="shift"
-    onChange={handleInputChange}
-    value={formData.shift}
-    defaultValue={"Morning"}
-    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 p-2"
->
-<option      value="null">Select Shift</option>
+                        <select
+                          id="shift"
+                          name="shift"
+                          onChange={handleInputChange}
+                          value={formData.shift}
+                          defaultValue={"Morning"}
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 p-2"
+                        >
+                          <option value="null">Select Shift</option>
 
-    <option value="Morning">Morning</option>
-    <option value="Evening">Evening</option>
-</select>
+                          <option value="Morning">Morning</option>
+                          <option value="Evening">Evening</option>
+                        </select>
 
                       </div>
                     </div>
@@ -263,7 +283,8 @@ export default function Add_NurseAdmin() {
                     </div>
                   </div>
                 </div>
-              </div>
+              
+              
               <div className="border-b border-gray-900/10 pb-12">
                 <div className="mt-10 space-y-10">
                   <fieldset>
@@ -325,6 +346,7 @@ export default function Add_NurseAdmin() {
                     </div>
                   </fieldset>
                 </div>
+              </div>
               </div>
 
               <div className="mt-6 flex items-center justify-end gap-x-6 p-4">

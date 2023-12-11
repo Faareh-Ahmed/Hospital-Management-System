@@ -56,6 +56,29 @@ export default function Add_Appointment() {
       console.log(formData);
       // Handle response if needed
       console.log("Data sent successfully:", response.data);
+
+
+       // Display a prompt on success
+       window.alert(`Person added successfully!\nUsername: ${response.data.username}\nPassword: ${response.data.password}`);
+
+
+       // Clear the form fields
+       setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        contactNumber: "",
+        gender: "",
+        age: "",
+        disease: "",
+        bloodGroup: "",
+        address: "",
+        height: "",
+        weight: "",
+        doctorID: "",
+        date: "",
+      });
+
     } catch (error) {
       console.error("Error sending data:", error);
 

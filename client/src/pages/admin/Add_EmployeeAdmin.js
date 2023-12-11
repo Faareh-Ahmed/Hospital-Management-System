@@ -29,6 +29,26 @@ export default function Add_EmployeeAdmin() {
       console.log(formData);
       // Handle response if needed
       console.log("Data sent successfully:", response.data);
+
+
+      // Display a prompt on success
+      window.alert(`Person added successfully!\nUsername: ${response.data.username}\nPassword: ${response.data.password}`);
+
+
+      // Clear the form fields
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        contactNumber: "",
+        certificateNumber: "",
+        cnic: "",
+        shift: "",
+        annualSalary: "",
+        gender: "",
+      });
+
+
     } catch (error) {
       console.error("Error sending data:", error);
 
@@ -159,19 +179,19 @@ export default function Add_EmployeeAdmin() {
                         Shift
                       </label>
                       <div className="mt-2">
-                      <select
-    id="shift"
-    name="shift"
-    onChange={handleInputChange}
-    value={formData.shift}
-    defaultValue={"Morning"}
-    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 p-2"
->
-<option      value="null">Select Shift</option>
+                        <select
+                          id="shift"
+                          name="shift"
+                          onChange={handleInputChange}
+                          value={formData.shift}
+                          defaultValue={"Morning"}
+                          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 p-2"
+                        >
+                          <option value="null">Select Shift</option>
 
-    <option value="Morning">Morning</option>
-    <option value="Evening">Evening</option>
-</select>
+                          <option value="Morning">Morning</option>
+                          <option value="Evening">Evening</option>
+                        </select>
                       </div>
                     </div>
 
@@ -241,64 +261,64 @@ export default function Add_EmployeeAdmin() {
 
                 <div className="border-b border-gray-900/10 pb-12">
                   <div className="mt-10 space-y-10">
-                  <fieldset>
-                    <legend className="text-sm font-semibold leading-6 text-gray-900">
-                      Gender
-                    </legend>
-                    <div className="mt-6 space-y-6">
-                      <div className="flex items-center gap-x-3">
-                        <input
-                          onChange={handleInputChange}
-                          value="Male"
-                          checked={formData.gender === "Male"}
-                          id="gender-male"
-                          name="gender"
-                          type="radio"
-                          className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                        />
-                        <label
-                          htmlFor="gender-male"
-                          className="block text-sm font-medium leading-6 text-gray-900"
-                        >
-                          Male
-                        </label>
+                    <fieldset>
+                      <legend className="text-sm font-semibold leading-6 text-gray-900">
+                        Gender
+                      </legend>
+                      <div className="mt-6 space-y-6">
+                        <div className="flex items-center gap-x-3">
+                          <input
+                            onChange={handleInputChange}
+                            value="Male"
+                            checked={formData.gender === "Male"}
+                            id="gender-male"
+                            name="gender"
+                            type="radio"
+                            className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                          />
+                          <label
+                            htmlFor="gender-male"
+                            className="block text-sm font-medium leading-6 text-gray-900"
+                          >
+                            Male
+                          </label>
+                        </div>
+                        <div className="flex items-center gap-x-3">
+                          <input
+                            onChange={handleInputChange}
+                            value="Female"
+                            checked={formData.gender === "Female"}
+                            id="gender-female"
+                            name="gender"
+                            type="radio"
+                            className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                          />
+                          <label
+                            htmlFor="gender-female"
+                            className="block text-sm font-medium leading-6 text-gray-900"
+                          >
+                            Female
+                          </label>
+                        </div>
+                        <div className="flex items-center gap-x-3">
+                          <input
+                            onChange={handleInputChange}
+                            value="Does not Prefer"
+                            checked={formData.gender === "Does not Prefer"}
+                            id="gender-not-preferred"
+                            name="gender"
+                            type="radio"
+                            className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                          />
+                          <label
+                            htmlFor="gender-not-preferred"
+                            className="block text-sm font-medium leading-6 text-gray-900"
+                          >
+                            Does Not Prefer
+                          </label>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-x-3">
-                        <input
-                          onChange={handleInputChange}
-                          value="Female"
-                          checked={formData.gender === "Female"}
-                          id="gender-female"
-                          name="gender"
-                          type="radio"
-                          className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                        />
-                        <label
-                          htmlFor="gender-female"
-                          className="block text-sm font-medium leading-6 text-gray-900"
-                        >
-                          Female
-                        </label>
-                      </div>
-                      <div className="flex items-center gap-x-3">
-                        <input
-                          onChange={handleInputChange}
-                          value="Does not Prefer"
-                          checked={formData.gender === "Does not Prefer"}
-                          id="gender-not-preferred"
-                          name="gender"
-                          type="radio"
-                          className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                        />
-                        <label
-                          htmlFor="gender-not-preferred"
-                          className="block text-sm font-medium leading-6 text-gray-900"
-                        >
-                          Does Not Prefer
-                        </label>
-                      </div>
-                    </div>
-                  </fieldset>
+                    </fieldset>
                   </div>
                 </div>
               </div>

@@ -38,6 +38,26 @@ export default function Add_Doctor() {
       console.log(formData);
       // Handle response if needed
       console.log("Data sent successfully:", response.data);
+
+
+      // Display a prompt on success
+      window.alert(`Person added successfully!\nUsername: ${response.data.username}\nPassword: ${response.data.password}`);
+
+
+       // Clear the form fields
+       setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        contactNumber: "",
+        licenseNumber: "",
+        specialization: "",
+        shift: "",
+        experience: "",
+        annualSalary: "",
+        gender: "",
+      });
+
     } catch (error) {
       console.error("Error sending data:", error);
 
@@ -46,6 +66,8 @@ export default function Add_Doctor() {
       console.error("Error sending data:", error);
     }
   };
+
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({
@@ -68,7 +90,7 @@ export default function Add_Doctor() {
       <div className="flex gap-4">
         <SideNavbar menus={AdminMenus} />
         <div className="flex flex-col w-full">
-          <NavbarDomain role ='admin'/>
+          <NavbarDomain role='admin' />
 
           <div className=" text-xl text-gray-900 font-semibold  w-full h-full ">
             {/* <Form fields={EmployeeFields} /> */}
@@ -198,7 +220,7 @@ export default function Add_Doctor() {
                           defaultValue={""}
                         />
                       </div>
-                      
+
                     </div>
 
                     <div className="sm:col-span-3">

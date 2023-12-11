@@ -17,6 +17,7 @@ export default function Show_Staff() {
 
   const [activeButton, setActiveButton] = useState(null);
   const [doctorData, setDoctorData] = useState([]);
+  
   const fetchDoctorData = async () => {
     try {
       const response = await fetch("/admin/show-doctors");
@@ -32,6 +33,7 @@ export default function Show_Staff() {
   };
 
   const [nurseData, setNurseData] = useState([]);
+  
   const fetchNurseData = async () => {
     try {
       const response = await fetch("/admin/show-nurses");
@@ -45,7 +47,9 @@ export default function Show_Staff() {
       console.error(error);
     }
   };
+  
   const [receptionistData, setReceptionistData] = useState([]);
+  
   const fetchReceptionistData = async () => {
     try {
       const response = await fetch("/admin/show-receptionist");
@@ -76,7 +80,7 @@ export default function Show_Staff() {
     <>
       <div className="flex gap-4">
         <SideNavbar menus={AdminMenus} />
-        <div className="flex flex-col w-full">
+        <div className="flex flex-col w-full ">
           <NavbarDomain role="admin" />
 
           <div className=" text-xl text-gray-900 font-semibold  w-full h-full ">
@@ -121,13 +125,13 @@ export default function Show_Staff() {
 
             </div>
             {activeButton === "Doctors" && (
-              <div className="mt-4">
-                <h2 className="text-xl font-semibold mb-2">
+              <div className="mt-4 p-4">
+                <h2 className="text-xl font-semibold mb-2 text-blue-900">
                   Doctors Information
                 </h2>
-                <table className="border-collapse border w-full">
+                <table className="border-collapse border-stone-950 border w-full bg-blue-600 text-white">
                   <thead>
-                    <tr className="bg-gray-200">
+                    <tr className="bg-purple-600">
                       <th className="border py-2 px-4">ID</th>
                       <th className="border py-2 px-4">Name</th>
                       <th className="border py-2 px-4">Email</th>
@@ -141,7 +145,7 @@ export default function Show_Staff() {
                   </thead>
                   <tbody>
                     {doctorData.map((doctor) => (
-                      <tr key={doctor.iddoctor} className="hover:bg-gray-100">
+                      <tr key={doctor.iddoctor} className="hover:bg-blue-900">
                         <td className="border py-2 px-4">{doctor.iddoctor}</td>
                         <td className="border py-2 px-4">{doctor.Name}</td>
                         <td className="border py-2 px-4">{doctor.Email}</td>
@@ -166,13 +170,13 @@ export default function Show_Staff() {
               </div>
             )}
             {activeButton === "Nurses" && (
-              <div className="mt-4">
-                <h2 className="text-xl font-semibold mb-2">
+              <div className="mt-4 p-4">
+                <h2 className="text-xl font-semibold mb-2 text-blue-900">
                   Nurses Information
                 </h2>
-                <table className="border-collapse border w-full">
+                <table className="border-collapse border-stone-950 border w-full bg-blue-600 text-white">
                   <thead>
-                    <tr className="bg-gray-200">
+                    <tr className="bg-purple-600">
                       <th className="border py-2 px-4">ID</th>
                       <th className="border py-2 px-4">Name</th>
                       <th className="border py-2 px-4">Email</th>
@@ -185,7 +189,7 @@ export default function Show_Staff() {
                   </thead>
                   <tbody>
                     {nurseData.map((nurse) => (
-                      <tr key={nurse.idnurse} className="hover:bg-gray-100">
+                      <tr key={nurse.idnurse} className="hover:bg-blue-900">
                         <td className="border py-2 px-4">{nurse.idnurse}</td>
                         <td className="border py-2 px-4">{nurse.Name}</td>
                         <td className="border py-2 px-4">{nurse.Email}</td>
@@ -205,13 +209,13 @@ export default function Show_Staff() {
               </div>
             )}
             {activeButton === "Receptionists" && (
-              <div className="mt-4">
-                <h2 className="text-xl font-semibold mb-2">
+              <div className="mt-4 p-4">
+                <h2 className="text-xl font-semibold mb-2 text-blue-900">
                   Receptionists Information
                 </h2>
-                <table className="border-collapse border w-full">
+                <table className="border-collapse border-stone-950 border w-full bg-blue-600 text-white">
                   <thead>
-                    <tr className="bg-gray-200">
+                    <tr className="bg-purple-600">
                       <th className="border py-2 px-4">ID</th>
                       <th className="border py-2 px-4">Name</th>
                       <th className="border py-2 px-4">Email</th>
@@ -225,7 +229,7 @@ export default function Show_Staff() {
                     {receptionistData.map((receptionist) => (
                       <tr
                         key={receptionist.idreceptionist}
-                        className="hover:bg-gray-100"
+                        className="hover:bg-blue-900"
                       >
                         <td className="border py-2 px-4">
                           {receptionist.idreceptionist}

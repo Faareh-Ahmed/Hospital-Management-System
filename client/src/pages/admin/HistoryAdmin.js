@@ -36,9 +36,9 @@ export default function HistoryAdmin() {
                     </div>
 
                     <div>
-                        <table className="border-collapse border w-full">
+                        <table className="border-collapse border-stone-950 border w-full bg-blue-600 text-white">
                             <thead>
-                                <tr className="bg-gray-200">
+                                <tr className="bg-purple-600">
                                     <th className="border py-2 px-4">ID</th>
                                     <th className="border py-2 px-4">Patient Name</th>
                                     <th className="border py-2 px-4">Doctor Name</th>
@@ -51,7 +51,7 @@ export default function HistoryAdmin() {
                             </thead>
                             <tbody>
                                 {historyData.map((record,index) => (
-                                    <tr key={record.idVisit} className="hover:bg-gray-100">
+                                    <tr key={record.idVisit} className="hover:bg-blue-900">
                                         <td className="border py-2 px-4">{index+1}</td>
                                         <td className="border py-2 px-4">{record.PatientName}</td>
                                         <td className="border py-2 px-4">{record.DoctorName}</td>

@@ -51,9 +51,9 @@ export default function Show_Appointment() {
                     <div className=' text-xl text-gray-900 font-semibold  w-full h-full '>
                         {/* <Form fields={EmployeeFields} /> */}
                         Show Appointment
-                        <table className="border-collapse border w-full">
+                        <table className="border-collapse border-stone-950 border w-full bg-blue-600 text-white">
               <thead>
-                <tr className="bg-gray-200">
+                <tr className="bg-purple-600">
                   <th className="border py-2 px-4">ID</th>
                   <th className="border py-2 px-4">PatientID</th>
                   <th className="border py-2 px-4">PatientName</th>
@@ -64,7 +64,7 @@ export default function Show_Appointment() {
               </thead>
               <tbody>
                 {appointments.map((appointments) => (
-                  <tr key={appointments.idAppointment} className="hover:bg-gray-100">
+                  <tr key={appointments.idAppointment} className="hover:bg-blue-900">
                     <td className="border py-2 px-4">{appointments.idAppointment}</td>
                     <td className="border py-2 px-4">{appointments.idPatient}</td>
                     <td className="border py-2 px-4">{appointments.PatientName}</td>

@@ -55,9 +55,9 @@ export default function Show_Patients() {
                     <div className=' text-xl text-gray-900 font-semibold  w-full h-full '>
                         {/* <Form fields={EmployeeFields} /> */}
                         Patients Data
-                        <table className="border-collapse border w-full">
+                        <table className="border-collapse border-stone-950 border w-full bg-blue-600 text-white">
               <thead>
-                <tr className="bg-gray-200">
+                <tr className="bg-purple-600">
                   <th className="border py-2 px-4">ID</th>
                   <th className="border py-2 px-4">Name</th>
                   <th className="border py-2 px-4">Age</th>
@@ -71,7 +71,7 @@ export default function Show_Patients() {
               </thead>
               <tbody>
                 {patients.map((patients) => (
-                  <tr key={patients.idPatient} className="hover:bg-gray-100">
+                  <tr key={patients.idPatient} className="hover:bg-blue-900">
                     <td className="border py-2 px-4">{patients.idPatient}</td>
                     <td className="border py-2 px-4">{patients.Name}</td>
                     <td className="border py-2 px-4">{patients.Age}</td>

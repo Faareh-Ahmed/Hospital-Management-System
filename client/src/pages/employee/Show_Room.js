@@ -53,9 +53,9 @@ export default function Show_Room() {
 
           <div className="text-xl text-gray-900 font-semibold w-full h-full">
             <h2>Show Rooms</h2>
-            <table className="border-collapse border w-full">
+            <table className="border-collapse border-stone-950 border w-full bg-blue-600 text-white">
               <thead>
-                <tr className="bg-gray-200">
+                <tr className="bg-purple-600">
                   <th className="border py-2 px-4">ID</th>
                   <th className="border py-2 px-4">Floor</th>
                   <th className="border py-2 px-4">Capacity</th>
@@ -65,7 +65,7 @@ export default function Show_Room() {
               </thead>
               <tbody>
                 {rooms.map((room) => (
-                  <tr key={room.idRoom} className="hover:bg-gray-100">
+                  <tr key={room.idRoom} className="hover:bg-blue-900">
                     <td className="border py-2 px-4">{room.idRoom}</td>
                     <td className="border py-2 px-4">{room.Floor}</td>
                     <td className="border py-2 px-4">{room.Capacity}</td>

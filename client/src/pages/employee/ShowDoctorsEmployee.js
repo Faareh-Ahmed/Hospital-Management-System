@@ -57,9 +57,9 @@ export default function ShowDoctorsEmployee() {
           <div className=" text-xl text-gray-900 font-semibold  w-full h-full  ">
             {/* <Form fields={EmployeeFields} /> */}
             <h2 className="text-align:center">Available Doctors</h2>
-            <table className="border-collapse border w-full">
+            <table className="border-collapse border-stone-950 border w-full bg-blue-600 text-white">
               <thead>
-                <tr className="bg-gray-200">
+                <tr className="bg-purple-600">
                   <th className="border py-2 px-4">ID</th>
                   <th className="border py-2 px-4">Name</th>
                   <th className="border py-2 px-4">Email</th>
@@ -73,7 +73,7 @@ export default function ShowDoctorsEmployee() {
               </thead>
               <tbody>
                 {doctorData.map((doctor) => (
-                  <tr key={doctor.iddoctor} className="hover:bg-gray-100">
+                  <tr key={doctor.iddoctor} className="hover:bg-blue-900">
                     <td className="border py-2 px-4">{doctor.iddoctor}</td>
                     <td className="border py-2 px-4">{doctor.Name}</td>
                     <td className="border py-2 px-4">{doctor.Email}</td>

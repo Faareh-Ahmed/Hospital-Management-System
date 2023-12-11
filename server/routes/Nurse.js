@@ -4,13 +4,13 @@ const router = express.Router();
 const db = require("../db");
 
 router.post("/show-room", (req, res) => {
-  // Query to fetch routerointment data from the routerointment table
+  // Query to fetch appointment data from the appointment table
   console.log(req.body);
   const nurseID = req.body.nurseID;
 
   // Use the connection pool to execute the query
   db.query(
-    "select * from room natural join admitroom where idNurse = ?",
+    `select Floor, Availability, Capacity, date_format(AdmitDate, "%d-%m-%Y") as AdmitDate, date_format(DischargeDate, "%d-%m-%Y") as DischargeDate, PricePerDay from room natural join admitroom where idNurse = ?`,
     [nurseID],
     (err, result) => {
       if (err) {
@@ -23,7 +23,7 @@ router.post("/show-room", (req, res) => {
   );
 });
 
-router.post("/nurse/login", (req, res) => {
+router.post("/login", (req, res) => {
   const { username, password } = req.body;
   console.log("data came");
   if (!username || !password) {

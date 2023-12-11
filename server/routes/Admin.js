@@ -388,82 +388,79 @@ router.post("/add-admitroom", (req, res) => {
   );
 });
 
-
 router.get("/show-doctors", (req, res) => {
-    console.log("show doctor wali api ko call aagayi");
-    // Query to fetch routerointment data from the routerointment table
-    const sql =
-      "select iddoctor,concat(LastName,' ', FirstName) as Name, Email,Salary,Shift,LicenseNumber, Specialization,Experience,ConsultationFee from user natural join staff natural join doctor";
+  console.log("show doctor wali api ko call aagayi");
+  // Query to fetch appointment data from the appointment table
+  const sql =
+    "select iddoctor,concat(LastName,' ', FirstName) as Name, Email,Salary,Shift,LicenseNumber, Specialization,Experience,ConsultationFee from user natural join staff natural join doctor";
 
-    // Use the connection pool to execute the query
-    db.query(sql, (err, results) => {
-      if (err) {
-        res.status(500).json({ error: err.message });
-      } else {
-        res.json(results); // Send the routerointment data as JSON to the frontend
-      }
-    });
+  // Use the connection pool to execute the query
+  db.query(sql, (err, results) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+    } else {
+      res.json(results); // Send the appointment data as JSON to the frontend
+    }
   });
+});
 
+router.get("/show-nurses", (req, res) => {
+  // Query to fetch appointment data from the appointment table
+  const sql =
+    "select idnurse,concat(LastName,' ', FirstName) as Name, Email,Salary,Shift,Responsibilities, Specialization,Experience from user natural join staff natural join nurse";
 
-  router.get("/show-nurses", (req, res) => {
-    // Query to fetch routerointment data from the routerointment table
-    const sql =
-      "select idnurse,concat(LastName,' ', FirstName) as Name, Email,Salary,Shift,Responsibilities, Specialization,Experience from user natural join staff natural join nurse";
-
-    // Use the connection pool to execute the query
-    db.query(sql, (err, results) => {
-      if (err) {
-        res.status(500).json({ error: err.message });
-      } else {
-        res.json(results); // Send the routerointment data as JSON to the frontend
-      }
-    });
+  // Use the connection pool to execute the query
+  db.query(sql, (err, results) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+    } else {
+      res.json(results); // Send the appointment data as JSON to the frontend
+    }
   });
+});
 
-
-  router.get("/show-receptionist", (req, res) => {
-    const sql =
-      "select idreceptionist,concat(LastName,' ', FirstName) as Name, Email,Salary,Shift,CNIC,CertificateNumber from user natural join staff natural join receptionist";
-    db.query(sql, (err, results) => {
-      if (err) {
-        res.status(500).json({ error: err.message });
-      } else {
-        res.json(results); // Send the routerointment data as JSON to the frontend
-      }
-    });
+router.get("/show-receptionist", (req, res) => {
+  const sql =
+    "select idreceptionist,concat(LastName,' ', FirstName) as Name, Email,Salary,Shift,CNIC,CertificateNumber from user natural join staff natural join receptionist";
+  db.query(sql, (err, results) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+    } else {
+      res.json(results); // Send the appointment data as JSON to the frontend
+    }
   });
+});
 
-  router.get("/show-clinicalroom", (req, res) => {
-    const sql =
-      "select idclinicalroom,RoomType,Floor,Speciality,Equipment,Availability from room natural join clinicalroom";
-    db.query(sql, (err, results) => {
-      if (err) {
-        res.status(500).json({ error: err.message });
-      } else {
-        res.json(results); // Send the routerointment data as JSON to the frontend
-      }
-    });
+router.get("/show-clinicalroom", (req, res) => {
+  const sql =
+    "select idclinicalroom,RoomType,Floor,Speciality,Equipment,Availability from room natural join clinicalroom";
+  db.query(sql, (err, results) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+    } else {
+      res.json(results); // Send the appointment data as JSON to the frontend
+    }
   });
+});
 
-  router.get("/show-admitroom", (req, res) => {
-    // Query to fetch routerointment data from the routerointment table
-    const sql =
-      "select idadmitroom,RoomType,Floor,AdmitDate,DischargeDate,Priceperday from room natural join admitroom";
+router.get("/show-admitroom", (req, res) => {
+  // Query to fetch appointment data from the appointment table
+  const sql =
+    "select idadmitroom,RoomType,Floor,AdmitDate,DischargeDate,Priceperday from room natural join admitroom";
 
-    // Use the connection pool to execute the query
-    db.query(sql, (err, results) => {
-      if (err) {
-        res.status(500).json({ error: err.message });
-      } else {
-        res.json(results); // Send the routerointment data as JSON to the frontend
-      }
-    });
+  // Use the connection pool to execute the query
+  db.query(sql, (err, results) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+    } else {
+      res.json(results); // Send the appointment data as JSON to the frontend
+    }
   });
+});
 
-  router.get("/show-history", (req, res) => {
-    console.log("history wali api ko call aagayi");
-    const sql = `
+router.get("/show-history", (req, res) => {
+  console.log("history wali api ko call aagayi");
+  const sql = `
     SELECT
       v.idVisit,
       v.idPatient,
@@ -488,12 +485,12 @@ router.get("/show-doctors", (req, res) => {
       AND ud.Role = 'Doctor';
     `;
 
-    db.query(sql, (err, results) => {
-      if (err) {
-        res.status(500).json({ error: err.message });
-      } else {
-        res.json(results);
-      }
-    });
+  db.query(sql, (err, results) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+    } else {
+      res.json(results);
+    }
   });
+});
 module.exports = router;

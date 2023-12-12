@@ -103,6 +103,11 @@ export default function Add_Appointment() {
       icon: IoMdStopwatch,
     },
     {
+      name: "Add Patient",
+      link: "/employee/add-patient",
+      icon: IoMdStopwatch,
+  },
+    {
       name: "Show Appointments",
       link: "/employee/show-appointment",
       icon: IoMdSchool,
@@ -126,7 +131,7 @@ export default function Add_Appointment() {
 
           <div className=" text-xl text-gray-900 font-semibold  w-full h-full ">
             {/* <Form fields={EmployeeFields} /> */}
-            Add New Patient
+            Add New Appointment
             <form>
               <div className="space-y-12 px-8">
                 <div className="border-b border-gray-900/10 pb-12">

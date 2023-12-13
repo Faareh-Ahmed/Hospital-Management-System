@@ -109,17 +109,29 @@ router.post("/add-appointment", (req, res) => {
                       .json({ error: "Error inserting appointment data" });
                   }
 
+                  const appointmentId = appointmentResult.insertId;
+
+                  db.query(
+                    "INSERT INTO visits (idPatient, idDoctor, VisitType, idAppointment) VALUES (?, ?, ?,?)",
+                    [patientId, doctorID, "Appointment", appointmentId],
+                    (err, appointmentResult) => {
+                      if (err) {
+                        console.log("Error inserting appointment data:", err);
+                        return res
+                          .status(500)
+                          .json({ error: "Error inserting appointment data" });
+                      }
+
                   console.log("Data inserted successfully into the database");
-                  res
-                    .status(200)
-                    .json({
-                      message: "Data inserted successfully",
-                      username: username,
-                      password: password,
-                    });
+                  res.status(200).json({
+                    message: "Data inserted successfully",
+                    username: username,
+                    password: password,
+                  });
                 }
               );
             }
+
           );
         }
       );
@@ -193,8 +205,8 @@ router.post("/add-patient", (req, res) => {
               const patientId = patientResult.insertId;
 
               db.query(
-                "INSERT INTO appointment (idPatient, idDoctor, AppointmentDate, Status) VALUES (?, ?, ?,?)",
-                [patientId, doctorID, date, "Due"],
+                "INSERT INTO visits (idPatient, idDoctor, VisitType) VALUES (?, ?, ?)",
+                [patientId, doctorID, "Walk-In"],
                 (err, appointmentResult) => {
                   if (err) {
                     console.log("Error inserting appointment data:", err);
@@ -204,9 +216,11 @@ router.post("/add-patient", (req, res) => {
                   }
 
                   console.log("Data inserted successfully into the database");
-                  res
-                    .status(200)
-                    .json({ message: "Data inserted successfully" });
+                  res.status(200).json({
+                    message: "Data inserted successfully",
+                    username: username,
+                    password: password,
+                  });
                 }
               );
             }
@@ -216,6 +230,15 @@ router.post("/add-patient", (req, res) => {
     }
   );
 });
+});
+
+
+
+
+
+
+
+
 
 router.get("/show-doctors", (req, res) => {
   console.log("show doctor wali api ko call aagayi");

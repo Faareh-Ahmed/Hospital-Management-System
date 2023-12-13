@@ -4,18 +4,19 @@ import { IoMdStopwatch } from "react-icons/io";
 import { IoMdSchool } from "react-icons/io";
 import NavbarDomain from "../../components/NavbarDomain";
 
-export default function UpcomingAppointmentDoctor() {
-  const [appointment, setAppointments] = useState([]);
+export default function Walk_In() {
+  const [walkin, setWalkin] = useState([]);
   const ID = JSON.parse(localStorage.getItem("doctorInfo"));
 
   const [clickedRow, setClickedRow] = useState(null);
   const [prescription, setPrescription] = useState("");
   const [symptoms, setSymptoms] = useState("");
+  const [patientID, setPatientID] = useState();
 
   const [showForm, setShowForm] = useState(false);
 
-  const handleCheckPatientClick = (appointment) => {
-    setClickedRow(appointment);
+  const handleCheckPatientClick = (walk_in) => {
+    setClickedRow(walk_in); // Ensure walk_in object has the idPatient field
     setShowForm(true);
   };
 
@@ -28,7 +29,7 @@ export default function UpcomingAppointmentDoctor() {
   const fetchAppointments = async () => {
     try {
       console.log(idDoctor);
-      const response = await fetch("/doctor/show-appointments", {
+      const response = await fetch("/doctor/show-walk_in", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -39,19 +40,20 @@ export default function UpcomingAppointmentDoctor() {
       if (response.ok) {
         const data = await response.json();
         console.log(data); // Log the received data for testing
-        setAppointments(data); // Update appointment state with fetched data
+        setWalkin(data); // Update walk_in state with fetched data
       } else {
-        throw new Error("Failed to fetch appointment data");
+        throw new Error("Failed to fetch walk_in data");
       }
     } catch (error) {
       console.error(error);
     }
   };
-  const updateAppointment = async () => {
+  const updatewalk_in = async () => {
     try {
-      // Perform API call to update appointment using the appointment ID and new data (prescription, appointmentDetails)
+      console.log(clickedRow.idPatient);
+      // Perform API call to update walk_in using the walk_in ID and new data (prescription, walk_inDetails)
       const response = await fetch(
-        `/doctor/update-appointment/${clickedRow.idappointment}`,
+        `/doctor/update-walkin/${clickedRow.idPatient}`,
         {
           method: "PUT",
           headers: {
@@ -62,9 +64,9 @@ export default function UpcomingAppointmentDoctor() {
       );
 
       if (response.ok) {
-        // Appointment updated successfully, perform necessary actions if needed
+        // walk_in updated successfully, perform necessary actions if needed
       } else {
-        throw new Error("Failed to update appointment");
+        throw new Error("Failed to update walk_in");
       }
     } catch (error) {
       console.error(error);
@@ -98,12 +100,11 @@ export default function UpcomingAppointmentDoctor() {
           <NavbarDomain role="doctor" />
 
           <div className="text-xl text-gray-900 font-semibold w-full h-full">
-            Upcoming Appointments
-            {Array.isArray(appointment) && appointment.length > 0 ? (
+Patients Waiting for Checkup            {Array.isArray(walkin) && walkin.length > 0 ? (
               <table className="border-collapse border w-full">
                 <thead>
                   <tr className="bg-gray-200">
-                    <th className="border py-2 px-4">Appointment No.</th>
+                    <th className="border py-2 px-4">ID. </th>
                     <th className="border py-2 px-4">Patient ID</th>
                     <th className="border py-2 px-4">Patient Name</th>
                     <th className="border py-2 px-4">Gender</th>
@@ -111,49 +112,29 @@ export default function UpcomingAppointmentDoctor() {
                     <th className="border py-2 px-4">Age</th>
                     <th className="border py-2 px-4">BMI</th>
                     <th className="border py-2 px-4">Address</th>
-                    <th className="border py-2 px-4">Appointment Date</th>
-                    <th className="border py-2 px-4">Status</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {appointment.map((singleAppointment, index) => (
-                    <tr
-                      key={singleAppointment.idappointment}
-                      className="hover:bg-gray-100"
-                    >
+                  {walkin.map((walk_in, index) => (
+                    <tr key={index + 1} className="hover:bg-gray-100">
                       <td className="border py-2 px-4">{index + 1}</td>
+                      <td className="border py-2 px-4">{walk_in.idPatient}</td>
                       <td className="border py-2 px-4">
-                        {singleAppointment.idPatient}
+                        {walk_in.PatientName}
                       </td>
+                      <td className="border py-2 px-4">{walk_in.gender}</td>
                       <td className="border py-2 px-4">
-                        {singleAppointment.PatientName}
+                        {walk_in.ContactNumber}
                       </td>
-                      <td className="border py-2 px-4">
-                        {singleAppointment.gender}
-                      </td>
-                      <td className="border py-2 px-4">
-                        {singleAppointment.ContactNumber}
-                      </td>
-                      <td className="border py-2 px-4">
-                        {singleAppointment.Age}
-                      </td>
-                      <td className="border py-2 px-4">
-                        {singleAppointment.BMI}
-                      </td>
-                      <td className="border py-2 px-4">
-                        {singleAppointment.Address}
-                      </td>
-                      <td className="border py-2 px-4">
-                        {singleAppointment.AppointmentDate}
-                      </td>
-                      <td className="border py-2 px-4">
-                        {singleAppointment.Status}
-                      </td>
+                      <td className="border py-2 px-4">{walk_in.Age}</td>
+                      <td className="border py-2 px-4">{walk_in.BMI}</td>
+                      <td className="border py-2 px-4">{walk_in.Address}</td>
                       <td>
-                      <button onClick={() => handleCheckPatientClick(singleAppointment)}>
-  Check Patient
-</button>
-
+                        <button
+                          onClick={() => handleCheckPatientClick(walk_in)}
+                        >
+                          Check Patient
+                        </button>
                       </td>
                     </tr>
                   ))}
@@ -192,7 +173,7 @@ export default function UpcomingAppointmentDoctor() {
                             placeholder="Appointment Details"
                           />
                         </div>
-                        <button type="button" onClick={updateAppointment}>
+                        <button type="button" onClick={updatewalk_in}>
                           Save
                         </button>
                       </form>
@@ -201,7 +182,8 @@ export default function UpcomingAppointmentDoctor() {
                 )}
               </table>
             ) : (
-              <p>No upcoming appointments found.</p>
+              <p>No patients waiting for Checkup</p>
+
             )}
           </div>
         </div>

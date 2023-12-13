@@ -14,7 +14,7 @@ import PateintPage from './pages/PateintPage';
 import Add_Appointment from './pages/employee/Add_Appointment';
 import Show_Appointment from './pages/employee/Show_Appointment';
 import Show_Room from './pages/employee/Show_Room';
-
+import Walk_In from './pages/doctor/Walk_In';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -115,6 +115,10 @@ const router = createBrowserRouter([
   {
     path: '/admin/info', // Define a new route for the Login page
     element: <InfoAdmin/>,
+  },
+  {
+    path : '/doctor/walk-in',
+    element: <Walk_In/>,
   },
   {
     path: '/admin/add-room', // Define a new route for the Login page

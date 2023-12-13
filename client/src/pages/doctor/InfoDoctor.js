@@ -21,7 +21,11 @@ export default function InfoDoctor() {
       name: "All Appointments",
       link: "/doctor/all-appointment",
       icon: IoMdSchool,
-    },
+    },{
+        name: "Walk In",
+        link: "/doctor/walk-in",
+        icon: IoMdSchool,
+      },
   ];
 
 

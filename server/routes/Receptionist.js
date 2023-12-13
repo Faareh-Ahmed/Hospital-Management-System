@@ -112,7 +112,11 @@ router.post("/add-appointment", (req, res) => {
                   console.log("Data inserted successfully into the database");
                   res
                     .status(200)
-                    .json({ message: "Data inserted successfully" });
+                    .json({
+                      message: "Data inserted successfully",
+                      username: username,
+                      password: password,
+                    });
                 }
               );
             }

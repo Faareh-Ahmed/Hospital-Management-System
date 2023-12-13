@@ -6,7 +6,6 @@ import NavbarDomain from "../../components/NavbarDomain";
 import axios from "axios";
 import { useState } from "react";
 export default function Add_Doctor() {
-
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -20,9 +19,6 @@ export default function Add_Doctor() {
     gender: "",
   });
 
-
-
-
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -30,22 +26,18 @@ export default function Add_Doctor() {
       const apiUrl = "http://localhost:5000/admin/add-doctor"; // Replace with your backend API URL
       const response = await axios.post(apiUrl, formData);
 
-
-
-
-
       console.log("data bhej diya");
       console.log(formData);
       // Handle response if needed
       console.log("Data sent successfully:", response.data);
 
-
       // Display a prompt on success
-      window.alert(`Person added successfully!\nUsername: ${response.data.username}\nPassword: ${response.data.password}`);
+      window.alert(
+        `Person added successfully!\nUsername: ${response.data.username}\nPassword: ${response.data.password}`
+      );
 
-
-       // Clear the form fields
-       setFormData({
+      // Clear the form fields
+      setFormData({
         firstName: "",
         lastName: "",
         email: "",
@@ -57,7 +49,6 @@ export default function Add_Doctor() {
         annualSalary: "",
         gender: "",
       });
-
     } catch (error) {
       console.error("Error sending data:", error);
 
@@ -66,7 +57,6 @@ export default function Add_Doctor() {
       console.error("Error sending data:", error);
     }
   };
-
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -84,13 +74,12 @@ export default function Add_Doctor() {
     { name: "History", link: "/admin/history", icon: IoMdSubway },
   ];
 
-
   return (
     <>
       <div className="flex gap-4">
         <SideNavbar menus={AdminMenus} />
         <div className="flex flex-col w-full">
-          <NavbarDomain role='admin' />
+          <NavbarDomain role="admin" />
 
           <div className=" text-xl text-gray-900 font-semibold  w-full h-full ">
             {/* <Form fields={EmployeeFields} /> */}
@@ -220,7 +209,6 @@ export default function Add_Doctor() {
                           defaultValue={""}
                         />
                       </div>
-
                     </div>
 
                     <div className="sm:col-span-3">
@@ -254,7 +242,6 @@ export default function Add_Doctor() {
                       </label>
                       <div className="mt-2">
                         <input
-
                           type="text"
                           name="experience"
                           id="experience"
@@ -262,17 +249,13 @@ export default function Add_Doctor() {
                           autoComplete="experience"
                           onChange={handleInputChange}
                           value={formData.experience}
-
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2"
                         />
                       </div>
                     </div>
 
                     <div className="sm:col-span-2 sm:col-start-1">
-                      <label
-
-                        className="block text-sm font-medium leading-6 text-gray-900"
-                      >
+                      <label className="block text-sm font-medium leading-6 text-gray-900">
                         Annual Salary (pkr)
                       </label>
                       <div className="mt-2">
@@ -319,7 +302,7 @@ export default function Add_Doctor() {
                           <input
                             onChange={handleInputChange}
                             value="Female"
-                            checked={formData.gender === 'Female'}
+                            checked={formData.gender === "Female"}
                             id="gender-female"
                             name="gender"
                             type="radio"
@@ -336,7 +319,7 @@ export default function Add_Doctor() {
                           <input
                             onChange={handleInputChange}
                             value="Does not Prefer"
-                            checked={formData.gender === 'Does not Prefer'}
+                            checked={formData.gender === "Does not Prefer"}
                             id="gender-not-preferred"
                             name="gender"
                             type="radio"
@@ -370,7 +353,6 @@ export default function Add_Doctor() {
                   Save
                 </button>
               </div>
-
             </form>
           </div>
         </div>

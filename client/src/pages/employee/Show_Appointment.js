@@ -15,6 +15,11 @@ export default function Show_Appointment() {
           icon: IoMdStopwatch,
         },
         {
+          name: "Add Patient",
+          link: "/employee/add-patient",
+          icon: IoMdStopwatch,
+      },
+        {
           name: "Show Appointments",
           link: "/employee/show-appointment",
           icon: IoMdSchool,

@@ -99,7 +99,7 @@ router.post("/show-history", (req, res) => {
 
   // Use the connection pool to execute the query
   db.query(
-    "select concat(FirstName, ' ', LastName) as PatientName, gender, ContactNumber, Age, BMI, Address, Prescriptions, Symptoms, VisitDate from visits natural join patient natural join user where visittype = 'Walk-In'",
+    "select concat(FirstName, ' ', LastName) as PatientName, gender, ContactNumber, Age, BMI, Address, Prescriptions, Symptoms, VisitDate from visits natural join patient natural join user where visittype = 'Walk-In' and prescriptions is not null",
     (err, result) => {
       if (err) {
         console.log("Error showing rooms data:", err);

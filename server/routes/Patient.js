@@ -12,7 +12,7 @@ router.post("/login", (req, res) => {
       .json({ message: "Please provide both username and password" });
   }
   db.query(
-    "select FirstName, LastName, Email, ContactNumber,Age,Gender,BloodGroup,Height,Weight,BMI from user natural join credentials natural join patient where UserName = ? and Password = ?",
+    "select idPatient, FirstName, LastName, Email, ContactNumber,Age,Gender,BloodGroup,Height,Weight,BMI from user natural join credentials natural join patient where UserName = ? and Password = ?",
     [username, password],
     (err, results) => {
       if (err) {
@@ -29,6 +29,27 @@ router.post("/login", (req, res) => {
   );
 });
 
+
+router.post("/show-history", (req, res) => {
+  // Query to fetch appointment data from the appointment table
+  console.log(req.body);
+  console.log(req.body.idPatient);
+  const idPatient = req.body.patientID;
+
+  // Use the connection pool to execute the query
+  db.query(
+    "select idVisit,concat(FirstName, ' ',LastName) as Name, Email as DoctorEmail, LicenseNumber, Specialization, VisitType, Symptoms,Prescriptions,VisitDate from user natural join staff natural join doctor natural join visits where idPatient = ?",
+    [idPatient],
+    (err, result) => {
+      if (err) {
+        console.log("Error showing rooms data:", err);
+        return res.status(500).json({ error: "Error showing admitroom data" });
+      }
+      console.log(result)
+      res.json(result);
+    }
+  );
+});
 
 
 module.exports = router;

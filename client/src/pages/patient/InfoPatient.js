@@ -63,7 +63,7 @@ export default function InfoPatient() {
             <span className="font-semibold">Age:</span> {patientInfo.Age}
           </div>
           <div className="p-4 bg-orange-400">
-            <span className="font-semibold">Gender:</span> {patientInfo.gender}
+            <span className="font-semibold">Gender:</span> {patientInfo.Gender}
           </div>
           <div className="p-4 bg-orange-400">
             <span className="font-semibold">Height:</span> {patientInfo.Height}

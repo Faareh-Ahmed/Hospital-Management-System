@@ -7,22 +7,32 @@ import SideNavbar from "../../components/SideNavbar";
 import NavbarDomain from "../../components/NavbarDomain";
 
 export default function InfoPatient() {
-  const patientInfo = JSON.parse(localStorage.getItem('patientInfo'));
+  const patientInfo = JSON.parse(localStorage.getItem("patientInfo"));
 
   console.log(patientInfo);
   const patientMenus = [
     { name: "Info", link: "/patient/info", icon: IoMdSchool },
-    { name: "History", link: "/patient/show-history", icon: IoMdShirt },
+    { name: "All Visits", link: "/patient/show-history", icon: IoMdShirt },
     {
       name: "Upcoming Appointments",
       link: "/patient/upcoming-appointment",
       icon: IoMdSchool,
     },
     {
-      name: "Doctor Assigned",
-      link: "/patient/doctor-assigned",
+      name: "Pay Bills",
+      link: "/patient/paybills",
       icon: IoMdSchool,
     },
+    {
+        name: "Get Invoices",
+        link: "/patient/invoices",
+        icon: IoMdSchool,
+      },
+      {
+        name: "Get Slips",
+        link: "/patient/slips",
+        icon: IoMdSchool,
+      },
   ];
 
   // The empty dependency array ensures this effect runs once when the component mounts
@@ -46,7 +56,8 @@ export default function InfoPatient() {
           </div>
 
           <div className="p-4 bg-orange-400">
-            <span className="font-semibold">LastName:</span> {patientInfo.LastName}
+            <span className="font-semibold">LastName:</span>{" "}
+            {patientInfo.LastName}
           </div>
           <div className="p-4 bg-orange-400">
             <span className="font-semibold">Email:</span> {patientInfo.Email}
@@ -84,7 +95,7 @@ export default function InfoPatient() {
       <div className="flex gap-4">
         <SideNavbar menus={patientMenus} />
         <div className="flex flex-col w-full">
-          <NavbarDomain />
+          <NavbarDomain role={"patient"} />
 
           <div className=" text-xl text-gray-900 font-semibold  w-full h-full ">
             {/* <Form fields={PatientFields}/> */}

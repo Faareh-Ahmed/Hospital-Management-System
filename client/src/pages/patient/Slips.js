@@ -5,18 +5,19 @@ import SideNavbar from "../../components/SideNavbar";
 import NavbarDomain from "../../components/NavbarDomain";
 import { useState, useEffect } from "react";
 
-export default function UpcomingAppointmentPatient() {
+export default function Slips() {
   const [roomData, setRoomData] = useState([]);
   const patientInfo = JSON.parse(localStorage.getItem("patientInfo"));
-  console.log(patientInfo.patientID);
-  const patientID = patientInfo.idPatient;
+
+  const patientID = patientInfo.idPatient; // Replace 'your_nurse_id' with the actual nurse ID
+
   useEffect(() => {
     fetchRoomData();
   }, []);
 
   const fetchRoomData = async () => {
     try {
-      const response = await fetch("/patient/show-upcoming", {
+      const response = await fetch("/patient/show-slips", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -76,12 +77,10 @@ export default function UpcomingAppointmentPatient() {
                   <tr className="bg-gray-200">
                     <th className="border py-2 px-4">No #</th>
                     <th className="border py-2 px-4">Doctor Name</th>
-                    <th className="border py-2 px-4">Doctor Email</th>
-                    <th className="border py-2 px-4">License Number</th>
                     <th className="border py-2 px-4">Specialization</th>
-                    <th className="border py-2 px-4">Consultation Fee</th>
-                    <th className="border py-2 px-4">Appointment Date</th>
-                    <th className="border py-2 px-4">Status</th>
+                    <th className="border py-2 px-4">Visit Type</th>
+                    <th className="border py-2 px-4">Visit Date</th>
+                    <th className="border py-2 px-4">Get Slip</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -89,28 +88,19 @@ export default function UpcomingAppointmentPatient() {
                     <tr key={history.idVisit} className="hover:bg-gray-100">
                       <td className="border py-2 px-4">{index + 1}</td>
                       <td className="border py-2 px-4">{history.Name}</td>
+                      <td className="border py-2 px-4">{history.Specialization}</td>
                       <td className="border py-2 px-4">
-                        {history.DoctorEmail}
+                        {history.VisitType}
                       </td>
-                      <td className="border py-2 px-4">
-                        {history.LicenseNumber}
-                      </td>
-                      <td className="border py-2 px-4">
-                        {history.Specialization}
-                      </td>
-                      <td className="border py-2 px-4">
-                        {history.ConsultationFee}
-                      </td>
-                      <td className="border py-2 px-4">
-                        {history.AppointmentDate}
-                      </td>
-                      <td className="border py-2 px-4">{history.Status}</td>
+                      <td className="border py-2 px-4">{history.VisitDate}</td>
+                      <td className="border py-2 px-4"><button>
+                        Get Slip</button></td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             ) : (
-              <p>No upcoming Appointments</p>
+              <p>No visit yet to get slip</p>
             )}
           </div>
         </div>

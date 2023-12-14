@@ -13,6 +13,7 @@ export default function LoginPatient() {
     event.preventDefault();
 
     try {
+
       console.log("sending data");
       const username = document.getElementById("username").value;
       const password = document.getElementById("password").value;

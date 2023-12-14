@@ -157,6 +157,13 @@ router.put("/update-walkin/:idPatient", (req, res) => {
   const year = today.getFullYear();
   const currentDate = `${day}-${month}-${year}`;
 
+  const dueDate = new Date();
+  dueDate.setDate(dueDate.getDate() + 14);
+  const futureDay = String(dueDate.getDate()).padStart(2, "0");
+  const futureMonth = String(dueDate.getMonth() + 1).padStart(2, "0");
+  const futureYear = dueDate.getFullYear();
+  const DueDate = `${futureDay}-${futureMonth}-${futureYear}`;
+
   db.query(
     "UPDATE visits SET  Prescriptions = ?, Symptoms = ?, VisitDate = ? WHERE idPatient = ?",
     [prescription, symptoms, currentDate, idPatient],
@@ -169,6 +176,10 @@ router.put("/update-walkin/:idPatient", (req, res) => {
       if (result.affectedRows === 0) {
         return res.status(404).json({ error: "Appointment not found" });
       }
+      db.query(
+        "INSERT INTO billing (idPatient, Amount, BillStatus, DueDate) values(?,?,?,?)",
+        [idPatient,2500, "Pending",DueDate]
+      );
 
       console.log("Appointment updated successfully");
       res.status(200).json({ message: "Appointment updated successfully" });

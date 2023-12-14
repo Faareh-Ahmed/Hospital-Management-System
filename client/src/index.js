@@ -7,10 +7,6 @@ import reportWebVitals from './reportWebVitals';
 import LandingPage from '../src/pages/LandingPage';
 import LoginPage from '../src/pages/LoginPage'; // Import the Login component
 import DomainPage from '../src/pages/DomainPage';
-import DoctorPage from './pages/DoctorPage';
-import AdminPage from './pages/AdminPage';
-import EmployeePage from './pages/EmployeePage';
-import PateintPage from './pages/PateintPage';
 import Add_Appointment from './pages/employee/Add_Appointment';
 import Show_Appointment from './pages/employee/Show_Appointment';
 import Show_Room from './pages/employee/Show_Room';
@@ -22,7 +18,7 @@ import {
 } from 'react-router-dom';
 import Add_Doctor from './pages/admin/Add_Doctor';
 import Show_Staff from './pages/admin/Show_Staff';
-import Show_HistoryPatient from './pages/patient/Show_HistoryPatient';
+import Visit_History from './pages/patient/Visit_History';
 import Add_NurseAdmin from './pages/admin/Add_NurseAdmin';
 import Add_EmployeeAdmin from './pages/admin/Add_EmployeeAdmin';
 import All_AppointmentDoctor from './pages/doctor/All_AppointmentDoctor';
@@ -31,7 +27,6 @@ import UpcomingAppointment from './pages/doctor/UpcomingAppointmentDoctor';
 import UpcomingAppointmentDoctor from './pages/doctor/UpcomingAppointmentDoctor';
 import HistoryDoctor from './pages/doctor/HistoryDoctor';
 import UpcomingAppointmentPatient from './pages/patient/UpcomingAppointmentPatient';
-import DoctorAssignedPatient from './pages/patient/DoctorAssignedPatient';
 import InfoPatient from './pages/patient/InfoPatient';
 import InfoEmployee from './pages/employee/InfoEmployee';
 import ShowDoctorsEmployee from './pages/employee/ShowDoctorsEmployee';
@@ -47,6 +42,10 @@ import InfoNurse from './pages/nurse/InfoNurse';
 import AssignedRoomNurse from './pages/nurse/AssignedRoomNurse';
 import Show_Patients from './pages/employee/Show_Patients';
 import Add_PatientEmployee from './pages/employee/Add_PatientEmployee';
+import PaidBills from './pages/patient/PaidBills';
+import PayBills from './pages/patient/PayBills';
+import Slips from './pages/patient/Slips';
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -55,6 +54,18 @@ const router = createBrowserRouter([
   {
     path: '/login', // Define a new route for the Login page
     element: <LoginPage/>,
+  },
+  {
+    path: '/patient/slips', // Define a new route for the Login page
+    element: <Slips/>,
+  },
+  {
+    path: '/patient/paybills', // Define a new route for the Login page
+    element: <PayBills/>,
+  },
+  {
+    path: '/patient/invoices', // Define a new route for the Login page
+    element: <PaidBills/>,
   },
   {
     path: '/domain', // Define a new route for the Login page
@@ -134,16 +145,13 @@ const router = createBrowserRouter([
   },
   {
     path: '/patient/show-history', // Define a new route for the Login page
-    element: <Show_HistoryPatient/>,
+    element: <Visit_History/>,
   },
   {
     path: '/patient/upcoming-appointment', // Define a new route for the Login page
     element: <UpcomingAppointmentPatient/>,
   },
-  {
-    path: '/patient/doctor-assigned', // Define a new route for the Login page
-    element: <DoctorAssignedPatient/>,
-  },
+
   {
     path: '/patient/info', // Define a new route for the Login page
     element: <InfoPatient/>,

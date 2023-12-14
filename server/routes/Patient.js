@@ -52,4 +52,97 @@ router.post("/show-history", (req, res) => {
 });
 
 
+router.post("/show-upcoming", (req, res) => {
+  // Query to fetch appointment data from the appointment table
+  console.log(req.body);
+  console.log(req.body.idPatient);
+  const idPatient = req.body.patientID;
+
+  // Use the connection pool to execute the query
+  db.query(
+    `
+    select concat(FirstName, ' ',LastName) as Name, Email as DoctorEmail, LicenseNumber, Specialization, ConsultationFee,date_format(AppointmentDate, '%d-%m-%Y') as AppointmentDate, Status from appointment natural join doctor natural join staff natural join user where idPatient = ? and Status = ?`,
+    [idPatient, "Due"],
+    (err, result) => {
+      if (err) {
+        console.log("Error showing rooms data:", err);
+        return res.status(500).json({ error: "Error showing admitroom data" });
+      }
+      console.log(result)
+      res.json(result);
+    }
+  );
+});
+
+
+router.post("/show-pendingbills", (req, res) => {
+  // Query to fetch appointment data from the appointment table
+  console.log(req.body);
+  console.log(req.body.idPatient);
+  const idPatient = req.body.patientID;
+
+  // Use the connection pool to execute the query
+  db.query(
+    `
+    select idVisit,date_format(VisitDate, "%d-%m-%Y") as VisitDate,Amount,BillStatus from visits natural join billing where idPatient = ?;
+`,
+    [idPatient],
+    (err, result) => {
+      if (err) {
+        console.log("Error showing rooms data:", err);
+        return res.status(500).json({ error: "Error showing admitroom data" });
+      }
+      console.log(result)
+      res.json(result);
+    }
+  );
+});
+
+router.post("/show-allbills", (req, res) => {
+  // Query to fetch appointment data from the appointment table
+  console.log(req.body);
+  console.log(req.body.idPatient);
+  const idPatient = req.body.patientID;
+
+  // Use the connection pool to execute the query
+  db.query(
+    `
+
+select idVisit,date_format(VisitDate, "%d-%m-%Y") as VisitDate,Amount, PaymentMethod, BankID, BillStatus,BillingDate from visits natural join billing where idPatient = ?;
+`,
+    [idPatient],
+    (err, result) => {
+      if (err) {
+        console.log("Error showing rooms data:", err);
+        return res.status(500).json({ error: "Error showing admitroom data" });
+      }
+      console.log(result)
+      res.json(result);
+    }
+  );
+});
+
+router.post("/show-slips", (req, res) => {
+  // Query to fetch appointment data from the appointment table
+  console.log(req.body);
+  console.log(req.body.idPatient);
+  const idPatient = req.body.patientID;
+
+  // Use the connection pool to execute the query
+  db.query(
+    `
+    select idVisit,concat(FirstName, ' ',LastName) as Name, Specialization, VisitType,VisitDate from user natural join staff natural join doctor natural join visits where idPatient = ?;
+`,
+    [idPatient],
+    (err, result) => {
+      if (err) {
+        console.log("Error showing rooms data:", err);
+        return res.status(500).json({ error: "Error showing admitroom data" });
+      }
+      console.log(result)
+      res.json(result);
+    }
+  );
+});
+
 module.exports = router;

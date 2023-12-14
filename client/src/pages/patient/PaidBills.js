@@ -5,18 +5,19 @@ import SideNavbar from "../../components/SideNavbar";
 import NavbarDomain from "../../components/NavbarDomain";
 import { useState, useEffect } from "react";
 
-export default function UpcomingAppointmentPatient() {
+export default function PaidBills() {
   const [roomData, setRoomData] = useState([]);
   const patientInfo = JSON.parse(localStorage.getItem("patientInfo"));
-  console.log(patientInfo.patientID);
-  const patientID = patientInfo.idPatient;
+
+  const patientID = patientInfo.idPatient; // Replace 'your_nurse_id' with the actual nurse ID
+
   useEffect(() => {
     fetchRoomData();
   }, []);
 
   const fetchRoomData = async () => {
     try {
-      const response = await fetch("/patient/show-upcoming", {
+      const response = await fetch("/patient/show-allbills", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -75,42 +76,38 @@ export default function UpcomingAppointmentPatient() {
                 <thead>
                   <tr className="bg-gray-200">
                     <th className="border py-2 px-4">No #</th>
-                    <th className="border py-2 px-4">Doctor Name</th>
-                    <th className="border py-2 px-4">Doctor Email</th>
-                    <th className="border py-2 px-4">License Number</th>
-                    <th className="border py-2 px-4">Specialization</th>
-                    <th className="border py-2 px-4">Consultation Fee</th>
-                    <th className="border py-2 px-4">Appointment Date</th>
-                    <th className="border py-2 px-4">Status</th>
+                    <th className="border py-2 px-4">Visit Date</th>
+                    <th className="border py-2 px-4">Amount</th>
+                    <th className="border py-2 px-4">Payment Method</th>
+                    <th className="border py-2 px-4">Bank ID</th>
+                    <th className="border py-2 px-4">Bill Status</th>
+                    <th className="border py-2 px-4">Billing Date</th>
+                    <th className="border py-2 px-4">Print Invoice</th>
                   </tr>
                 </thead>
                 <tbody>
                   {roomData.map((history, index) => (
                     <tr key={history.idVisit} className="hover:bg-gray-100">
                       <td className="border py-2 px-4">{index + 1}</td>
-                      <td className="border py-2 px-4">{history.Name}</td>
+                      <td className="border py-2 px-4">{history.VisitDate}</td>
+                      <td className="border py-2 px-4">{history.Amount}</td>
                       <td className="border py-2 px-4">
-                        {history.DoctorEmail}
+                        {history.PaymentMethod}
+                      </td>
+                      <td className="border py-2 px-4">{history.BankID}</td>
+                      <td className="border py-2 px-4">{history.BillStatus}</td>
+                      <td className="border py-2 px-4">
+                        {history.BillingDate}
                       </td>
                       <td className="border py-2 px-4">
-                        {history.LicenseNumber}
+                        <button>Get Invoice</button>
                       </td>
-                      <td className="border py-2 px-4">
-                        {history.Specialization}
-                      </td>
-                      <td className="border py-2 px-4">
-                        {history.ConsultationFee}
-                      </td>
-                      <td className="border py-2 px-4">
-                        {history.AppointmentDate}
-                      </td>
-                      <td className="border py-2 px-4">{history.Status}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             ) : (
-              <p>No upcoming Appointments</p>
+              <p>No Bills Paid Yet</p>
             )}
           </div>
         </div>

@@ -5,18 +5,19 @@ import SideNavbar from "../../components/SideNavbar";
 import NavbarDomain from "../../components/NavbarDomain";
 import { useState, useEffect } from "react";
 
-export default function UpcomingAppointmentPatient() {
+export default function Visit_History() {
   const [roomData, setRoomData] = useState([]);
   const patientInfo = JSON.parse(localStorage.getItem("patientInfo"));
-  console.log(patientInfo.patientID);
-  const patientID = patientInfo.idPatient;
+
+  const patientID = patientInfo.idPatient; // Replace 'your_nurse_id' with the actual nurse ID
+
   useEffect(() => {
     fetchRoomData();
   }, []);
 
   const fetchRoomData = async () => {
     try {
-      const response = await fetch("/patient/show-upcoming", {
+      const response = await fetch("/patient/show-history", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -79,9 +80,10 @@ export default function UpcomingAppointmentPatient() {
                     <th className="border py-2 px-4">Doctor Email</th>
                     <th className="border py-2 px-4">License Number</th>
                     <th className="border py-2 px-4">Specialization</th>
-                    <th className="border py-2 px-4">Consultation Fee</th>
-                    <th className="border py-2 px-4">Appointment Date</th>
-                    <th className="border py-2 px-4">Status</th>
+                    <th className="border py-2 px-4">Visit Type</th>
+                    <th className="border py-2 px-4">Symptoms</th>
+                    <th className="border py-2 px-4">Prescriptions</th>
+                    <th className="border py-2 px-4">Visit Date</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -98,19 +100,18 @@ export default function UpcomingAppointmentPatient() {
                       <td className="border py-2 px-4">
                         {history.Specialization}
                       </td>
+                      <td className="border py-2 px-4">{history.VisitType}</td>
+                      <td className="border py-2 px-4">{history.Symptoms}</td>
                       <td className="border py-2 px-4">
-                        {history.ConsultationFee}
+                        {history.Prescriptions}
                       </td>
-                      <td className="border py-2 px-4">
-                        {history.AppointmentDate}
-                      </td>
-                      <td className="border py-2 px-4">{history.Status}</td>
+                      <td className="border py-2 px-4">{history.VisitDate}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             ) : (
-              <p>No upcoming Appointments</p>
+              <p>No record found of the patient</p>
             )}
           </div>
         </div>

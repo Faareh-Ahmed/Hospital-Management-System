@@ -389,45 +389,43 @@ router.post("/add-admitroom", (req, res) => {
 });
 
 router.get("/show-doctors", (req, res) => {
-  console.log("show doctor wali api ko call aagayi");
-  // Query to fetch appointment data from the appointment table
-  const sql =
-    "select iddoctor,concat(LastName,' ', FirstName) as Name, Email,Salary,Shift,LicenseNumber, Specialization,Experience,ConsultationFee from user natural join staff natural join doctor";
+  // Call the stored procedure
+  db.query("CALL ShowDoctors()", (err, results) => {
+      if (err) {
+          console.log("Error calling stored procedure:", err);
+          return res.status(500).json({ error: "Error calling stored procedure" });
+      }
 
-  // Use the connection pool to execute the query
-  db.query(sql, (err, results) => {
-    if (err) {
-      res.status(500).json({ error: err.message });
-    } else {
-      res.json(results); // Send the appointment data as JSON to the frontend
-    }
+      // Handle results if needed
+      const doctors = results[0]; // Assuming the procedure returns a result set
+      console.log("Stored procedure executed successfully");
+      res.status(200).json(doctors);
   });
 });
 
 router.get("/show-nurses", (req, res) => {
-  // Query to fetch appointment data from the appointment table
-  const sql =
-    "select idnurse,concat(LastName,' ', FirstName) as Name, Email,Salary,Shift,Responsibilities, Specialization,Experience from user natural join staff natural join nurse";
+  db.query("CALL ShowNurses()", (err, results) => {
+      if (err) {
+          console.log("Error calling stored procedure:", err);
+          return res.status(500).json({ error: "Error calling stored procedure" });
+      }
 
-  // Use the connection pool to execute the query
-  db.query(sql, (err, results) => {
-    if (err) {
-      res.status(500).json({ error: err.message });
-    } else {
-      res.json(results); // Send the appointment data as JSON to the frontend
-    }
+      const nurses = results[0];
+      console.log("Stored procedure executed successfully");
+      res.status(200).json(nurses);
   });
 });
 
 router.get("/show-receptionist", (req, res) => {
-  const sql =
-    "select idreceptionist,concat(LastName,' ', FirstName) as Name, Email,Salary,Shift,CNIC,CertificateNumber from user natural join staff natural join receptionist";
-  db.query(sql, (err, results) => {
-    if (err) {
-      res.status(500).json({ error: err.message });
-    } else {
-      res.json(results); // Send the appointment data as JSON to the frontend
-    }
+  db.query("CALL ShowReceptionists()", (err, results) => {
+      if (err) {
+          console.log("Error calling stored procedure:", err);
+          return res.status(500).json({ error: "Error calling stored procedure" });
+      }
+
+      const receptionists = results[0];
+      console.log("Stored procedure executed successfully");
+      res.status(200).json(receptionists);
   });
 });
 

@@ -17,7 +17,55 @@ export default function Show_Staff() {
 
   const [activeButton, setActiveButton] = useState(null);
   const [doctorData, setDoctorData] = useState([]);
+
+  const [clickedRowStaff, setClickedRowStaff] = useState(null);
+  const [showFormStaff, setShowFormStaff] = useState(false);
+
+  const [salary, setSalary] = useState("");
+  const [shift, setShift] = useState("");
+
+
+  const handleRowClickStaff = (staffId, staffDetails) => {
+    setClickedRowStaff(staffId);
+    setShowFormStaff(true);
+    
+    // setStaffDetails(staffDetails);
+  };
+
+
+  const updateStaffDetails = async () => {
+    try {
+      // Perform API call to update staff details using the staff ID and new data
+      const response = await fetch(
+        `/admin/update-staff/${clickedRowStaff}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ salary, shift }),
+        }
+      );
   
+      if (response.ok) {
+        // Staff details updated successfully, perform necessary actions if needed
+  
+        // Display a pop-up message
+        alert(`Data updated for staff member: ${clickedRowStaff}`);
+  
+        // Clear input fields
+        setSalary("");
+        setShift("");
+      } else {
+        throw new Error("Failed to update staff details");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+
+
   const fetchDoctorData = async () => {
     try {
       const response = await fetch("/admin/show-doctors");
@@ -33,7 +81,7 @@ export default function Show_Staff() {
   };
 
   const [nurseData, setNurseData] = useState([]);
-  
+
   const fetchNurseData = async () => {
     try {
       const response = await fetch("/admin/show-nurses");
@@ -47,15 +95,16 @@ export default function Show_Staff() {
       console.error(error);
     }
   };
-  
+
   const [receptionistData, setReceptionistData] = useState([]);
-  
+
   const fetchReceptionistData = async () => {
     try {
       const response = await fetch("/admin/show-receptionist");
       if (response.ok) {
         const receptionistData = await response.json();
         setReceptionistData(receptionistData); // Save fetched data to state
+
       } else {
         throw new Error("Failed to fetch data");
       }
@@ -87,11 +136,10 @@ export default function Show_Staff() {
             Show Staff
             <div className="w-full p-4 justify-between flex">
               <button
-                className={`${
-                  activeButton === "Doctors"
-                    ? "bg-green-500 text-black"
-                    : "bg-black text-green-500"
-                }
+                className={`${activeButton === "Doctors"
+                  ? "bg-green-500 text-black"
+                  : "bg-black text-green-500"
+                  }
                                  w-[150px] rounded font-medium my-6 mx-auto md:m-0 py-3`}
                 onClick={() => handleButtonClick("Doctors")}
               >
@@ -99,11 +147,10 @@ export default function Show_Staff() {
               </button>
 
               <button
-                className={`${
-                  activeButton === "Nurses"
-                    ? "bg-green-500 text-black"
-                    : "bg-black text-green-500"
-                }
+                className={`${activeButton === "Nurses"
+                  ? "bg-green-500 text-black"
+                  : "bg-black text-green-500"
+                  }
                                  w-[150px] rounded font-medium my-6 mx-auto md:m-0 py-3 `}
                 onClick={() => handleButtonClick("Nurses")}
               >
@@ -111,11 +158,10 @@ export default function Show_Staff() {
               </button>
 
               <button
-                className={`${
-                  activeButton === "Receptionists"
-                    ? "bg-green-500 text-black"
-                    : "bg-black text-green-500"
-                }
+                className={`${activeButton === "Receptionists"
+                  ? "bg-green-500 text-black"
+                  : "bg-black text-green-500"
+                  }
                                  w-[150px] rounded font-medium my-6 mx-auto md:m-0 py-3 `}
                 onClick={() => handleButtonClick("Receptionists")}
               >
@@ -132,7 +178,8 @@ export default function Show_Staff() {
                 <table className="border-collapse border-stone-950 border w-full bg-blue-600 text-white">
                   <thead>
                     <tr className="bg-purple-600">
-                      <th className="border py-2 px-4">ID</th>
+                      <th className="border py-2 px-4">Staff.ID</th>
+                      <th className="border py-2 px-4">Doc.ID</th>
                       <th className="border py-2 px-4">Name</th>
                       <th className="border py-2 px-4">Email</th>
                       <th className="border py-2 px-4">Salary</th>
@@ -145,8 +192,12 @@ export default function Show_Staff() {
                   </thead>
                   <tbody>
                     {doctorData.map((doctor) => (
-                      <tr key={doctor.iddoctor} className="hover:bg-blue-900">
-                        <td className="border py-2 px-4">{doctor.iddoctor}</td>
+                      <tr key={doctor.idDoctor}
+                        className={`hover:bg-blue-900 ${clickedRowStaff === doctor.idStaff ? 'bg-red-500' : 'bg-green-500'}`}
+                        onClick={() => handleRowClickStaff(doctor.idStaff, doctor)}
+                      >
+                        <td className="border py-2 px-4">{doctor.idStaff}</td>
+                        <td className="border py-2 px-4">{doctor.idDoctor}</td>
                         <td className="border py-2 px-4">{doctor.Name}</td>
                         <td className="border py-2 px-4">{doctor.Email}</td>
                         <td className="border py-2 px-4">{doctor.Salary}</td>
@@ -166,6 +217,53 @@ export default function Show_Staff() {
                       </tr>
                     ))}
                   </tbody>
+
+
+                  {showFormStaff && clickedRowStaff !== null && (
+                    <tr>
+                      <td colSpan="10">
+                        <form className="bg-blue-300 p-6 rounded shadow-md">
+                          
+                          
+
+                          <div className="mb-4">
+                            <label className="text-black text-m font-bold mb-2">
+                              Salary:
+                            </label>
+                            <input
+                              type="text"
+                              value={salary}
+                              onChange={(e) => setSalary(e.target.value)}
+                              placeholder="Enter Salary"
+                              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            />
+                          </div>
+                          <div className="mb-4">
+                            <label className="text-black text-m font-bold mb-2">
+                              Shift:
+                            </label>
+                            <input
+                              type="text"
+                              value={shift}
+                              onChange={(e) => setShift(e.target.value)}
+                              placeholder="Select Shift"
+                              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            />
+                          </div>
+                          <button
+                            type="button"
+                            onClick={updateStaffDetails}
+                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                          >
+                            Update
+                          </button>
+                        </form>
+                      </td>
+                    </tr>
+                  )}
+
+
+
                 </table>
               </div>
             )}
@@ -177,7 +275,8 @@ export default function Show_Staff() {
                 <table className="border-collapse border-stone-950 border w-full bg-blue-600 text-white">
                   <thead>
                     <tr className="bg-purple-600">
-                      <th className="border py-2 px-4">ID</th>
+                    <th className="border py-2 px-4">Staff.ID</th>
+                      <th className="border py-2 px-4">Nur.ID</th>
                       <th className="border py-2 px-4">Name</th>
                       <th className="border py-2 px-4">Email</th>
                       <th className="border py-2 px-4">Salary</th>
@@ -189,8 +288,12 @@ export default function Show_Staff() {
                   </thead>
                   <tbody>
                     {nurseData.map((nurse) => (
-                      <tr key={nurse.idnurse} className="hover:bg-blue-900">
-                        <td className="border py-2 px-4">{nurse.idnurse}</td>
+                      <tr key={nurse.idNurse} 
+                      className={`hover:bg-blue-900 ${clickedRowStaff === nurse.idStaff ? 'bg-red-500' : 'bg-green-500'}`}
+                      onClick={() => handleRowClickStaff(nurse.idStaff, nurse)}
+                      >
+                        <td className="border py-2 px-4">{nurse.idStaff}</td>
+                        <td className="border py-2 px-4">{nurse.idNurse}</td>
                         <td className="border py-2 px-4">{nurse.Name}</td>
                         <td className="border py-2 px-4">{nurse.Email}</td>
                         <td className="border py-2 px-4">{nurse.Salary}</td>
@@ -205,6 +308,53 @@ export default function Show_Staff() {
                       </tr>
                     ))}
                   </tbody>
+
+
+                  {showFormStaff && clickedRowStaff !== null && (
+                    <tr>
+                      <td colSpan="10">
+                        <form className="bg-blue-300 p-6 rounded shadow-md">
+                          
+                          
+
+                          <div className="mb-4">
+                            <label className="text-black text-m font-bold mb-2">
+                              Salary:
+                            </label>
+                            <input
+                              type="text"
+                              value={salary}
+                              onChange={(e) => setSalary(e.target.value)}
+                              placeholder="Enter Salary"
+                              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            />
+                          </div>
+                          <div className="mb-4">
+                            <label className="text-black text-m font-bold mb-2">
+                              Shift:
+                            </label>
+                            <input
+                              type="text"
+                              value={shift}
+                              onChange={(e) => setShift(e.target.value)}
+                              placeholder="Select Shift"
+                              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            />
+                          </div>
+                          <button
+                            type="button"
+                            onClick={updateStaffDetails}
+                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                          >
+                            Update
+                          </button>
+                        </form>
+                      </td>
+                    </tr>
+                  )}
+
+
+
                 </table>
               </div>
             )}
@@ -216,7 +366,8 @@ export default function Show_Staff() {
                 <table className="border-collapse border-stone-950 border w-full bg-blue-600 text-white">
                   <thead>
                     <tr className="bg-purple-600">
-                      <th className="border py-2 px-4">ID</th>
+                    <th className="border py-2 px-4">Staff.ID</th>
+                      <th className="border py-2 px-4">Rec.ID</th>
                       <th className="border py-2 px-4">Name</th>
                       <th className="border py-2 px-4">Email</th>
                       <th className="border py-2 px-4">Salary</th>
@@ -228,11 +379,15 @@ export default function Show_Staff() {
                   <tbody>
                     {receptionistData.map((receptionist) => (
                       <tr
-                        key={receptionist.idreceptionist}
-                        className="hover:bg-blue-900"
+                        key={receptionist.idReceptionist}
+                        className={`hover:bg-blue-900 ${clickedRowStaff === receptionist.idStaff ? 'bg-red-500' : 'bg-green-500'}`}
+                        onClick={() => handleRowClickStaff(receptionist.idStaff, receptionist)}
                       >
                         <td className="border py-2 px-4">
-                          {receptionist.idreceptionist}
+                          {receptionist.idStaff}
+                        </td>
+                        <td className="border py-2 px-4">
+                          {receptionist.idReceptionist}
                         </td>
                         <td className="border py-2 px-4">
                           {receptionist.Name}
@@ -255,6 +410,52 @@ export default function Show_Staff() {
                       </tr>
                     ))}
                   </tbody>
+
+
+                  {showFormStaff && clickedRowStaff !== null && (
+                    <tr>
+                      <td colSpan="10">
+                        <form className="bg-blue-300 p-6 rounded shadow-md">
+                          
+                          
+
+                          <div className="mb-4">
+                            <label className="text-black text-m font-bold mb-2">
+                              Salary:
+                            </label>
+                            <input
+                              type="text"
+                              value={salary}
+                              onChange={(e) => setSalary(e.target.value)}
+                              placeholder="Enter Salary"
+                              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            />
+                          </div>
+                          <div className="mb-4">
+                            <label className="text-black text-m font-bold mb-2">
+                              Shift:
+                            </label>
+                            <input
+                              type="text"
+                              value={shift}
+                              onChange={(e) => setShift(e.target.value)}
+                              placeholder="Select Shift"
+                              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            />
+                          </div>
+                          <button
+                            type="button"
+                            onClick={updateStaffDetails}
+                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                          >
+                            Update
+                          </button>
+                        </form>
+                      </td>
+                    </tr>
+                  )}
+
+
                 </table>
               </div>
             )}

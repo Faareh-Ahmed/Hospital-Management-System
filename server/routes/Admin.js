@@ -388,6 +388,41 @@ router.post("/add-admitroom", (req, res) => {
   );
 });
 
+
+//Update the Staff Record
+
+router.put("/update-staff/:clickedRowStaff", (req, res) => {
+  console.log("api call hui to Update Staff");
+  const staffId = req.params.clickedRowStaff;
+  const salary = req.body.salary;
+  const shift = req.body.shift;
+  // const today = new Date();
+  // const day = String(today.getDate()).padStart(2, "0");
+  // const month = String(today.getMonth() + 1).padStart(2, "0");
+  // const year = today.getFullYear();
+  // const currentDate = `${day}-${month}-${year}`;
+
+  db.query("UPDATE staff SET Salary = ?, Shift = ? WHERE idStaff = ?", [
+    salary,
+    shift,
+    staffId,
+  ], (err, result) => {
+    if (err) {
+      console.error("Error updating staff:", err);
+      return res.status(500).json({ error: "Error updating staff" });
+    }
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: "Staff not found" });
+    }
+
+    console.log("Staff updated successfully");
+    res.status(200).json({ message: "Staff updated successfully" });
+  });
+});
+
+
+
 router.get("/show-doctors", (req, res) => {
   // Call the stored procedure
   db.query("CALL ShowDoctors()", (err, results) => {

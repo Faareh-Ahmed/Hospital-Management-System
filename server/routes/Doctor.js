@@ -148,6 +148,8 @@ router.put("/update-appointment/:appointmentId", (req, res) => {
   );
 });
 
+
+
 router.put("/update-walkin/:idPatient", (req, res) => {
   console.log("api call hui patient wali");
   const idPatient = req.params.idPatient;

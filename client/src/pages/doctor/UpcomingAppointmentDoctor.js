@@ -25,6 +25,12 @@ export default function UpcomingAppointmentDoctor() {
     fetchAppointments();
   }, []);
 
+
+  const handleRowClick = (patientId) => {
+    console.log(`Doctor clicked Patient with idPatient: ${patientId}`);
+  };
+
+
   const fetchAppointments = async () => {
     try {
       console.log(idDoctor);
@@ -119,7 +125,8 @@ export default function UpcomingAppointmentDoctor() {
                   {appointment.map((singleAppointment, index) => (
                     <tr
                       key={singleAppointment.idappointment}
-                      className="hover:bg-blue-900"
+                      className={`hover:bg-blue-900 ${clickedRow === singleAppointment ? 'bg-red-500' : 'bg-green-500'}`}
+                      onClick={() => handleRowClick(singleAppointment.idPatient)}
                     >
                       <td className="border py-2 px-4">{index + 1}</td>
                       <td className="border py-2 px-4">
@@ -150,9 +157,11 @@ export default function UpcomingAppointmentDoctor() {
                         {singleAppointment.Status}
                       </td>
                       <td>
-                      <button onClick={() => handleCheckPatientClick(singleAppointment)}>
-  Check Patient
-</button>
+                        <button
+                          className={`bg-${clickedRow === singleAppointment ? 'red' : 'green'}-500 hover:bg-${clickedRow === singleAppointment ? 'red' : 'green'}-700 text-white font-bold py-2 px-4 rounded`}
+                          onClick={() => handleCheckPatientClick(singleAppointment)}>
+                          Check Patient
+                        </button>
 
                       </td>
                     </tr>

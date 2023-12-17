@@ -101,9 +101,9 @@ export default function Walk_In() {
 
           <div className="text-xl text-gray-900 font-semibold w-full h-full">
 Patients Waiting for Checkup            {Array.isArray(walkin) && walkin.length > 0 ? (
-              <table className="border-collapse border w-full">
+              <table className="border-collapse border-stone-950 border w-full bg-blue-600 text-white">
                 <thead>
-                  <tr className="bg-gray-200">
+                  <tr className="bg-purple-600">
                     <th className="border py-2 px-4">ID. </th>
                     <th className="border py-2 px-4">Patient ID</th>
                     <th className="border py-2 px-4">Patient Name</th>
@@ -116,7 +116,7 @@ Patients Waiting for Checkup            {Array.isArray(walkin) && walkin.length 
                 </thead>
                 <tbody>
                   {walkin.map((walk_in, index) => (
-                    <tr key={index + 1} className="hover:bg-gray-100">
+                    <tr key={index + 1} className="hover:bg-blue-900">
                       <td className="border py-2 px-4">{index + 1}</td>
                       <td className="border py-2 px-4">{walk_in.idPatient}</td>
                       <td className="border py-2 px-4">

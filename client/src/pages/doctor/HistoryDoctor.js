@@ -65,9 +65,9 @@ export default function IHistoryDoctor() {
 
           <div className="text-xl text-gray-900 font-semibold w-full h-full">
 History of Visited Patients            {Array.isArray(appointment) && appointment.length > 0 ? (
-              <table className="border-collapse border w-full">
+              <table className="border-collapse border-stone-950 border w-full bg-blue-600 text-white">
                 <thead>
-                  <tr className="bg-gray-200">
+                  <tr className="bg-purple-600">
                     <th className="border py-2 px-4">ID</th>
                     <th className="border py-2 px-4">Patient Name</th>
                     <th className="border py-2 px-4">Gender</th>
@@ -85,7 +85,7 @@ History of Visited Patients            {Array.isArray(appointment) && appointmen
                   {appointment.map((history, index) => (
                     <tr
                       key={history.idappointment}
-                      className="hover:bg-gray-100"
+                      className="hover:bg-blue-900"
                     >
                       <td className="border py-2 px-4">{index + 1}</td>
                       <td className="border py-2 px-4">

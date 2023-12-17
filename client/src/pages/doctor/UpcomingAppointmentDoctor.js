@@ -100,9 +100,9 @@ export default function UpcomingAppointmentDoctor() {
           <div className="text-xl text-gray-900 font-semibold w-full h-full">
             Upcoming Appointments
             {Array.isArray(appointment) && appointment.length > 0 ? (
-              <table className="border-collapse border w-full">
+              <table className="border-collapse border-stone-950 border w-full bg-blue-600 text-white">
                 <thead>
-                  <tr className="bg-gray-200">
+                  <tr className="bg-purple-600">
                     <th className="border py-2 px-4">Appointment No.</th>
                     <th className="border py-2 px-4">Patient ID</th>
                     <th className="border py-2 px-4">Patient Name</th>
@@ -119,7 +119,7 @@ export default function UpcomingAppointmentDoctor() {
                   {appointment.map((singleAppointment, index) => (
                     <tr
                       key={singleAppointment.idappointment}
-                      className="hover:bg-gray-100"
+                      className="hover:bg-blue-900"
                     >
                       <td className="border py-2 px-4">{index + 1}</td>
                       <td className="border py-2 px-4">

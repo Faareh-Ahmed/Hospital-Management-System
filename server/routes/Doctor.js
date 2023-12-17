@@ -78,15 +78,17 @@ router.post("/show-walk_in", (req, res) => {
 
   // Use the connection pool to execute the query
   db.query(
-    "select  idPatient, concat(FirstName, ' ', LastName) as PatientName, gender, ContactNumber, Age, BMI, Address from patient natural join user natural join visits  where visitType = ? and idDoctor = ? and prescriptions is null;",
-    ["Walk-In", idDoctor],
+    "select  idPatient, concat(FirstName, ' ', LastName) as PatientName, gender, ContactNumber, Age, BMI, Address from patient natural join user natural join visits  where  idDoctor = ? and (prescriptions IS NULL OR prescriptions = '');",
+    [idDoctor],
     (err, result) => {
       if (err) {
         console.log("Error showing rooms data:", err);
         return res.status(500).json({ error: "Error showing admitroom data" });
       }
-      console.log("room data sent");
+      console.log("Walk In data sent");
+    
       res.json(result);
+
     }
   );
 });

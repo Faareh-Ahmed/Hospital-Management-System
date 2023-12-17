@@ -55,9 +55,9 @@ export default function AssignedRoomNurse() {
           <div className="text-xl text-gray-900 font-semibold w-full h-full">
             Assigned Rooms
             {Array.isArray(roomData) && roomData.length > 0 ? (
-            <table className="border-collapse border w-full">
+            <table className="border-collapse border-stone-950 border w-full bg-blue-600 text-white">
                   <thead>
-                    <tr className="bg-gray-200">
+                    <tr className="bg-purple-600">
                       <th className="border py-2 px-4">Room</th>
                       <th className="border py-2 px-4">Floor</th>
                       <th className="border py-2 px-4">Availability</th>
@@ -69,7 +69,7 @@ export default function AssignedRoomNurse() {
                   </thead>
                   <tbody>
                     {roomData.map((room,index) => (
-                      <tr key={room.idroom} className="hover:bg-gray-100">
+                      <tr key={room.idroom} className="hover:bg-blue-900">
                         <td className="border py-2 px-4">{index + 1}</td>
                         <td className="border py-2 px-4">{room.Floor}</td>
                         <td className="border py-2 px-4">{room.Availability}</td>

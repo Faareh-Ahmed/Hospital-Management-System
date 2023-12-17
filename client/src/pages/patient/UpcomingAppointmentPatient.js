@@ -71,9 +71,9 @@ export default function UpcomingAppointmentPatient() {
             {/* <Form fields={PatientFields}/> */}
             SHow History
             {Array.isArray(roomData) && roomData.length > 0 ? (
-              <table className="border-collapse border w-full">
+              <table className="border-collapse border-stone-950 border w-full bg-blue-600 text-white">
                 <thead>
-                  <tr className="bg-gray-200">
+                  <tr className="bg-purple-600">
                     <th className="border py-2 px-4">No #</th>
                     <th className="border py-2 px-4">Doctor Name</th>
                     <th className="border py-2 px-4">Doctor Email</th>
@@ -86,7 +86,7 @@ export default function UpcomingAppointmentPatient() {
                 </thead>
                 <tbody>
                   {roomData.map((history, index) => (
-                    <tr key={history.idVisit} className="hover:bg-gray-100">
+                    <tr key={history.idVisit} className="hover:bg-blue-900">
                       <td className="border py-2 px-4">{index + 1}</td>
                       <td className="border py-2 px-4">{history.Name}</td>
                       <td className="border py-2 px-4">

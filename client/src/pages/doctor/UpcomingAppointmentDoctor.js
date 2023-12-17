@@ -170,44 +170,61 @@ export default function UpcomingAppointmentDoctor() {
                 {showForm && clickedRow !== null && (
                   <tr>
                     <td colSpan="10">
-                      <form>
-                        <div>
-                          <label>Patient ID:</label>
-                          <span>{clickedRow.idPatient}</span>
+                      <form className="bg-blue-300 p-6 rounded shadow-md">
+                        <div className="mb-4">
+                          <label className=" text-black text-m font-bold mb-2">
+                            Patient ID:
+                          </label>
+                          <span className="text-red-600 text-m font-bold mb-2 pl-12">{clickedRow.idPatient}</span>
                         </div>
-                        <div>
-                          <label>Patient Name:</label>
-                          <span>{clickedRow.PatientName}</span>
+                        <div className="mb-4">
+                          <label className="text-black text-m font-bold mb-2">
+                            Patient Name:
+                          </label>
+                          <span className="text-red-600 text-m font-bold mb-2 pl-12">{clickedRow.PatientName}</span>
                         </div>
-                        <div>
-                          <label>Appointment Date:</label>
-                          <span>{clickedRow.AppointmentDate}</span>
+                        <div className="mb-4">
+                          <label className="text-black text-m font-bold mb-2">
+                            Appointment Date:
+                          </label>
+                          <span className="text-red-600 text-m font-bold mb-2 pl-12">{clickedRow.AppointmentDate}</span>
                         </div>
-                        <div>
-                          <label>Symptoms: </label>
+                        <div className="mb-4">
+                          <label className="text-black text-m font-bold mb-2">
+                            Symptoms:
+                          </label>
                           <input
                             type="text"
                             value={symptoms}
                             onChange={(e) => setSymptoms(e.target.value)}
-                            placeholder="Symptoms"
+                            placeholder="Enter Symptoms"
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                           />
                         </div>
-                        <div>
-                          <label>Prescriptions: </label>
+                        <div className="mb-4">
+                          <label className="text-black text-m font-bold mb-2">
+                            Prescriptions:
+                          </label>
                           <input
                             type="text"
                             value={prescription}
                             onChange={(e) => setPrescription(e.target.value)}
-                            placeholder="Appointment Details"
+                            placeholder="Enter Prescription"
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                           />
                         </div>
-                        <button type="button" onClick={updateAppointment}>
+                        <button
+                          type="button"
+                          onClick={updateAppointment}
+                          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        >
                           Save
                         </button>
                       </form>
                     </td>
                   </tr>
                 )}
+
               </table>
             ) : (
               <p>No upcoming appointments found.</p>

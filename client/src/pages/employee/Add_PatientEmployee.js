@@ -111,7 +111,6 @@ export default function Add_PatientEmployee() {
             link: "/employee/show-appointment",
             icon: IoMdSchool,
         },
-        { name: "Show Rooms", link: "/employee/show-room", icon: IoMdSchool },
         {
             name: "Available Doctors",
             link: "/employee/available-doctor",

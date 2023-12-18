@@ -18,21 +18,7 @@ export default function InfoPatient() {
       link: "/patient/upcoming-appointment",
       icon: IoMdSchool,
     },
-    {
-      name: "Pay Bills",
-      link: "/patient/paybills",
-      icon: IoMdSchool,
-    },
-    {
-        name: "Get Invoices",
-        link: "/patient/invoices",
-        icon: IoMdSchool,
-      },
-      {
-        name: "Get Slips",
-        link: "/patient/slips",
-        icon: IoMdSchool,
-      },
+    
   ];
 
   // The empty dependency array ensures this effect runs once when the component mounts

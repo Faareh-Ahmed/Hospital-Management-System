@@ -100,7 +100,7 @@ export default function Walk_In() {
           <NavbarDomain role="doctor" />
 
           <div className="text-xl text-gray-900 font-semibold w-full h-full">
-Patients Waiting for Checkup            {Array.isArray(walkin) && walkin.length > 0 ? (
+            Patients Waiting for Checkup            {Array.isArray(walkin) && walkin.length > 0 ? (
               <table className="border-collapse border-stone-950 border w-full bg-blue-600 text-white">
                 <thead>
                   <tr className="bg-purple-600">
@@ -116,7 +116,9 @@ Patients Waiting for Checkup            {Array.isArray(walkin) && walkin.length 
                 </thead>
                 <tbody>
                   {walkin.map((walk_in, index) => (
-                    <tr key={index + 1} className="hover:bg-blue-900">
+                    <tr key={index + 1}
+                      className={`hover:bg-blue-900 ${clickedRow === walk_in ? 'bg-red-500' : 'bg-green-500'}`}
+                    >
                       <td className="border py-2 px-4">{index + 1}</td>
                       <td className="border py-2 px-4">{walk_in.idPatient}</td>
                       <td className="border py-2 px-4">
@@ -132,6 +134,8 @@ Patients Waiting for Checkup            {Array.isArray(walkin) && walkin.length 
                       <td>
                         <button
                           onClick={() => handleCheckPatientClick(walk_in)}
+                          className={`bg-${clickedRow === walk_in ? 'red' : 'green'}-500 hover:bg-${clickedRow === walk_in ? 'red' : 'green'}-700 text-white font-bold py-2 px-4 rounded`}
+
                         >
                           Check Patient
                         </button>
@@ -142,38 +146,41 @@ Patients Waiting for Checkup            {Array.isArray(walkin) && walkin.length 
                 {showForm && clickedRow !== null && (
                   <tr>
                     <td colSpan="10">
-                      <form>
-                        <div>
-                          <label>Patient ID:</label>
-                          <span>{clickedRow.idPatient}</span>
+                      <form className="bg-blue-300 p-6 rounded shadow-md">
+                        <div className="mb-4">
+                          <label className=" text-black text-m font-bold mb-2">Patient ID:</label>
+                          <span className="text-red-600 text-m font-bold mb-2 pl-12">{clickedRow.idPatient}</span>
                         </div>
-                        <div>
-                          <label>Patient Name:</label>
-                          <span>{clickedRow.PatientName}</span>
+                        <div className="mb-4">
+                          <label className="text-black text-m font-bold mb-2">Patient Name:</label>
+                          <span className="text-red-600 text-m font-bold mb-2 pl-12">{clickedRow.PatientName}</span>
                         </div>
+
                         <div>
-                          <label>Appointment Date:</label>
-                          <span>{clickedRow.AppointmentDate}</span>
-                        </div>
-                        <div>
-                          <label>Symptoms: </label>
+                          <label className="text-black text-m font-bold mb-2">Symptoms: </label>
                           <input
                             type="text"
                             value={symptoms}
                             onChange={(e) => setSymptoms(e.target.value)}
                             placeholder="Symptoms"
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+
                           />
                         </div>
-                        <div>
-                          <label>Prescriptions: </label>
+                        <div className="mb-4">
+                          <label className="text-black text-m font-bold mb-2">Prescriptions: </label>
                           <input
                             type="text"
                             value={prescription}
                             onChange={(e) => setPrescription(e.target.value)}
                             placeholder="Appointment Details"
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+
                           />
                         </div>
-                        <button type="button" onClick={updatewalk_in}>
+                        <button type="button" onClick={updatewalk_in}
+                          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        >
                           Save
                         </button>
                       </form>

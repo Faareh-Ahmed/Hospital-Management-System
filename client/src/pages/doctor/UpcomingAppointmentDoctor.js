@@ -6,9 +6,14 @@ import NavbarDomain from "../../components/NavbarDomain";
 
 export default function UpcomingAppointmentDoctor() {
   const [appointment, setAppointments] = useState([]);
+  const [patientHistory, setPatientHistory] = useState([]);
+
+
   const ID = JSON.parse(localStorage.getItem("doctorInfo"));
 
   const [clickedRow, setClickedRow] = useState(null);
+  const [clickedHistoryRow, setClickedHistoryRow] = useState(null);
+
   const [prescription, setPrescription] = useState("");
   const [symptoms, setSymptoms] = useState("");
 
@@ -17,6 +22,12 @@ export default function UpcomingAppointmentDoctor() {
   const handleCheckPatientClick = (appointment) => {
     setClickedRow(appointment);
     setShowForm(true);
+  };
+
+  const handlePatientHistoryClick = (patient) => {
+    setShowForm(true);
+    setClickedHistoryRow(patient);
+    // PatientHistory();
   };
 
   const idDoctor = ID.idDoctor;
@@ -76,6 +87,39 @@ export default function UpcomingAppointmentDoctor() {
       console.error(error);
     }
   };
+
+
+  const PatientHistory = async () => {
+    try {
+      if (!clickedHistoryRow) {
+        console.error("clickedHistoryRow is null or undefined");
+        return;
+      }
+
+      console.log("Calling API");
+      const response = await fetch(`/doctor/patient-history/${clickedHistoryRow.idPatient}`);
+      console.log("After calling API");
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Successfully Displayed the History Patient", data);
+        // Handle the data as needed in your component state
+        setPatientHistory(data)
+      } else {
+        throw new Error("Failed to retrieve patient history");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
+  useEffect(() => {
+    // Move the PatientHistory call here after setting clickedHistoryRow
+    if (showForm && clickedHistoryRow !== null) {
+      PatientHistory();
+    }
+  }, [showForm, clickedHistoryRow]);
+
   const doctorMenus = [
     { name: "Info", link: "/doctor/info", icon: IoMdSchool },
     { name: "History", link: "/doctor/history", icon: IoMdStopwatch },
@@ -106,7 +150,7 @@ export default function UpcomingAppointmentDoctor() {
           <div className="text-xl text-gray-900 font-semibold w-full h-full">
             Upcoming Appointments
             {Array.isArray(appointment) && appointment.length > 0 ? (
-              <table className="border-collapse border-stone-950 border w-full bg-blue-600 text-white">
+              <table className="border-collapse  border w-full  text-white">
                 <thead>
                   <tr className="bg-purple-600">
                     <th className="border py-2 px-4">Appointment No.</th>
@@ -162,7 +206,13 @@ export default function UpcomingAppointmentDoctor() {
                           onClick={() => handleCheckPatientClick(singleAppointment)}>
                           Check Patient
                         </button>
-
+                      </td>
+                      <td>
+                        <button
+                          className={`bg-${clickedRow === singleAppointment ? 'red' : 'green'}-500 hover:bg-${clickedRow === singleAppointment ? 'red' : 'green'}-700 text-white font-bold py-2 px-4 rounded`}
+                          onClick={() => handlePatientHistoryClick(singleAppointment)}>
+                          Patient History
+                        </button>
                       </td>
                     </tr>
                   ))}
@@ -170,7 +220,7 @@ export default function UpcomingAppointmentDoctor() {
                 {showForm && clickedRow !== null && (
                   <tr>
                     <td colSpan="10">
-                      <form className="bg-blue-300 p-6 rounded shadow-md">
+                      <form className="bg-blue-300 p-6 rounded shadow-md mb-4">
                         <div className="mb-4">
                           <label className=" text-black text-m font-bold mb-2">
                             Patient ID:
@@ -220,10 +270,52 @@ export default function UpcomingAppointmentDoctor() {
                         >
                           Save
                         </button>
+
                       </form>
                     </td>
                   </tr>
                 )}
+
+
+
+                {showForm && clickedHistoryRow !== null && (
+                  <tr>
+                    <td colSpan="10">
+                      <h2 className="text-xl text-gray-900 font-semibold mb-4">
+                        Patient Medical History
+                      </h2>
+                      <table className="border-collapse border-stone-950 border w-full bg-blue-600 text-white mb-4">
+                        <thead>
+                          <tr className="bg-orange-600">
+                            <th className="border py-2 px-4">Patient Name</th>
+                            <th className="border py-2 px-4">Doctor Name</th>
+                            <th className="border py-2 px-4">Visit Date</th>
+                            <th className="border py-2 px-4">Symptoms</th>
+                            <th className="border py-2 px-4">Prescriptions</th>
+                            {/* Add similar headers for other properties */}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {patientHistory.map((patientHistory, index) => (
+                            <tr key={index} className="hover:bg-blue-900">
+                              <td className="border py-2 px-4">{patientHistory.PatientName}</td>
+                              <td className="border py-2 px-4">{patientHistory.DoctorName}</td>
+                              <td className="border py-2 px-4">{patientHistory.VisitDate}</td>
+                              <td className="border py-2 px-4">{patientHistory.Symptoms}</td>
+                              <td className="border py-2 px-4">{patientHistory.Prescriptions}</td>
+                              {/* Add similar cells for other properties */}
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                )}
+
+
+
+
+
 
               </table>
             ) : (

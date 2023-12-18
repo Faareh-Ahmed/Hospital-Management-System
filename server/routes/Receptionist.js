@@ -34,6 +34,7 @@ router.post("/login", (req, res) => {
   );
 });
 
+
 router.post("/add-appointment", (req, res) => {
   console.log("Data has arrived at the backend");
   console.log(req.body);
@@ -44,7 +45,7 @@ router.post("/add-appointment", (req, res) => {
   const contactNumber = req.body.contactNumber;
   const gender = req.body.gender;
   const age = req.body.age;
-  const diesease = req.body.disease;
+  const disease = req.body.disease;
   const bloodGroup = req.body.bloodGroup;
   const address = req.body.address;
   const height = req.body.height;
@@ -52,54 +53,39 @@ router.post("/add-appointment", (req, res) => {
   const doctorID = req.body.doctorID;
   const date = req.body.date;
   const BMI = (weight / (height * height)) * 10000;
-  const username = generateRandomUsername();
-  const password = generateRandomPassword();
 
+  // Check if a user with the given email and role "Patient" already exists
   db.query(
-    "INSERT INTO CREDENTIALS (UserName, Password) VALUES (?, ?)",
-    [username, password],
-    (err, credentialResult) => {
+    "SELECT * FROM USER WHERE Email = ? AND Role = 'Patient'",
+    [email],
+    (err, userCheckResult) => {
       if (err) {
-        console.log("Error inserting credentials:", err);
-        return res.status(500).json({ error: "Error inserting credentials" });
+        console.log("Error checking existing user:", err);
+        return res.status(500).json({ error: "Error checking existing user" });
       }
 
-      const credentialId = credentialResult.insertId;
+      if (userCheckResult.length > 0) {
+        // User with the same email and role "Patient" exists
+        const userId = userCheckResult[0].idUser;
 
-      db.query(
-        "INSERT INTO USER (FirstName, LastName, Email, ContactNumber, Role, idCredentials,  gender) VALUES (?, ?, ?, ?, ?, ?,?)",
-        [
-          firstName,
-          lastName,
-          email,
-          contactNumber,
-          "Patient",
-          credentialId,
-          gender,
-        ],
-        (err, userResult) => {
-          if (err) {
-            console.log("Error inserting user data:", err);
-            return res.status(500).json({ error: "Error inserting user data" });
-          }
+        // Fetch the idPatient associated with the existing idUser
+        db.query(
+          "SELECT idPatient FROM patient WHERE idUser = ?",
+          [userId],
+          (err, patientResult) => {
+            if (err) {
+              console.log("Error fetching patient data:", err);
+              return res
+                .status(500)
+                .json({ error: "Error fetching patient data" });
+            }
 
-          const userId = userResult.insertId;
+            if (patientResult.length > 0) {
+              const patientId = patientResult[0].idPatient;
 
-          db.query(
-            "INSERT INTO patient (idUser, Age, BloodGroup, Disease, Height, BMI, Weight, Address) VALUES (?, ?, ?, ?,?,?,?,?)",
-            [userId, age, bloodGroup, diesease, height, BMI, weight, address],
-            (err, patientResult) => {
-              if (err) {
-                console.log("Error inserting staff data:", err);
-                return res
-                  .status(500)
-                  .json({ error: "Error inserting staff data" });
-              }
-
-              const patientId = patientResult.insertId;
-
+              // Insert into the appointment table
               db.query(
-                "INSERT INTO appointment (idPatient, idDoctor, AppointmentDate, Status) VALUES (?, ?, ?,?)",
+                "INSERT INTO appointment (idPatient, idDoctor, AppointmentDate, Status) VALUES (?, ?, ?, ?)",
                 [patientId, doctorID, date, "Due"],
                 (err, appointmentResult) => {
                   if (err) {
@@ -111,33 +97,132 @@ router.post("/add-appointment", (req, res) => {
 
                   const appointmentId = appointmentResult.insertId;
 
+                  // Insert into the visits table
                   db.query(
-                    "INSERT INTO visits (idPatient, idDoctor, VisitType, idAppointment) VALUES (?, ?, ?,?)",
+                    "INSERT INTO visits (idPatient, idDoctor, VisitType, idAppointment) VALUES (?, ?, ?, ?)",
                     [patientId, doctorID, "Appointment", appointmentId],
-                    (err, appointmentResult) => {
+                    (err, visitsResult) => {
                       if (err) {
-                        console.log("Error inserting appointment data:", err);
+                        console.log("Error inserting visits data:", err);
                         return res
                           .status(500)
-                          .json({ error: "Error inserting appointment data" });
+                          .json({ error: "Error inserting visits data" });
                       }
 
-                  console.log("Data inserted successfully into the database");
-                  res.status(200).json({
-                    message: "Data inserted successfully",
-                    username: username,
-                    password: password,
-                  });
+                      console.log(
+                        "Data inserted successfully into the database"
+                      );
+                      res.status(200).json({
+                        message: "Data inserted successfully",
+                      });
+                    }
+                  );
                 }
               );
+            } else {
+              // Handle the case where there is no patient record for the user
+              console.log("No patient record found for the user");
+              return res
+                .status(500)
+                .json({ error: "No patient record found for the user" });
+            }
+          }
+        );
+      } else {
+        const username = generateRandomUsername();
+        const password = generateRandomPassword();
+
+        db.query(
+          "INSERT INTO CREDENTIALS (UserName, Password) VALUES (?, ?)",
+          [username, password],
+          (err, credentialResult) => {
+            if (err) {
+              console.log("Error inserting credentials:", err);
+              return res
+                .status(500)
+                .json({ error: "Error inserting credentials" });
             }
 
-          );
-        }
-      );
+            const credentialId = credentialResult.insertId;
+
+            // Insert into the user table
+            db.query(
+              "INSERT INTO USER (FirstName, LastName, Email, ContactNumber, Role, idCredentials, gender) VALUES (?, ?, ?, ?, ?, ?, ?)",
+              [firstName, lastName, email, contactNumber, "Patient", credentialId, gender],
+              (err, userResult) => {
+                if (err) {
+                  console.log("Error inserting user data:", err);
+                  return res
+                    .status(500)
+                    .json({ error: "Error inserting user data" });
+                }
+
+                const userId = userResult.insertId;
+
+                db.query(
+                  "INSERT INTO patient (idUser, Age, BloodGroup, Disease, Height, BMI, Weight, Address) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                  [userId, age, bloodGroup, disease, height, BMI, weight, address],
+                  (err, patientResult) => {
+                    if (err) {
+                      console.log("Error inserting patient data:", err);
+                      return res
+                        .status(500)
+                        .json({ error: "Error inserting patient data" });
+                    }
+
+                    const patientId = patientResult.insertId;
+
+                    // Insert into the appointment table
+                    db.query(
+                      "INSERT INTO appointment (idPatient, idDoctor, AppointmentDate, Status) VALUES (?, ?, ?, ?)",
+                      [patientId, doctorID, date, "Due"],
+                      (err, appointmentResult) => {
+                        if (err) {
+                          console.log("Error inserting appointment data:", err);
+                          return res
+                            .status(500)
+                            .json({ error: "Error inserting appointment data" });
+                        }
+
+                        const appointmentId = appointmentResult.insertId;
+
+                        // Insert into the visits table
+                        db.query(
+                          "INSERT INTO visits (idPatient, idDoctor, VisitType, idAppointment) VALUES (?, ?, ?, ?)",
+                          [patientId, doctorID, "Appointment", appointmentId],
+                          (err, visitsResult) => {
+                            if (err) {
+                              console.log("Error inserting visits data:", err);
+                              return res
+                                .status(500)
+                                .json({ error: "Error inserting visits data" });
+                            }
+
+                            console.log(
+                              "Data inserted successfully into the database"
+                            );
+                            res.status(200).json({
+                              message: "Data inserted successfully",
+                              username: username,
+                              password: password,
+                            });
+                          }
+                        );
+                      }
+                    );
+                  }
+                );
+              }
+            );
+          }
+        ); // Closing bracket for the db.query in the "else" block
+      }
     }
   );
 });
+
+
+
 
 //add patient API Might needs some change in it where we are inserting the data into Appointment table
 
@@ -230,7 +315,7 @@ router.post("/add-patient", (req, res) => {
     }
   );
 });
-});
+
 
 
 

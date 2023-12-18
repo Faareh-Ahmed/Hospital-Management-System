@@ -494,28 +494,33 @@ router.get("/show-admitroom", (req, res) => {
 router.get("/show-history", (req, res) => {
   console.log("history wali api ko call aagayi");
   const sql = `
-    SELECT
-      v.idVisit,
-      v.idPatient,
-      CONCAT(up.LastName, ' ', up.FirstName) AS PatientName,
-      v.idDoctor,
-      CONCAT(ud.LastName, ' ', ud.FirstName) AS DoctorName,
-      d.LicenseNumber,
-      v.VisitType,
-      v.Symptoms,
-      v.Prescriptions,
-      v.VisitDate
-  FROM
-      visits v
-  JOIN
-      user up ON v.idPatient = up.idUser
-  JOIN
-      user ud ON v.idDoctor = ud.idUser
-  JOIN
-      doctor d ON v.idDoctor = d.idDoctor
-  WHERE
-      up.Role = 'Patient'
-      AND ud.Role = 'Doctor';
+  SELECT
+  v.idVisit,
+  v.idPatient,
+  CONCAT(up.LastName, ' ', up.FirstName) AS PatientName,
+  v.idDoctor,
+  CONCAT(ud.LastName, ' ', ud.FirstName) AS DoctorName,
+  d.LicenseNumber,
+  v.VisitType,
+  v.Symptoms,
+  v.Prescriptions,
+  v.VisitDate
+FROM
+  visits v
+JOIN
+  patient p ON v.idPatient = p.idPatient
+JOIN
+  user up ON p.idUser = up.idUser
+JOIN
+  doctor d ON d.idDoctor = v.idDoctor
+JOIN 
+staff st ON st.idStaff = d.idStaff
+JOIN 
+user ud ON ud.idUser=st.idUser
+WHERE
+  up.Role = 'Patient'
+  AND ud.Role = 'Staff'
+  AND st.StaffType='Doctor';
     `;
 
   db.query(sql, (err, results) => {

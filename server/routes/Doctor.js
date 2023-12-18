@@ -144,7 +144,8 @@ router.get("/patient-history/:idPatient", (req, res) => {
       up.Role = 'Patient'
       AND ud.Role = 'Staff'
       AND st.StaffType='Doctor'
-      AND p.idPatient=?;
+      AND p.idPatient=?
+      AND (v.Symptoms IS NOT NULL AND v.Prescriptions IS NOT NULL);
   `;
 
   db.query(sql, [idPatient], (err, results) => {

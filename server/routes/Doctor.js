@@ -78,7 +78,7 @@ router.post("/show-walk_in", (req, res) => {
 
   // Use the connection pool to execute the query
   db.query(
-    "select  idPatient, concat(FirstName, ' ', LastName) as PatientName, gender, ContactNumber, Age, BMI, Address from patient natural join user natural join visits  where  idDoctor = ? and (prescriptions IS NULL OR prescriptions = '');",
+    "select  idPatient, concat(FirstName, ' ', LastName) as PatientName, gender, ContactNumber, Age, BMI, Address from patient natural join user natural join visits  where  idDoctor = ? and (prescriptions IS NULL OR prescriptions = '') AND visittype='walk-in';",
     [idDoctor],
     (err, result) => {
       if (err) {

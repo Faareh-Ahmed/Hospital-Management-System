@@ -143,6 +143,7 @@ router.post("/add-appointment", (req, res) => {
 
 router.post("/add-patient", (req, res) => {
   console.log("Data has arrived at the backend");
+  console.log("Data aaya");
   console.log(req.body);
 
   const firstName = req.body.firstName;
@@ -241,7 +242,6 @@ router.post("/add-patient", (req, res) => {
 
 
 router.get("/show-doctors", (req, res) => {
-  console.log("show doctor wali api ko call aagayi");
   // Query to fetch appointment data from the appointment table
   const sql =
     "select idDoctor, concat(FirstName, ' ', LastName) as Name from user natural join staff natural join doctor;";

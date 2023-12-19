@@ -77,9 +77,9 @@ export default function ShowDoctorsEmployee() {
                 </tr>
               </thead>
               <tbody>
-                {doctorData.map((doctor) => (
+                {doctorData.map((doctor,index) => (
                   <tr key={doctor.iddoctor} className="hover:bg-blue-900">
-                    <td className="border py-2 px-4">{doctor.iddoctor}</td>
+                    <td className="border py-2 px-4">{index+1}</td>
                     <td className="border py-2 px-4">{doctor.Name}</td>
                     <td className="border py-2 px-4">{doctor.Email}</td>
                     <td className="border py-2 px-4">{doctor.Salary}</td>

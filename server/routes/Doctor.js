@@ -113,6 +113,53 @@ router.post("/show-history", (req, res) => {
   );
 });
 
+
+router.get("/patient-history/:idPatient", (req, res) => {
+  console.log("Patient history wali api ko call aagayi");
+
+  // Assuming you're getting idPatient from the request parameters or query
+  const idPatient = req.params.idPatient; // Adjust this line based on your route definition
+
+  const sql = `
+    SELECT
+      CONCAT(up.LastName, ' ', up.FirstName) AS PatientName,
+      v.idDoctor,
+      CONCAT(ud.LastName, ' ', ud.FirstName) AS DoctorName,
+      v.Symptoms,
+      v.Prescriptions,
+      v.VisitDate
+    FROM
+      visits v
+    JOIN
+      patient p ON v.idPatient = p.idPatient
+    JOIN
+      user up ON p.idUser = up.idUser
+    JOIN
+      doctor d ON d.idDoctor = v.idDoctor
+    JOIN 
+      staff st ON st.idStaff = d.idStaff
+    JOIN 
+      user ud ON ud.idUser=st.idUser
+    WHERE
+      up.Role = 'Patient'
+      AND ud.Role = 'Staff'
+      AND st.StaffType='Doctor'
+      AND p.idPatient=?
+      AND (v.Symptoms IS NOT NULL AND v.Prescriptions IS NOT NULL);
+  `;
+
+  db.query(sql, [idPatient], (err, results) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+    } else {
+      console.log("Error Retrieving History of Patient")
+      res.json(results);
+    }
+  });
+});
+
+
+
 router.put("/update-appointment/:appointmentId", (req, res) => {
   console.log("api call hui");
   const appointmentId = req.params.appointmentId;

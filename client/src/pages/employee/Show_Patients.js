@@ -24,7 +24,6 @@ export default function Show_Patients() {
           link: "/employee/show-appointment",
           icon: IoMdSchool,
         },
-        { name: "Show Rooms", link: "/employee/show-room", icon: IoMdSchool },
         {
           name: "Available Doctors",
           link: "/employee/available-doctor",

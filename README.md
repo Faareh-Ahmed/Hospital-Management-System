@@ -59,6 +59,10 @@ Now, your Hospital Management System app is ready to use!
 - [Faareh Ahmed](https://github.com/faareh-Ahmed)
 - [Awais Nazir](https://github.com/awais)
 
+### Screenshot
+
+![screenshot](img/medicare.png)
+
 ### License
 
 This project is licensed under the MIT License - see the LICENSE.md file for details.

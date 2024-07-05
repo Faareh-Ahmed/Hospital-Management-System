@@ -92,35 +92,31 @@ export default function Add_PatientEmployee() {
     });
   };
 
-  const employeeMenus = [
-    { name: "Info", link: "/employee/info", icon: IoMdSchool },
-    {
-      name: "Add Appointment",
-      link: "/employee/add-appointment",
-      icon: IoMdStopwatch,
-    },
-    {
-      name: "Add Patient",
-      link: "/employee/add-patient",
-      icon: IoMdStopwatch,
-    },
-    {
-      name: "Show Appointments",
-      link: "/employee/show-appointment",
-      icon: IoMdSchool,
-    },
-    { name: "Show Rooms", link: "/employee/show-room", icon: IoMdSchool },
-    {
-      name: "Available Doctors",
-      link: "/employee/available-doctor",
-      icon: IoMdSchool,
-    },
-    {
-      name: "Show Patients",
-      link: "/employee/show-patients",
-      icon: IoMdSchool,
-    },
-  ];
+    const employeeMenus = [
+        { name: "Info", link: "/employee/info", icon: IoMdSchool },
+        {
+            name: "Add Appointment",
+            link: "/employee/add-appointment",
+            icon: IoMdStopwatch,
+        },
+        {
+            name: "Add Patient",
+            link: "/employee/add-patient",
+            icon: IoMdStopwatch,
+        },
+        {
+            name: "Show Appointments",
+            link: "/employee/show-appointment",
+            icon: IoMdSchool,
+        },
+        {
+            name: "Available Doctors",
+            link: "/employee/available-doctor",
+            icon: IoMdSchool,
+        },
+        { name: "Show Patients", link: "/employee/show-patients", icon: IoMdSchool },
+
+    ];
 
   return (
     <>

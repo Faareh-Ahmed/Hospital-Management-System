@@ -101,11 +101,11 @@ router.post("/add-doctor", (req, res) => {
               const staffId = staffResult.insertId;
 
               db.query(
-                "INSERT INTO doctor (idStaff, idDepartment, idClinicalRoom, LicenseNumber, Specialization, Experience, ConsultationFee) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                "INSERT INTO doctor (idStaff, idDepartment, LicenseNumber, Specialization, Experience, ConsultationFee) VALUES (?, ?, ?, ?, ?, ?)",
                 [
                   staffId,
                   1,
-                  1,
+                  
                   licenseNumber,
                   specialization,
                   experience,
